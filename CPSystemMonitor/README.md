@@ -1,5 +1,7 @@
 # CPSystemMonitor
 
+[配布ページ（日本語）](https://palmjoy.github.io/CPFileLauncher/CPSystemMonitor/ja/) / [English](https://palmjoy.github.io/CPFileLauncher/CPSystemMonitor/)
+
 CPToolsシリーズのWindows・macOS向け常駐システムモニターです。CPU・メモリ・ストレージ・ネットワークを、シリーズ共通の配色とHUD枠で表示します。
 
 - 標準／コンパクト表示。右クリックで切り替え。

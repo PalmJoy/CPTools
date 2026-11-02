@@ -51,8 +51,9 @@
   ]
 }
 </script>
+<link rel="stylesheet" href="../shared/suite.css">
 </head>
-<body>
+<body class="product-page">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-term" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M7 9l3 3-3 3M12 15h5"/></symbol>
   <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h7l2 2h9v11H3z"/></symbol>
@@ -76,7 +77,7 @@
 
 <header class="topbar">
   <div class="wrap">
-    <a class="brand" href="#top"><img src="assets/icon.svg" alt="" width="28" height="28">CPClipboard</a>
+    <a class="brand suite-brand" href="../"><img src="../shared/palm.svg" alt="" width="32" height="32">CPTools</a>
     <nav class="nav" aria-label="Sections">
       <a href="#download">Download</a>
       <a href="#features">Features</a>
@@ -84,7 +85,7 @@
       <a href="#license">License</a>
     </nav>
     <div class="langs"><a href="./" aria-current="page" data-lang="en" lang="en">EN</a><span aria-hidden="true">|</span><a href="ja/" data-lang="ja" lang="ja">JA</a></div>
-    <a class="sibling" href="../CPFileLauncher/" aria-label="Related tool: CPFileLauncher — file launcher"><img src="../CPFileLauncher/assets/icon.svg" alt="" width="18" height="18"><span>CPFileLauncher</span></a>
+    <a class="suite-home" href="../#apps">All apps →</a>
   </div>
 </header>
 
@@ -119,6 +120,13 @@
 <section class="block" id="setup"><div class="wrap"><div class="sec-head"><span class="num">05 // Setup</span><h2>First launch</h2></div><div class="os-tabs"><input type="radio" name="setup-os" id="os-win" checked><input type="radio" name="setup-os" id="os-mac"><div class="tablist"><label for="os-win">Windows</label><label for="os-mac">macOS</label></div><div class="panel panel-win"><ol class="steps"><li><strong>Extract the zip</strong><p>Keep the CPClipboard folder together, with <code>uiohook.dll</code> next to <code>CPClipboard.exe</code>.</p></li><li><strong>Launch the app</strong><p>Open <code>CPClipboard.exe</code>. Access Settings from the tray menu.</p></li><li><strong>Open the board</strong><p>Tap <kbd>Ctrl</kbd> twice and choose a snippet. Pasting into an elevated app is unavailable; the snippet is copied instead.</p></li></ol></div><div class="panel panel-mac"><ol class="steps"><li><strong>Move to Applications</strong><p>Extract the zip and move <code>CPClipboard.app</code> to Applications before opening it.</p></li><li><strong>Allow the first launch</strong><p>This build is not notarized. Verify its source before allowing it in System Settings → Privacy &amp; Security.</p></li><li><strong>Allow Accessibility</strong><p>Allow CPClipboard in System Settings → Privacy &amp; Security → Accessibility. Until permission is granted, selecting a snippet only copies it.</p></li><li><strong>Open the board</strong><p>Tap <kbd>Ctrl</kbd> twice and choose a snippet.</p></li></ol></div></div><h3 class="sub-h">Add your snippets</h3><p>Open Edit… from the tray or menu bar, choose a group, and select Add. Text edits are saved automatically.</p></div></section>
 <section class="block" id="storage"><div class="wrap"><div class="sec-head"><span class="num">06 // Storage</span><h2>Storage and clipboard</h2></div><div class="license-card cut"><p>Snippets are stored on your computer. By default, your selected snippet stays on the clipboard after pasting for reuse with Ctrl+V / ⌘V. Restoring the previous clipboard is optional and off by default. Copied text is saved locally as searchable clipboard history. Variables, macros and cloud sync are outside the app’s scope.</p><p><a href="https://github.com/PalmJoy/CPFileLauncher/blob/main/CPClipboard/README.md">Usage guide and data locations ↗</a></p></div></div></section>
 <section class="block" id="license"><div class="wrap"><div class="sec-head"><span class="num">07 // License</span><h2>License</h2></div><div class="license-card cut"><p>Copyright © 2026 PalmJoy · <a href="https://github.com/PalmJoy/CPFileLauncher/blob/main/CPClipboard/LICENSE">GPL-3.0-only</a></p><p>Free to use, modify and redistribute under the terms of the license.</p><p><a href="https://github.com/PalmJoy/CPFileLauncher/blob/main/CPClipboard/THIRD-PARTY-NOTICES.txt">Third-party notices</a></p><p class="small">Chakra Petch / Share Tech Mono · SIL Open Font License 1.1 · <a href="assets/fonts/OFL-ChakraPetch.txt">Chakra Petch</a> / <a href="assets/fonts/OFL-ShareTechMono.txt">Share Tech Mono</a></p></div></div></section>
+<!-- CPTOOLS-LINKS:START -->
+<section class="suite-links" id="cptools" aria-labelledby="cptools-title"><div class="wrap"><div class="suite-links-heading"><div><span class="num">CPTOOLS / APPLICATIONS</span><h2 id="cptools-title">Explore the CPTools collection</h2></div><a class="suite-home" href="../#apps">← All apps</a></div><nav class="suite-links-grid" aria-label="CPTools applications">
+<a class="suite-cell" href="../CPFileLauncher/"><span class="cell-arrow" aria-hidden="true">↗</span><img src="../CPFileLauncher/assets/icon.svg" alt="" width="68" height="68" loading="lazy"><strong>CPFileLauncher</strong><small>File launcher</small></a>
+<a class="suite-cell" href="../CPClipboard/" aria-current="page"><span class="cell-arrow" aria-hidden="true">↗</span><span class="cell-current">Current page</span><img src="../CPClipboard/assets/icon.svg" alt="" width="68" height="68" loading="lazy"><strong>CPClipboard</strong><small>Snippets & clipboard history</small></a>
+<a class="suite-cell" href="../CPSystemMonitor/"><span class="cell-arrow" aria-hidden="true">↗</span><img src="../CPSystemMonitor/assets/icon.svg" alt="" width="68" height="68" loading="lazy"><strong>CPSystemMonitor</strong><small>System monitor</small></a>
+</nav></div></section>
+<!-- CPTOOLS-LINKS:END -->
 </main>
 <footer>
   <div class="wrap">

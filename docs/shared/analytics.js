@@ -19,7 +19,7 @@ async function loadFirebase() {
 
 export async function startAnalytics({document = globalThis.document, location = globalThis.location, loadSDK = loadFirebase} = {}) {
   const product = document.documentElement.dataset.product;
-  if (!['CPFileLauncher', 'CPClipboard'].includes(product)) return;
+  if (!['CPTools', 'CPFileLauncher', 'CPClipboard', 'CPSystemMonitor'].includes(product)) return;
   const common = {
     product,
     content_group: product,
@@ -33,7 +33,7 @@ export async function startAnalytics({document = globalThis.document, location =
   // SDKの読み込み待ちでも押下を受け付ける。リンクは常に通常どおり開く。
   document.addEventListener('click', event => {
     const link = event.target?.closest?.('.dl-item[data-asset] a.btn, [data-hero-download]');
-    if (!link) return;
+    if (!link || product === 'CPTools') return;
     let url;
     try { url = new URL(link.href, location.href); } catch (_) { return; }
     if (url.origin !== 'https://github.com' || !url.pathname.startsWith('/PalmJoy/CPFileLauncher/releases/')) return;

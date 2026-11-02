@@ -19,7 +19,7 @@ function setup(product='CPClipboard',lang='ja',options={}) {
   return {events,configs,completed,press,sdk};
 }
 test('one explicit page_view identifies each product and language, with automatic page_view disabled',async()=>{
-  for(const product of ['CPFileLauncher','CPClipboard'])for(const lang of ['en','ja']){
+  for(const product of ['CPFileLauncher','CPClipboard','CPSystemMonitor'])for(const lang of ['en','ja']){
     const r=setup(product,lang);await r.completed;
     assert.equal(r.events.length,1);assert.equal(r.events[0].name,'page_view');
     assert.equal(r.events[0].params.content_group,product);assert.equal(r.events[0].params.product,product);
@@ -28,7 +28,7 @@ test('one explicit page_view identifies each product and language, with automati
   }
 });
 test('hero and card downloads record app, actual ZIP platform, language and placement',async()=>{
-  for(const product of ['CPFileLauncher','CPClipboard']){
+  for(const product of ['CPFileLauncher','CPClipboard','CPSystemMonitor']){
     const r=setup(product);await r.completed;
     for(const placement of ['hero','platform_card'])for(const rid of ['win-x64','win-arm64','macos-arm64']){
       r.press(`https://github.com/PalmJoy/CPFileLauncher/releases/download/tag/${product}-${rid}.zip`,placement);
@@ -58,11 +58,18 @@ test('unsupported or unavailable analytics does not affect the click handler',as
     assert.doesNotThrow(()=>r.press('https://github.com/PalmJoy/CPFileLauncher/releases/download/cpclipboard-v1.0.1/CPClipboard-win-x64.zip'));
   }
 });
-test('both languages load only the shared tracker and redirect entries do not track',()=>{
-  for(const product of ['CPClipboard','CPFileLauncher'])for(const lang of ['','ja/']){
+test('all localized pages use one shared tracker, including the app catalog',()=>{
+  for(const product of ['CPClipboard','CPFileLauncher','CPSystemMonitor'])for(const lang of ['','ja/']){
     const html=readFileSync(new URL(`../../docs/${product}/${lang}index.html`,import.meta.url),'utf8');
     assert.equal((html.match(/src="[^"]*analytics.js(?:\?v=\d+)?"/g)||[]).length,1);
     assert.ok(html.includes(`data-product="${product}"`));assert.ok(html.includes('shared/analytics.js'));
   }
-  for(const path of ['index.html','ja/index.html'])assert.ok(!readFileSync(new URL('../../docs/'+path,import.meta.url),'utf8').includes('analytics.js'));
+  for(const path of ['index.html','ja/index.html']){const html=readFileSync(new URL('../../docs/'+path,import.meta.url),'utf8');assert.equal((html.match(/src="[^"]*analytics.js(?:\?v=\d+)?"/g)||[]).length,1);assert.ok(html.includes('data-product="CPTools"'));}
+});
+
+test('suite pages have page views without reporting app downloads',async()=>{
+  const r=setup('CPTools');await r.completed;
+  assert.equal(r.events.length,1);assert.equal(r.events[0].params.product,'CPTools');
+  r.press('https://github.com/PalmJoy/CPFileLauncher/releases/download/cpsystemmonitor-v0.1.0/CPSystemMonitor-win-x64.zip');
+  assert.equal(r.events.length,1);
 });

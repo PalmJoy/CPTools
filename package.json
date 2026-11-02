@@ -7,6 +7,6 @@
   },
   "scripts": {
     "test": "node Common/build/test.mjs",
-    "check:sites": "node Common/build/sync-launcher-site.mjs --check"
+    "check:sites": "node Common/build/sync-launcher-site.mjs --check && node Common/build/sync-app-links.mjs --check"
   }
 }

@@ -13,6 +13,10 @@ C#の共有対象は `shared-sources.json`、コンパイル条件は `SharedIte
 
 ## 配布サイトのAnalytics
 
-既存のFirebase/GA4プロパティ（G-2VWQWZKZC4）で両製品を計測します。GA4の「ページとスクリーン」ではページパスまたは「コンテンツグループ」（CPFileLauncher / CPClipboard）でアクセスを分けます。DLボタン押下は既存の `download_click` イベントです。
+既存のFirebase/GA4プロパティ（G-2VWQWZKZC4）で一覧と3製品を計測します。GA4の「ページとスクリーン」ではページパスまたは「コンテンツグループ」（CPTools / CPFileLauncher / CPClipboard / CPSystemMonitor）でアクセスを分けます。DLボタン押下は既存の `download_click` イベントです。
 
 `download_click`には `content_group`・`product`・`platform`（win-x64 / win-arm64 / macos-arm64）・`page_language`（ページ言語）・`placement`（hero / platform_card）・`file_name`・`link_url`を付けます。独自パラメータを通常のレポートや探索で使う場合は、GA4管理画面のカスタム定義で必要な項目をイベントスコープのカスタムディメンションとして登録します。登録済みの同名項目はそのまま使えます。計測はページ表示・ボタン押下であり、ダウンロード完了の計測ではありません。
+
+## 共通アプリリンク
+
+`node Common/build/sync-app-links.mjs` で3製品の日英ページの正方形リンクセルを同期します。`--check` は未同期をエラーにします。ルートはリダイレクトではなくアプリ一覧です。`docs/shared/suite.css`・`palm.svg`・`palm-night.png` で共通の外観を管理します。

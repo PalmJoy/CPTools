@@ -30,15 +30,17 @@ test('both product languages load shared styling and controls with unique sectio
     }
   }
 });
-test('header and footer link to the sibling product in the same language instead of GitHub',()=>{
-  for(const [product,sibling] of [['CPClipboard','CPFileLauncher'],['CPFileLauncher','CPClipboard']]){
-    for(const lang of ['','ja/']){
-      const html=readFileSync(new URL(`../../docs/${product}/${lang}index.html`,import.meta.url),'utf8');
-      const up=lang?'../../':'../',href=`${up}${sibling}/${lang}`;
-      const header=html.match(/<header[\s\S]*?<\/header>/)[0],footer=html.match(/<footer[\s\S]*?<\/footer>/)[0];
-      assert.ok(header.includes(`class="sibling" href="${href}"`),product+lang);assert.ok(header.includes(`src="${up}${sibling}/assets/icon.svg"`),product+lang);
-      assert.ok(footer.includes(`href="${href}"`),product+lang);
-      assert.ok(!/>GitHub</.test(header+footer),product+lang);
-    }
+test('all products link to the localized suite and have three square app links',()=>{
+  for(const product of ['CPClipboard','CPFileLauncher','CPSystemMonitor'])for(const lang of ['','ja/']){
+    const html=readFileSync(new URL(`../../docs/${product}/${lang}index.html`,import.meta.url),'utf8');
+    const up=lang?'../../':'../';
+    const header=html.match(/<header[\s\S]*?<\/header>/)[0];
+    assert.ok(header.includes(`href="${up}${lang}"`),product+lang);
+    assert.ok(header.includes('shared/palm.svg'));
+    const section=html.match(/<!-- CPTOOLS-LINKS:START -->([\s\S]*?)<!-- CPTOOLS-LINKS:END -->/)[1];
+    assert.equal((section.match(/class="suite-cell"/g)||[]).length,3);
+    assert.equal((section.match(/aria-current="page"/g)||[]).length,1);
+    for(const target of ['CPFileLauncher','CPClipboard','CPSystemMonitor'])assert.ok(section.includes(`href="${up}${target}/${lang}"`));
+    const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size,product+lang);
   }
 });

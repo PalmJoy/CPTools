@@ -26,3 +26,4 @@ jobs:
           CPSM_NATIVE_TESTS: '1'
       - run: node Common/build/test.mjs
       - run: node Common/build/sync-launcher-site.mjs --check
+      - run: node Common/build/sync-app-links.mjs --check

@@ -12,14 +12,15 @@ test('Launcher release URLs retain their established tag scheme and Clipboard is
 
 test('moved and legacy site entries keep all local links resolvable',()=>{function walk(dir){for(const e of readdirSync(dir,{withFileTypes:true})){const p=join(dir,e.name);if(e.isDirectory())walk(p);else if(e.name.endsWith('.html')){for(const m of readFileSync(p,'utf8').matchAll(/(?:href|src)=["']([^"']+)/g)){const raw=m[1].split('#')[0].split('?')[0];if(!raw||/^[a-z]+:/i.test(raw)||raw.startsWith('/'))continue;assert.ok(existsSync(join(dirname(p),raw)),p+' -> '+raw);}}}}walk(join(root,'docs'));});
 
-test('legacy Launcher entries redirect with query and fragment without duplicate assets',()=>{
-  for(const [entry,target] of [['index.html','CPFileLauncher/index.html'],['ja/index.html','CPFileLauncher/ja/index.html']]){
-    const html=readFileSync(join(root,'docs',entry),'utf8');
-    const href='https://palmjoy.github.io/CPFileLauncher/'+entry+'?source=bookmark#download';
-    let destination;
-    runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],{URL,location:{href,search:'?source=bookmark',hash:'#download',replace:value=>destination=value}});
-    assert.equal(destination,'/CPFileLauncher/'+target+'?source=bookmark#download');
-    assert.ok(html.includes('http-equiv="refresh"'));
+test('root entries are real localized app catalogs with no redirect',()=>{
+  for(const lang of ['','ja/']){
+    const html=readFileSync(join(root,'docs',lang,'index.html'),'utf8');
+    assert.ok(html.includes('data-product="CPTools"'));
+    assert.ok(!html.includes('http-equiv="refresh"'));
+    assert.ok(!html.includes('location.replace'));
+    for(const product of ['CPFileLauncher','CPClipboard','CPSystemMonitor'])assert.ok(html.includes(`href="${lang?'../':''}${product}/${lang}"`));
   }
-  assert.ok(!existsSync(join(root,'docs/assets')));
+  const ja=readFileSync(join(root,'docs/ja/index.html'),'utf8');
+  assert.ok(ja.includes('サイバーパンクなデスクトップツール'));
+  assert.ok(!ja.includes('デスクトップに、ちょうどいい道具を。'));
 });

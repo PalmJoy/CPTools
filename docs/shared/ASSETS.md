@@ -1,0 +1,10 @@
+# CPTools shared visual assets
+
+- `palm-night.png`: original tropical-night hero illustration generated with the built-in image_gen tool for CPTools. Inspired by the user-approved CPTools concept and the user's Palm Joy Game Park reference. It contains no text or UI.
+- `palm.svg`: code-native palm mark used in the shared navigation and footer.
+- Product icons remain owned by their respective CPTools products.
+- CPSystemMonitor `standard.png` and `compact.png`: Skia-rendered UI test captures with sample data, not images of a user's real metrics.
+
+## Hero image prompt
+
+Create a production website HERO BACKGROUND ART ONLY, landscape panoramic approximately2048x1024. Use the supplied CPTools design image as style/composition reference, but output ONLY the tropical night scenery filling the entire image. Absolutely NO text, letters, numbers, logos, icons, UI, navigation, app windows, cards, buttons, borders or webpage screenshot elements anywhere. A calm dark tropical bay at night/sunset, two large coconut palm trees framing the left and right edges with graceful detailed fronds arching inward from upper corners. Near-black navy palm silhouettes, electric cyan edge light and restrained magenta rim light. Distant dark island silhouettes across the horizon, a luminous magenta sunset disc centered in the upper-middle sky with a few subtle horizontal dark bands, cyan and magenta reflections on gently rippling dark ocean water. Very dark navy sky with faint stars and small clouds, lower edge fades into near-black navy #0B0F1A. Central60% must be uncluttered dark enough for large pale website headline overlaid later. The sun occupies only10-15% imagewidth so text remains primary. Palette near-black navy #0B0F1A, electric cyan #00E5FF and magenta #FF2BD6, no warm orange. Refined atmospheric digital illustration, crisp palm foliage, restrained light, tropical cyberpunk night, professional software utilities site. No busy central foliage, no giant buildings, no characters or extra props. This is a reusable scene asset, not a complete webpage.
