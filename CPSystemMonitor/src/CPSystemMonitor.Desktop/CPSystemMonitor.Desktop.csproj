@@ -68,6 +68,23 @@
     </ItemGroup>
   </Target>
 
+  <!-- TraceEvent 4.0.0 supplies these COM interop assemblies as both references and
+       copy-to-output items. Keep one entry (including its publish metadata) before
+       ReadyToRun processes the assemblies. -->
+  <Target Name="DedupeTraceEventInteropAssemblies" AfterTargets="ComputeResolvedFilesToPublishList">
+    <ItemGroup>
+      <_TraceEventInteropAssemblies Include="@(ResolvedFileToPublish)"
+          Condition="'%(ResolvedFileToPublish.Filename)%(ResolvedFileToPublish.Extension)' == 'Dia2Lib.dll' Or '%(ResolvedFileToPublish.Filename)%(ResolvedFileToPublish.Extension)' == 'TraceReloggerLib.dll'" />
+    </ItemGroup>
+    <RemoveDuplicates Inputs="@(_TraceEventInteropAssemblies)">
+      <Output TaskParameter="Filtered" ItemName="_UniqueTraceEventInteropAssemblies" />
+    </RemoveDuplicates>
+    <ItemGroup>
+      <ResolvedFileToPublish Remove="@(_TraceEventInteropAssemblies)" />
+      <ResolvedFileToPublish Include="@(_UniqueTraceEventInteropAssemblies)" />
+    </ItemGroup>
+  </Target>
+
   <ItemGroup>
     <ProjectReference Include="..\CPSystemMonitor.Core\CPSystemMonitor.Core.csproj" />
     <ProjectReference Include="..\CPSystemMonitor.Platform\CPSystemMonitor.Platform.csproj" />
