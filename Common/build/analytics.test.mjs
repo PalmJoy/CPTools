@@ -7,7 +7,7 @@ function setup(product='CPClipboard',lang='ja',options={}) {
   let click;
   const events=[],configs=[];
   const document={documentElement:{dataset:{product},lang},title:product,addEventListener(name,handler){assert.equal(name,'click');click=handler;}};
-  const location={pathname:`/CPFileLauncher/${product}/${lang==='ja'?'ja/':''}`,href:`https://palmjoy.github.io/CPFileLauncher/${product}/${lang==='ja'?'ja/':''}`};
+  const location={pathname:`/CPTools/${product}/${lang==='ja'?'ja/':''}`,href:`https://palmjoy.github.io/CPTools/${product}/${lang==='ja'?'ja/':''}`};
   const sdk={initializeApp:()=>({}),isSupported:async()=>true,setDefaultEventParameters(params){configs.push(params);},initializeAnalytics(_,options){configs.push(options);return {};},logEvent(_,name,params){events.push({name,params});},...options.sdk};
   const context=vm.createContext({URL});vm.runInContext(source,context);
   const completed=context.startAnalytics({document,location,loadSDK:options.loadSDK??(async()=>sdk)});
@@ -31,7 +31,7 @@ test('hero and card downloads record app, actual ZIP platform, language and plac
   for(const product of ['CPFileLauncher','CPClipboard','CPSystemMonitor']){
     const r=setup(product);await r.completed;
     for(const placement of ['hero','platform_card'])for(const rid of ['win-x64','win-arm64','macos-arm64']){
-      r.press(`https://github.com/PalmJoy/CPFileLauncher/releases/download/tag/${product}-${rid}.zip`,placement);
+      r.press(`https://github.com/PalmJoy/CPTools/releases/download/tag/${product}-${rid}.zip`,placement);
       const event=r.events.at(-1);
       assert.equal(event.name,'download_click');assert.equal(event.params.content_group,product);
       assert.equal(event.params.platform,rid);assert.equal(event.params.placement,placement);assert.equal(event.params.language,'ja');assert.equal(event.params.page_language,'ja');
@@ -42,20 +42,20 @@ test('hero and card downloads record app, actual ZIP platform, language and plac
 });
 test('SDK loading preserves early clicks and reads the link resolved at click time',async()=>{
   let finish;const r=setup('CPClipboard','en',{loadSDK:()=>new Promise(resolve=>finish=resolve)});
-  r.press('https://github.com/PalmJoy/CPFileLauncher/releases/download/cpclipboard-v1.0.1/CPClipboard-macos-arm64.zip');
+  r.press('https://github.com/PalmJoy/CPTools/releases/download/cpclipboard-v1.0.1/CPClipboard-macos-arm64.zip');
   assert.equal(r.events.length,0);finish(r.sdk);await r.completed;
   assert.deepEqual(r.events.map(e=>e.name),['page_view','download_click']);
   assert.equal(r.events[1].params.platform,'macos-arm64');
 });
 test('in-page links, other products and foreign hosts do not count as downloads',async()=>{
   const r=setup();await r.completed;
-  for(const href of ['https://palmjoy.github.io/CPFileLauncher/CPClipboard/#download','https://example.com/CPClipboard-win-x64.zip','https://github.com/PalmJoy/CPFileLauncher/releases/download/v1.2.0/CPFileLauncher-win-x64.zip'])r.press(href);
+  for(const href of ['https://palmjoy.github.io/CPTools/CPClipboard/#download','https://example.com/CPClipboard-win-x64.zip','https://github.com/PalmJoy/CPTools/releases/download/v1.2.0/CPFileLauncher-win-x64.zip'])r.press(href);
   assert.equal(r.events.length,1);
 });
 test('unsupported or unavailable analytics does not affect the click handler',async()=>{
   for(const options of [{sdk:{isSupported:async()=>false}},{loadSDK:async()=>{throw Error('blocked');}},{sdk:{logEvent(){throw Error('failed');}}}]){
     const r=setup('CPClipboard','ja',options);await r.completed;
-    assert.doesNotThrow(()=>r.press('https://github.com/PalmJoy/CPFileLauncher/releases/download/cpclipboard-v1.0.1/CPClipboard-win-x64.zip'));
+    assert.doesNotThrow(()=>r.press('https://github.com/PalmJoy/CPTools/releases/download/cpclipboard-v1.0.1/CPClipboard-win-x64.zip'));
   }
 });
 test('all localized pages use one shared tracker, including the app catalog',()=>{
@@ -70,6 +70,6 @@ test('all localized pages use one shared tracker, including the app catalog',()=
 test('suite pages have page views without reporting app downloads',async()=>{
   const r=setup('CPTools');await r.completed;
   assert.equal(r.events.length,1);assert.equal(r.events[0].params.product,'CPTools');
-  r.press('https://github.com/PalmJoy/CPFileLauncher/releases/download/cpsystemmonitor-v0.1.0/CPSystemMonitor-win-x64.zip');
+  r.press('https://github.com/PalmJoy/CPTools/releases/download/cpsystemmonitor-v0.1.0/CPSystemMonitor-win-x64.zip');
   assert.equal(r.events.length,1);
 });

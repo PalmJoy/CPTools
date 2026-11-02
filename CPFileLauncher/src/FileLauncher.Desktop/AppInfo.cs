@@ -10,7 +10,7 @@ internal static class AppInfo
     // ライセンス（SPEC §6.3「について」/ §13.2 T2）
     public const string Copyright = "Copyright © 2026 PalmJoy"; // i18n:ignore 著作権表示（訳さない）
     public const string LicenseId = "GPL-3.0-only";
-    public const string SourceUrl = "https://github.com/PalmJoy/CPFileLauncher";
+    public const string SourceUrl = "https://github.com/PalmJoy/CPTools";
     public const string ThirdPartyNoticesFileName = "THIRD-PARTY-NOTICES.txt";
     public const string ThirdPartyNoticesUrl = SourceUrl + "/blob/main/CPFileLauncher/" + ThirdPartyNoticesFileName; // 同梱が見つからないとき
 }

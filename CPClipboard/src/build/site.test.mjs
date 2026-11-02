@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {selectRelease} from '../../../Common/Web/release-selection.js';
 const code=readFileSync(new URL('../../../docs/CPClipboard/assets/site.js',import.meta.url),'utf8').replace(/^import .*;\n/, '');
-const base='https://github.com/PalmJoy/CPFileLauncher/releases/download/';
+const base='https://github.com/PalmJoy/CPTools/releases/download/';
 const ids=['win-x64','win-arm64','macos-arm64'];
 const published='cpclipboard-v1.0.5';
 function start(response,navigator={},lang='en'){

@@ -36,7 +36,7 @@ export async function startAnalytics({document = globalThis.document, location =
     if (!link || product === 'CPTools') return;
     let url;
     try { url = new URL(link.href, location.href); } catch (_) { return; }
-    if (url.origin !== 'https://github.com' || !url.pathname.startsWith('/PalmJoy/CPFileLauncher/releases/')) return;
+    if (url.origin !== 'https://github.com' || !url.pathname.startsWith('/PalmJoy/CPTools/releases/')) return;
     const file = url.pathname.split('/').pop();
     const match = file.match(new RegExp('^' + product + '-(win-x64|win-arm64|macos-arm64)\\.zip$'));
     if (!match) return; // 配布一覧へのページ内リンクや別製品のZIPは数えない。

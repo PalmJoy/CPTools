@@ -12,7 +12,7 @@ Windows・macOS向けの定型文ツールです。サイバーパンクの盤�
 
 ## インストールと初回起動
 
-[公開リリース](https://github.com/PalmJoy/CPFileLauncher/releases) · [配布・初回設定](https://palmjoy.github.io/CPFileLauncher/CPClipboard/ja/#setup)
+[公開リリース](https://github.com/PalmJoy/CPTools/releases) · [配布・初回設定](https://palmjoy.github.io/CPTools/CPClipboard/ja/#setup)
 
 配布リンクはRelease公開後に利用できます。.NETは同梱されるため、別途インストールする必要はありません。
 
@@ -77,6 +77,6 @@ macOSのアプリはFinderから開くか、`open bin/osx-arm64/CPClipboard.app`
 
 Copyright © 2026 PalmJoy。[GPL-3.0-only](LICENSE)。同梱ライブラリとフォントは[第三者の表示](THIRD-PARTY-NOTICES.txt)を参照してください。LGPLのネイティブライブラリlibuiohookは、Windowsのexeとは別に差し替えられます。
 
-姉妹アプリ: [CPFileLauncher](https://github.com/PalmJoy/CPFileLauncher)
+姉妹アプリ: [CPFileLauncher](https://github.com/PalmJoy/CPTools)
 
 Common を含むCPToolsルートからビルドできます。製品単体を取り出さず、リポジトリ全体を配置してください。ビルド方法は [CPTools](../README.md) を参照してください。

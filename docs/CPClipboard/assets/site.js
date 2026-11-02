@@ -46,7 +46,7 @@ import {selectRelease} from './release-selection.js';
   // リリース一覧の通信完了を待たず、HTMLにある公開済みZIPへ直接つなぐ。
   const platformReady = detectPlatform().then(platform => { detectedPlatform = platform; updatePlatform(); });
   try {
-    const response = await fetch('https://api.github.com/repos/PalmJoy/CPFileLauncher/releases?per_page=100', {cache:'no-store',headers:{Accept:'application/vnd.github+json'}});
+    const response = await fetch('https://api.github.com/repos/PalmJoy/CPTools/releases?per_page=100', {cache:'no-store',headers:{Accept:'application/vnd.github+json'}});
     if (!response.ok) return;
     const release = selectRelease(await response.json(), 'cpclipboard-v');
     if (!release) return;
@@ -57,7 +57,7 @@ import {selectRelease} from './release-selection.js';
       if (!asset) continue;
       let url;
       try { url = new URL(asset.browser_download_url); } catch (_) { continue; }
-      if (url.origin !== 'https://github.com' || url.pathname !== `/PalmJoy/CPFileLauncher/releases/download/${release.tag_name}/${name}`) continue;
+      if (url.origin !== 'https://github.com' || url.pathname !== `/PalmJoy/CPTools/releases/download/${release.tag_name}/${name}`) continue;
       urls[name] = url.href;
       card.querySelector('a[href]').href = url.href;
       const size = card.querySelector('[data-size]');
@@ -69,7 +69,7 @@ import {selectRelease} from './release-selection.js';
       document.querySelector('[data-release-status]').textContent = (ja ? '公開版: ' : 'Latest release: ') + version;
       document.querySelectorAll('[data-version]').forEach(node => { node.textContent = version; });
       const link = document.querySelector('[data-release-link]');
-      if (link) link.href = 'https://github.com/PalmJoy/CPFileLauncher/releases/tag/' + release.tag_name;
+      if (link) link.href = 'https://github.com/PalmJoy/CPTools/releases/tag/' + release.tag_name;
     }
     updatePlatform();
   } catch (_) { /* 通信失敗・API制限時もHTMLの公開済みリンクを維持する。 */ }

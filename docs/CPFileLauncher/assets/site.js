@@ -4,7 +4,7 @@ import {selectRelease} from './release-selection.js';
 (function () {
   'use strict';
 
-  var REPO = 'PalmJoy/CPFileLauncher';
+  var REPO = 'PalmJoy/CPTools';
   var ASSETS = {
     'win-x64': 'CPFileLauncher-win-x64.zip',
     'win-arm64': 'CPFileLauncher-win-arm64.zip',
@@ -102,7 +102,7 @@ import {selectRelease} from './release-selection.js';
           var asset = (rel.assets || []).find(function (a) { return a.name === ASSETS[os]; });
           if (!asset) return;
           var url = new URL(asset.browser_download_url);
-          if (url.origin !== 'https://github.com' || !url.pathname.startsWith('/PalmJoy/CPFileLauncher/releases/download/')) return;
+          if (url.origin !== 'https://github.com' || !url.pathname.startsWith('/PalmJoy/CPTools/releases/download/')) return;
           releaseUrls[asset.name] = url.href;
           $$('.dl-item[data-asset=\"' + os + '\"] a[href]').forEach(function (a) { a.href = url.href; });
         });

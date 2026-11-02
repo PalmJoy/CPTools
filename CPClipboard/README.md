@@ -12,7 +12,7 @@ A snippet tool for Windows and macOS with a cyberpunk popup board. Save reusable
 
 ## Install and first launch
 
-[Public releases](https://github.com/PalmJoy/CPFileLauncher/releases) · [Download and setup](https://palmjoy.github.io/CPFileLauncher/CPClipboard/#setup)
+[Public releases](https://github.com/PalmJoy/CPTools/releases) · [Download and setup](https://palmjoy.github.io/CPTools/CPClipboard/#setup)
 
 Download links become available when a release is published. The app includes .NET; a separate runtime installation is unnecessary.
 
@@ -77,6 +77,6 @@ Tag builds (`cpclipboard-v<Version>`, matching the Desktop csproj) test both pla
 
 Copyright © 2026 PalmJoy. [GPL-3.0-only](LICENSE). See [third-party notices](THIRD-PARTY-NOTICES.txt) for bundled libraries and fonts. The native LGPL libuiohook library is replaceable separately from the Windows executable.
 
-[CPFileLauncher](https://github.com/PalmJoy/CPFileLauncher) is the companion file launcher.
+[CPFileLauncher](https://github.com/PalmJoy/CPTools) is the companion file launcher.
 
 Build from the CPTools root with Common present. See the [CPTools build instructions](../README.md).

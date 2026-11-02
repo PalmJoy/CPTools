@@ -8,7 +8,7 @@ test('Launcher download and hero links select Launcher assets in a mixed reposit
   const link={href:'original'},hero={href:'original'},version={textContent:''};
   const item={classList:{toggle(){}},getAttribute(){return 'win-x64';}};
   const document={documentElement:{lang:'en',style:{setProperty(){}}},querySelector(s){return s==='[data-hero-download]'?hero:null;},querySelectorAll(s){if(s==='.dl-item')return[item];if(s==='[data-version]')return[version];if(s==='.dl-item[data-asset="win-x64"] a[href]')return[link];return[];},addEventListener(){},getElementById(){return null;}};
-  const asset='https://github.com/PalmJoy/CPFileLauncher/releases/download/v1.10.0/CPFileLauncher-win-x64.zip';
+  const asset='https://github.com/PalmJoy/CPTools/releases/download/v1.10.0/CPFileLauncher-win-x64.zip';
   const releases=[{draft:false,prerelease:false,tag_name:'cpclipboard-v99.0.0',assets:[]},{draft:false,prerelease:false,tag_name:'v1.10.0',assets:[{name:'CPFileLauncher-win-x64.zip',browser_download_url:asset}]}];
   let requested;
   const fetch=async url=>{requested=url;return{ok:true,json:async()=>releases};};

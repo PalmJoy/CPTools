@@ -1,12 +1,12 @@
 # CPTools
 
-CPFileLauncher・CPClipboard・CPSystemMonitorをまとめたWindows・macOS向けツール集です。公開リポジトリは既存の[CPFileLauncher](https://github.com/PalmJoy/CPFileLauncher)を使用します。
+CPFileLauncher・CPClipboard・CPSystemMonitorをまとめたWindows・macOS向けツール集です。公開リポジトリは[CPTools](https://github.com/PalmJoy/CPTools)です。
 
 | 製品 | 用途 | 配布サイト |
 | --- | --- | --- |
-| [CPFileLauncher](CPFileLauncher/README.md) | ファイル・フォルダ・アプリの起動 | [日本語](https://palmjoy.github.io/CPFileLauncher/CPFileLauncher/ja/) / [English](https://palmjoy.github.io/CPFileLauncher/CPFileLauncher/) |
-| [CPClipboard](CPClipboard/README.ja.md) | 定型文のコピー・貼り付け | [日本語](https://palmjoy.github.io/CPFileLauncher/CPClipboard/ja/) / [English](https://palmjoy.github.io/CPFileLauncher/CPClipboard/) |
-| [CPSystemMonitor](CPSystemMonitor/README.md) | CPU・メモリ・ディスク・通信の常駐監視 | [日本語](https://palmjoy.github.io/CPFileLauncher/CPSystemMonitor/ja/) / [English](https://palmjoy.github.io/CPFileLauncher/CPSystemMonitor/) |
+| [CPFileLauncher](CPFileLauncher/README.md) | ファイル・フォルダ・アプリの起動 | [日本語](https://palmjoy.github.io/CPTools/CPFileLauncher/ja/) / [English](https://palmjoy.github.io/CPTools/CPFileLauncher/) |
+| [CPClipboard](CPClipboard/README.ja.md) | 定型文のコピー・貼り付け | [日本語](https://palmjoy.github.io/CPTools/CPClipboard/ja/) / [English](https://palmjoy.github.io/CPTools/CPClipboard/) |
+| [CPSystemMonitor](CPSystemMonitor/README.md) | CPU・メモリ・ディスク・通信の常駐監視 | [日本語](https://palmjoy.github.io/CPTools/CPSystemMonitor/ja/) / [English](https://palmjoy.github.io/CPTools/CPSystemMonitor/) |
 
 各製品は別アプリです。設定・データ保存先・bundle ID・配布ファイル名を個別に持ちます。
 
@@ -59,3 +59,9 @@ GitHub Pagesの配信元はrootの `docs/` です。`docs/index.html` と `docs/
 ## ライセンス
 
 Copyright © 2026 PalmJoy。[GPL-3.0-only](LICENSE)。各製品の第三者表示は[Launcher](CPFileLauncher/THIRD-PARTY-NOTICES.txt)・[Clipboard](CPClipboard/THIRD-PARTY-NOTICES.txt)・[SystemMonitor](CPSystemMonitor/THIRD-PARTY-NOTICES.txt)を参照してください。
+
+## リポジトリ改名後の互換性
+
+2026-11-03に公開リポジトリを `PalmJoy/CPFileLauncher` から `PalmJoy/CPTools` へ改名しました。GitHubの旧リポジトリ・Release・APIの転送を維持するため、旧名のリポジトリを作り直さないでください。公開済みアプリの更新APIは転送先を利用できます。新しいビルドでは配布ページ・更新API・ソースコードの参照をCPToolsへ変更しています。公開済みZIPは変更していません。
+
+GitHub Pagesの旧 `/CPFileLauncher/` URLは自動転送されません。旧ページへのリンク（公開済みアプリ内のリンクを含む）を復旧するには、組織サイト `PalmJoy/PalmJoy.github.io` の `/CPFileLauncher/` 配下に転送ページを置く方法があります。旧名のリポジトリを作成する方法とは異なり、リポジトリの転送を維持できます。

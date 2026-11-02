@@ -5,7 +5,7 @@ CPFileLauncher
 Copyright © 2026 PalmJoy
 Licensed under the GNU General Public License v3.0 only (GPL-3.0-only).
 The full text of the GPL v3 is in LICENSE.txt, distributed with this file.
-Source code: https://github.com/PalmJoy/CPFileLauncher
+Source code: https://github.com/PalmJoy/CPTools
 
 CPFileLauncher includes the third-party components listed below. Each
 component is distributed under its own license; the license texts are

@@ -159,7 +159,7 @@ jobs:
           else
             gh release create "$TAG" dist/* --repo "$REPO" --draft --latest=false --verify-tag \
               --title "CPSystemMonitor $TAG" --generate-notes \
-              --notes "First launch / 初回の起動: https://palmjoy.github.io/CPFileLauncher/CPSystemMonitor/#setup"
+              --notes "First launch / 初回の起動: https://palmjoy.github.io/CPTools/CPSystemMonitor/#setup"
           fi
           if [[ "$PUBLISH_RELEASE" == "true" ]]; then
             gh release edit "$TAG" --repo "$REPO" --draft=false --latest=false

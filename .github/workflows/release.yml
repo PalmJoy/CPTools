@@ -135,7 +135,7 @@ jobs:
           else
             gh release create "$TAG" dist/* --repo "$REPO" --draft --verify-tag \
               --title "CPFileLauncher $TAG" --generate-notes \
-              --notes "First launch / 初回の起動: https://palmjoy.github.io/CPFileLauncher/#setup"
+              --notes "First launch / 初回の起動: https://palmjoy.github.io/CPTools/CPFileLauncher/#setup"
           fi
           if [[ "$PUBLISH_RELEASE" == "true" ]]; then
             gh release edit "$TAG" --repo "$REPO" --draft=false --latest

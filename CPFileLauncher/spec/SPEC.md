@@ -735,7 +735,7 @@ Windows は 、
 
 - **表示中に盤面が閉じない仕組み**: メニューは別のトップレベルウィンドウ（Avalonia の Popup）として出るため、開いた瞬間に盤面が `Deactivated` になり、盤面からはみ出した部分のクリックはフックの座標判定（§3.3）で「盤面外」になる。そこでメニューの `Opened` 〜 `Closed` の間を `IBoardController.RunModalAsync` で包む（確認ダイアログと同じ。`_modal` の間は非アクティブ化・外クリック・マウス離れ・常駐の自動で隠すを無視する）。メニュー項目からダイアログ（編集…、ページの設定…）へ続く場合はメニューが閉じてから改めて `RunModalAsync` で包む。
 - Esc はメニューが自分で閉じる（盤面には届かない）。Shift+F10 / Menu キーで選択セル（§6.6）のメニューを開く。
-- 「CPFileLauncher について」: 製品名 **CPFileLauncher**（見出し 18 px 太字 + 文字発光）と副題「CyberPunk FileLauncher」、バージョン・データフォルダのパス（見出しは常に「データフォルダ」。ポータブルモードでも「（ポータブル）」を付けない。§9.1 の隠し機能）・同梱フォントのライセンス表記（OFL: Chakra Petch と Share Tech Mono、§3.6）を出す小さなウィンドウ（`Notice` の流用）。製品名は  に確定。**本体のライセンス表示（確定。 = GPL-3.0-only）**: フォントの表記の前に「Copyright © 2026 PalmJoy」・「GNU General Public License v3（GPL-3.0-only）で配布。無保証」・ソースの URL（`https://github.com/PalmJoy/CPFileLauncher`、クリックで既定のブラウザ）を出す。その下に**「サードパーティのライセンス」**のリンクを置き、同梱の `THIRD-PARTY-NOTICES.txt`（§10.4「ライセンス文の同梱」）を OS の既定のアプリで開く。ファイルは実行ファイルのフォルダ、無ければその 1 つ上の `Resources/`（= macOS の `Contents/Resources/`）の順に探す（OS の分岐ではなく探す順序。どちらにも無ければリポジトリの同ファイルの URL を開く）。名義・URL は `AppInfo` の定数。
+- 「CPFileLauncher について」: 製品名 **CPFileLauncher**（見出し 18 px 太字 + 文字発光）と副題「CyberPunk FileLauncher」、バージョン・データフォルダのパス（見出しは常に「データフォルダ」。ポータブルモードでも「（ポータブル）」を付けない。§9.1 の隠し機能）・同梱フォントのライセンス表記（OFL: Chakra Petch と Share Tech Mono、§3.6）を出す小さなウィンドウ（`Notice` の流用）。製品名は  に確定。**本体のライセンス表示（確定。 = GPL-3.0-only）**: フォントの表記の前に「Copyright © 2026 PalmJoy」・「GNU General Public License v3（GPL-3.0-only）で配布。無保証」・ソースの URL（`https://github.com/PalmJoy/CPTools`、クリックで既定のブラウザ）を出す。その下に**「サードパーティのライセンス」**のリンクを置き、同梱の `THIRD-PARTY-NOTICES.txt`（§10.4「ライセンス文の同梱」）を OS の既定のアプリで開く。ファイルは実行ファイルのフォルダ、無ければその 1 つ上の `Resources/`（= macOS の `Contents/Resources/`）の順に探す（OS の分岐ではなく探す順序。どちらにも無ければリポジトリの同ファイルの URL を開く）。名義・URL は `AppInfo` の定数。
 
 **ターミナルで開く**
 
@@ -1042,7 +1042,7 @@ src/
 
 #### リリース（GitHub Releases。ユーザーと合意した方針）
 
-- **配り方**: GitHub Releases のアセット（zip）。Actions の Artifact は使わない（ログイン必須・90 日で消える・URL が毎回変わる）。インストーラは作らない。リポジトリは `PalmJoy/CPFileLauncher`（public）。
+- **配り方**: GitHub Releases のアセット（zip）。Actions の Artifact は使わない（ログイン必須・90 日で消える・URL が毎回変わる）。インストーラは作らない。リポジトリは `PalmJoy/CPTools`（public）。
 - **アセット名はバージョンを含まない固定名**（配布サイトは製品タグで選別したReleaseの実在assetへ接続し、repository全体のlatest/downloadを使用しない）:
 
   | アセット | 中身 | 作り方 |
@@ -1074,10 +1074,10 @@ src/
 
 #### 配布サイト（GitHub Pages）
 
-- **置き場所**: リポジトリの `docs/`（`main` ブランチの `/docs` を Pages の公開元にする。設定はユーザー作業）。URL は `https://palmjoy.github.io/CPFileLauncher/`（独自ドメインは使わない。サイト内のリンクはすべて相対パスにする = プロジェクトサイトの `/CPFileLauncher/` 配下で動くように）。`docs/` は配布サイト専用で、仕様（`spec/`）とは別物。
+- **置き場所**: リポジトリの `docs/`（`main` ブランチの `/docs` を Pages の公開元にする。設定はユーザー作業）。URL は `https://palmjoy.github.io/CPTools/`（独自ドメインは使わない。サイト内のリンクはすべて相対パスにする = プロジェクトサイトの `/CPTools/` 配下で動くように）。`docs/` は配布サイト専用で、仕様（`spec/`）とは別物。
 - **作り**: ビルド工程なしの静的サイト（HTML + CSS + 少量の素の JS）。外部の CDN・Web フォントサービス・解析タグを使わない（書体は自前で配る）。`docs/.nojekyll` を置く（Jekyll の処理を止める）。JS が動かなくてもダウンロード・手順は読める（JS は「おすすめ」の表示・バージョン表示・言語の案内・配色デモだけ）。
 - **言語**: 英語 `/` と日本語 `/ja/`。手動の EN / JA リンクで切り替え、ブラウザ言語による自動転送は行わない。日本語ブラウザには日本語ページへの案内を表示する。各 URL に自己 canonical と相互 hreflang を置く。
-- **バージョンの表示**: JS で `https://api.github.com/repos/PalmJoy/CPFileLauncher/releases` を読み、公開正式版の `vX.Y.Z` だけから最新版を選び、タグ名・公開日・実在assetのサイズとダウンロードリンクを出す。Clipboardタグは除外する。取得できなければRelease一覧への導線を示し、別製品のlatest/downloadへ接続しない。サイトの HTML にバージョンを書かない。
+- **バージョンの表示**: JS で `https://api.github.com/repos/PalmJoy/CPTools/releases` を読み、公開正式版の `vX.Y.Z` だけから最新版を選び、タグ名・公開日・実在assetのサイズとダウンロードリンクを出す。Clipboardタグは除外する。取得できなければRelease一覧への導線を示し、別製品のlatest/downloadへ接続しない。サイトの HTML にバージョンを書かない。
 - **おすすめの表示**: ボタンは常に 3 つ並べ、OS を推定できたものを「おすすめ」にする（強調 + チップ）。推定: `navigator.userAgentData.platform`（無ければ `navigator.userAgent`）で Windows / macOS。Windows の arm64 は `userAgentData.getHighEntropyValues(['architecture'])` が `arm` のときだけ（取れないブラウザは x64 をおすすめ）。Mac はブラウザから Intel / Apple シリコンを区別できない（UA は常に Intel）ので、Mac のボタンには常に「Apple シリコン専用」を添える。推定できなければ（Linux・スマホなど）強調しない。
 
 ### 10.5 見た目の実装（サイバーパンク専用化。見た目は §3.6 / §3.9）
@@ -1155,8 +1155,8 @@ src/
 
 製品はCPTools/CPFileLauncher/に配置し、共通ソースは兄弟ディレクトリCommon/から明示的にリンクしてコンパイルする。共通構造と責務は `../../Common/SPEC.md` を参照。Coreの同一ロジック、Desktopの同一描画・演出部品、Platformの同一native補助を共有し、製品固有の設定enum・resource・盤面・データはこの製品が所有する。製品間に参照を設けず、assembly名・bundle ID・保存先・更新先URLは維持する。共有化はプロセス間メモリ共有や既定演出の変更を意味しない。
 
-配布サイトの実ソースはCPTools/docs/CPFileLauncher/。製品内scriptは自身の位置からCPTools rootを解決し、Commonとサイト参照を起動ディレクトリに依存させない。CI定義はCPTools rootの.github/workflowsへ置き、Common変更を両製品で検証する。公開repositoryは `PalmJoy/CPFileLauncher` に集約し、製品別のタグ/assetで分離する。署名identity・bundle ID・データ保存先は維持する。
+配布サイトの実ソースはCPTools/docs/CPFileLauncher/。製品内scriptは自身の位置からCPTools rootを解決し、Commonとサイト参照を起動ディレクトリに依存させない。CI定義はCPTools rootの.github/workflowsへ置き、Common変更を両製品で検証する。公開repositoryは `PalmJoy/CPTools` に集約し、製品別のタグ/assetで分離する。署名identity・bundle ID・データ保存先は維持する。
 
 ### CPTools の公開先と互換URL
 
-公開repository `PalmJoy/CPFileLauncher` と既存タグ `vX.Y.Z` を維持する。更新確認はこの形式の公開正式Releaseだけを対象とし、同repositoryの `cpclipboard-vX.Y.Z` を除外する。配布サイトの実体はroot/docs/CPFileLauncherへ置き、同期生成entryにより既存の `https://palmjoy.github.io/CPFileLauncher/` および `/ja/` のページとアンカーを維持する。製品の既存リンク・bundle IDは変更しない。
+公開repository `PalmJoy/CPTools` と既存タグ `vX.Y.Z` を維持する。更新確認はこの形式の公開正式Releaseだけを対象とし、同repositoryの `cpclipboard-vX.Y.Z` を除外する。配布サイトの実体はroot/docs/CPFileLauncherへ置き、公開URLは `https://palmjoy.github.io/CPTools/CPFileLauncher/` と製品内の `/ja/` を使用する。CPToolsルートはアプリ一覧。公開済みアプリの旧API URLはGitHubの転送を利用するため、旧名リポジトリを再作成しない。bundle IDと製品名は変更しない。

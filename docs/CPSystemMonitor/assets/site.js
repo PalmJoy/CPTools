@@ -1,7 +1,7 @@
 import {selectRelease} from './release-selection.js';
 const product='CPSystemMonitor';
 const prefix='cpsystemmonitor-v';
-const repository='https://github.com/PalmJoy/CPFileLauncher';
+const repository='https://github.com/PalmJoy/CPTools';
 export const assetNames={
   'win-x64':product+'-win-x64.zip',
   'win-arm64':product+'-win-arm64.zip',
@@ -11,7 +11,7 @@ function trustedAsset(asset,tag,name){
   if(!asset||asset.name!==name)return false;
   try{
     const url=new URL(asset.browser_download_url);
-    return url.origin==='https://github.com'&&url.pathname===`/PalmJoy/CPFileLauncher/releases/download/${tag}/${name}`&&!url.search&&!url.hash;
+    return url.origin==='https://github.com'&&url.pathname===`/PalmJoy/CPTools/releases/download/${tag}/${name}`&&!url.search&&!url.hash;
   }catch{return false;}
 }
 export function publishedMonitorRelease(releases){
@@ -82,7 +82,7 @@ export async function startMonitorPage({document=globalThis.document,navigator=g
     document.querySelectorAll('[data-preview-src]').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));
   }));
   try{
-    const response=await fetch('https://api.github.com/repos/PalmJoy/CPFileLauncher/releases?per_page=100',{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});
+    const response=await fetch('https://api.github.com/repos/PalmJoy/CPTools/releases?per_page=100',{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});
     if(!response.ok){showReleaseLookupFailure();return;}
     const release=publishedMonitorRelease(await response.json());
     if(!release)return;

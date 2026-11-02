@@ -18,7 +18,7 @@ CPToolsはCPClipboard/CPFileLauncher/CPSystemMonitorの製品ディレクトリ�
 
 CPTools rootの `CPTools.slnx` は各製品をまとめてbuild/testする入口とする。rootの共通build props/targetsは対応する設定をまとめ、製品固有設定・定数・assetを上書きしない。共通ソース一覧は層別の `.props` または `.projitems` に明示する。
 
-CI定義はCPTools/.github/workflowsに配置し、製品ディレクトリをworking-directoryとして個別solutionを検証する。Common変更時は両方を検証する。更新確認・サイトは公開Release一覧の先頭100件から正式な製品タグを選び、版番号で最新を決める。公開repositoryは `PalmJoy/CPFileLauncher`。Launcherは既存タグ `vX.Y.Z`、Clipboardは `cpclipboard-vX.Y.Z` を使い、Release/asset/更新確認を製品のタグprefixで分離する。各製品のサイトはroot/docs/<product>/に置く。ルートの `https://palmjoy.github.io/CPFileLauncher/` と `/ja/` はCPToolsのアプリ一覧（日英）とし、リダイレクトしない。製品固有の公開URLはそれぞれ `/CPFileLauncher/`・`/CPClipboard/`・`/CPSystemMonitor/` と各製品内の `/ja/`。CPSystemMonitorのReleaseタグprefixは `cpsystemmonitor-v` とし、他製品のReleaseと混ぜない。
+CI定義はCPTools/.github/workflowsに配置し、製品ディレクトリをworking-directoryとして個別solutionを検証する。Common変更時は両方を検証する。更新確認・サイトは公開Release一覧の先頭100件から正式な製品タグを選び、版番号で最新を決める。公開repositoryは `PalmJoy/CPTools`。Launcherは既存タグ `vX.Y.Z`、Clipboardは `cpclipboard-vX.Y.Z` を使い、Release/asset/更新確認を製品のタグprefixで分離する。各製品のサイトはroot/docs/<product>/に置く。ルートの `https://palmjoy.github.io/CPTools/` と `/ja/` はCPToolsのアプリ一覧（日英）とし、リダイレクトしない。製品固有の公開URLはそれぞれ `/CPFileLauncher/`・`/CPClipboard/`・`/CPSystemMonitor/` と各製品内の `/ja/`。CPSystemMonitorのReleaseタグprefixは `cpsystemmonitor-v` とし、他製品のReleaseと混ぜない。
 
 署名のlocal pinは各製品work/に保持する。ローカル作業記録・調査・履歴は製品issue/またはwork/へ置き、Commonの仕様へ混在させない。
 

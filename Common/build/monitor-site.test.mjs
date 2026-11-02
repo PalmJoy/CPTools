@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {assetNames,publishedMonitorRelease,detectPlatform,startMonitorPage} from '../../docs/CPSystemMonitor/assets/site.js';
-const repo='https://github.com/PalmJoy/CPFileLauncher';
+const repo='https://github.com/PalmJoy/CPTools';
 function release(version='1.2.0',options={}){
   const tag='cpsystemmonitor-v'+version;
   return {tag_name:tag,draft:false,prerelease:false,assets:Object.values(assetNames).map(name=>({name,size:1048576,browser_download_url:`${repo}/releases/download/${tag}/${name}`})),...options};

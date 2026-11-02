@@ -399,7 +399,7 @@ src/
   CPClipboard.Desktop.Tests/   # xUnit + Avalonia.Headless（App の UI テスト）
 ```
 
-- **CPFileLauncher のコードをコピーして、不要な部分を削って作る**（共有ライブラリにはしない。別のリポジトリ `PalmJoy/CPFileLauncher`）。持ち込むもの・削るものは `issue/` の M0 に列挙する。
+- **CPFileLauncher のコードをコピーして、不要な部分を削って作る**（共有ライブラリにはしない。別のリポジトリ `PalmJoy/CPTools`）。持ち込むもの・削るものは `issue/` の M0 に列挙する。
 - アセンブリ名 = 実行ファイル名 **`CPClipboard`**（`avares://CPClipboard/…`）。`.app` / `.App` で終わるフォルダ・プロジェクトは作らない（macOS の Gatekeeper の事故を避ける。アプリ本体は `CPClipboard.Desktop`）。
 - 製品名・副題（"CyberPunk Clipboard"）・ウィンドウタイトルの接頭辞は App の `AppInfo` 1 か所。
 - 依存方向: Core ← Platform ← Platform.Windows / Platform.MacOS ← App。全プロジェクト `net10.0` 単一 TFM。Windows 実装は `[SupportedOSPlatform("windows")]`、起動時に `OperatingSystem.IsWindows()` / `IsMacOS()` で実装を選ぶ。
@@ -436,7 +436,7 @@ CPFileLauncher と同じ方式（スクリプトの名前・中身を CPClipboar
 - macOS の再ビルドでは同じ署名 identity と bundle id `com.palmjoy.cpclipboard` を保つ。署名 identity を変更した初回はアクセシビリティ許可の再登録が必要になる場合がある。証明書による開発署名と公証済み配布は区別する。
 - 配布 zip は `bin/release/`。リリースはタグ `cpclipboard-vX.Y.Z` → CI（両 OS でテスト → zip → 下書きの Release）→ ユーザーが実機で確かめて公開。来歴証明の扱いは CPFileLauncher と同じ。
 - 配布サイトは GitHub Pages（`docs/`、日英）。M6 で作る。
-- **更新の確認**: 起動ごとに一度、バックグラウンドで GitHub Releases（`PalmJoy/CPFileLauncher`）の最新の公開正式版を確かめる。メニューの「更新を確認…」からも実行できる。新しい版があれば現在と最新の版を見せ、ユーザーが選んだら配布サイトを開く。手動の確認では「最新です」・通信失敗も知らせ、起動時は更新があるときだけ知らせる。自動インストールはしない（CPFileLauncher の `UpdateChecker` と同じ）。
+- **更新の確認**: 起動ごとに一度、バックグラウンドで GitHub Releases（`PalmJoy/CPTools`）の最新の公開正式版を確かめる。メニューの「更新を確認…」からも実行できる。新しい版があれば現在と最新の版を見せ、ユーザーが選んだら配布サイトを開く。手動の確認では「最新です」・通信失敗も知らせ、起動時は更新があるときだけ知らせる。自動インストールはしない（CPFileLauncher の `UpdateChecker` と同じ）。
 - ライセンスは GPL-3.0-only、「Copyright © 2026 PalmJoy」。第三者の部品は `THIRD-PARTY-NOTICES.txt`。
 
 ### 10.5 UI の自動テスト
@@ -474,11 +474,11 @@ CPFileLauncher と同じ方式（スクリプトの名前・中身を CPClipboar
 
 製品はCPTools/CPClipboard/に配置し、共通ソースは兄弟ディレクトリCommon/から明示的にリンクしてコンパイルする。共通構造と責務は `../../Common/SPEC.md` を参照。Coreの同一ロジック、Desktopの同一描画・演出部品、Platformの同一native補助を共有し、製品固有の設定enum・resource・盤面・データはこの製品が所有する。製品間に参照を設けず、assembly名・bundle ID・保存先は維持し、更新先は以下の製品別Releaseへ接続する。共有化はプロセス間メモリ共有や既定演出の変更を意味しない。
 
-配布サイトの実ソースはCPTools/docs/CPClipboard/。製品内scriptは自身の位置からCPTools rootを解決し、Commonとサイト参照を起動ディレクトリに依存させない。CI定義はCPTools rootの.github/workflowsへ置き、Common変更を両製品で検証する。公開repositoryは `PalmJoy/CPFileLauncher` に集約し、製品別のタグ/assetで分離する。署名identity・bundle ID・データ保存先は維持する。
+配布サイトの実ソースはCPTools/docs/CPClipboard/。製品内scriptは自身の位置からCPTools rootを解決し、Commonとサイト参照を起動ディレクトリに依存させない。CI定義はCPTools rootの.github/workflowsへ置き、Common変更を両製品で検証する。公開repositoryは `PalmJoy/CPTools` に集約し、製品別のタグ/assetで分離する。署名identity・bundle ID・データ保存先は維持する。
 
 ### CPTools の公開先と更新判定
 
-CPClipboardのReleaseは `PalmJoy/CPFileLauncher` の `cpclipboard-vX.Y.Z` タグで公開する。更新確認は公開正式Release一覧からこのprefixに一致するものだけをSemVerで比較し、Launcherの `vX.Y.Z`・draft・prerelease・別prefixを除外する。repository全体のlatest endpointやlatest/downloadをCPClipboardの最新版として扱わない。ダウンロードは選定したReleaseの実在するCPClipboard assetを使う。配布サイトとsetupは `https://palmjoy.github.io/CPFileLauncher/CPClipboard/` と `#setup`。このサイトのリンクは同repositoryの製品別Releaseへ接続する。
+CPClipboardのReleaseは `PalmJoy/CPTools` の `cpclipboard-vX.Y.Z` タグで公開する。更新確認は公開正式Release一覧からこのprefixに一致するものだけをSemVerで比較し、Launcherの `vX.Y.Z`・draft・prerelease・別prefixを除外する。repository全体のlatest endpointやlatest/downloadをCPClipboardの最新版として扱わない。ダウンロードは選定したReleaseの実在するCPClipboard assetを使う。配布サイトとsetupは `https://palmjoy.github.io/CPTools/CPClipboard/` と `#setup`。このサイトのリンクは同repositoryの製品別Releaseへ接続する。
 
 ### クリップボード履歴
 
