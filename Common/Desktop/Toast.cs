@@ -10,6 +10,18 @@ using CPClipboard.Core.Effects;
 using CPClipboard.Core.Model;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Layout;
+using Avalonia.Markup.Xaml.MarkupExtensions;
+using Avalonia.Media;
+using Avalonia.Threading;
+using CPSystemMonitor.Core.Effects;
+using CPSystemMonitor.Core.Model;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia;
 using Avalonia.Controls;

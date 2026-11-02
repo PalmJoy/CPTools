@@ -2,6 +2,10 @@
 using CPClipboard.Core.Input;
 
 namespace CPClipboard.Core.Popup;
+#elif CPTOOLS_MONITOR
+using CPSystemMonitor.Core.Input;
+
+namespace CPSystemMonitor.Core.Popup;
 #elif CPTOOLS_LAUNCHER
 using FileLauncher.Core.Input;
 

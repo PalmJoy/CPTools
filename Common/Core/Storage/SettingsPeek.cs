@@ -2,6 +2,10 @@
 using System.Text.Json;
 
 namespace CPClipboard.Core.Storage;
+#elif CPTOOLS_MONITOR
+using System.Text.Json;
+
+namespace CPSystemMonitor.Core.Storage;
 #elif CPTOOLS_LAUNCHER
 using System.Text.Json;
 

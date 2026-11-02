@@ -9,6 +9,17 @@ using CPClipboard.Core.Effects;
 using CPClipboard.Core.Theming;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Media.Immutable;
+using Avalonia.Threading;
+using CPSystemMonitor.Core.Effects;
+using CPSystemMonitor.Core.Theming;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia;
 using Avalonia.Controls;

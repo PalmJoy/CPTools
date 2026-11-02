@@ -9,6 +9,17 @@ using Avalonia.Media;
 using Path = Avalonia.Controls.Shapes.Path;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Input;
+using Avalonia.Interactivity;
+using Avalonia.Layout;
+using Avalonia.Media;
+using Path = Avalonia.Controls.Shapes.Path;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia;
 using Avalonia.Controls;
@@ -98,8 +109,11 @@ internal class ChromeWindow : Window
 
     /// <summary>テスト用: × ボタン。</summary>
     internal Button CloseButton { get; }
+    public StackPanel TitleActions { get; } = new() { Orientation = Orientation.Horizontal, Spacing = 3, VerticalAlignment = VerticalAlignment.Center };
 
     internal FrameChrome Chrome => _chrome;
+
+    public double TitleFontSize { get => _titleText.FontSize; set => _titleText.FontSize = value; }
 
     public ChromeWindow()
     {
@@ -121,6 +135,8 @@ internal class ChromeWindow : Window
         var titleRow = new DockPanel { Background = Brushes.Transparent, Height = TitleBarHeight };
         DockPanel.SetDock(CloseButton, Dock.Right);
         titleRow.Children.Add(CloseButton);
+        DockPanel.SetDock(TitleActions, Dock.Right);
+        titleRow.Children.Add(TitleActions);
         // タグ（HUD 段階 B。SPEC §3.9 H4）: 主色の縦棒 2×10 + 等幅のコード（CFG など。翻訳しない装飾）
         _tagBar = new Border { Width = 2, Height = 10, Margin = new Thickness(12, 0, 0, 0), VerticalAlignment = VerticalAlignment.Center, IsVisible = false };
         _tagBar[!Border.BackgroundProperty] = Themed.Res("FlAccent");

@@ -4,6 +4,12 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using System.IO.Pipes;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using System.IO.Pipes;
 using System.Security.Cryptography;

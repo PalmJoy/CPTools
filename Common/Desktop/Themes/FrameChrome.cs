@@ -9,6 +9,17 @@ using Avalonia.Metadata;
 using Avalonia.Styling;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
+using Path = Avalonia.Controls.Shapes.Path;
+using Avalonia.Layout;
+using Avalonia.Media;
+using Avalonia.Metadata;
+using Avalonia.Styling;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia;
 using Avalonia.Controls;

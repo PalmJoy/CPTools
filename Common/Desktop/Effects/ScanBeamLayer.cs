@@ -7,6 +7,15 @@ using Avalonia.Styling;
 using CPClipboard.Core.Effects;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
+using Avalonia.Media;
+using Avalonia.Styling;
+using CPSystemMonitor.Core.Effects;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia;
 using Avalonia.Controls;

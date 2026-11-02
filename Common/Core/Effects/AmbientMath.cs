@@ -1,5 +1,7 @@
 #if CPTOOLS_CLIPBOARD
 namespace CPClipboard.Core.Effects;
+#elif CPTOOLS_MONITOR
+namespace CPSystemMonitor.Core.Effects;
 #elif CPTOOLS_LAUNCHER
 namespace FileLauncher.Core.Effects;
 #else

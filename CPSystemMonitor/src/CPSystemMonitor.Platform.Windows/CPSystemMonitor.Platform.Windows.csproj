@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Windows 実装。App を単一 TFM (net10.0) に保つため -windows TFM にはせず、
+    型に [SupportedOSPlatform("windows")] を付けて実行時に OperatingSystem.IsWindows() で選ぶ。
+  -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPSystemMonitor.Platform\CPSystemMonitor.Platform.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CPSystemMonitor.Desktop.Tests" />
+  </ItemGroup>
+  <ItemGroup><PackageReference Include="Microsoft.Diagnostics.Tracing.TraceEvent" Version="4.0.0" /></ItemGroup>
+</Project>

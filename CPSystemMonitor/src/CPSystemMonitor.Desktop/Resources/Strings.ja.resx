@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Common_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Common_Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Common_ListSeparator" xml:space="preserve">
+    <value>、</value>
+  </data>
+  <data name="Settings_Tab_General" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="Settings_Tab_Appearance" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="Settings_Tab_Data" xml:space="preserve">
+    <value>データ</value>
+  </data>
+  <data name="Settings_Tab_Advanced" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="Effect_boardShow" xml:space="preserve">
+    <value>盤面の表示</value>
+  </data>
+  <data name="Effect_boardHide" xml:space="preserve">
+    <value>盤面の非表示</value>
+  </data>
+  <data name="Effect_toastShow" xml:space="preserve">
+    <value>トーストの表示</value>
+  </data>
+  <data name="Effect_toastHide" xml:space="preserve">
+    <value>トーストの消失</value>
+  </data>
+  <data name="Enum_BackgroundFit_Fill" xml:space="preserve">
+    <value>埋める</value>
+  </data>
+  <data name="Enum_BackgroundFit_Fit" xml:space="preserve">
+    <value>収める</value>
+  </data>
+  <data name="Enum_BackgroundFit_Stretch" xml:space="preserve">
+    <value>引き伸ばす</value>
+  </data>
+  <data name="Enum_BackgroundFit_Tile" xml:space="preserve">
+    <value>並べる</value>
+  </data>
+  <data name="Enum_BackgroundFit_Center" xml:space="preserve">
+    <value>中央</value>
+  </data>
+  <data name="Enum_AccentPreset_Cyan" xml:space="preserve">
+    <value>シアン</value>
+  </data>
+  <data name="Enum_AccentPreset_Red" xml:space="preserve">
+    <value>レッド</value>
+  </data>
+  <data name="Enum_AccentPreset_Blue" xml:space="preserve">
+    <value>ブルー</value>
+  </data>
+  <data name="Enum_AccentPreset_Green" xml:space="preserve">
+    <value>グリーン</value>
+  </data>
+  <data name="Enum_AccentPreset_Purple" xml:space="preserve">
+    <value>パープル</value>
+  </data>
+  <data name="Enum_PopupPosition_Cursor" xml:space="preserve">
+    <value>カーソル位置</value>
+  </data>
+  <data name="Enum_PopupPosition_LastPosition" xml:space="preserve">
+    <value>前回の位置</value>
+  </data>
+  <data name="Enum_PopupPosition_ScreenCenter" xml:space="preserve">
+    <value>画面中央</value>
+  </data>
+  <data name="Enum_PopupPosition_Fixed" xml:space="preserve">
+    <value>固定座標</value>
+  </data>
+  <data name="Enum_MouseButtonKind_Right" xml:space="preserve"><value>右</value></data>
+  <data name="Enum_MouseButtonKind_Left" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="Enum_MouseButtonKind_Middle" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="Enum_MouseButtonKind_X1" xml:space="preserve">
+    <value>サイド 1</value>
+  </data>
+  <data name="Enum_MouseButtonKind_X2" xml:space="preserve">
+    <value>サイド 2</value>
+  </data>
+  <data name="Enum_EffectKind_None" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="Enum_EffectKind_Fade" xml:space="preserve">
+    <value>フェード</value>
+  </data>
+  <data name="Enum_EffectKind_Zoom" xml:space="preserve">
+    <value>ズーム</value>
+  </data>
+  <data name="Enum_EffectKind_Slide" xml:space="preserve">
+    <value>スライド</value>
+  </data>
+  <data name="Enum_EffectKind_Highlight" xml:space="preserve">
+    <value>色の変化</value>
+  </data>
+  <data name="Enum_EffectKind_Glitch" xml:space="preserve">
+    <value>グリッチ</value>
+  </data>
+  <data name="Enum_EffectKind_Glow" xml:space="preserve">
+    <value>発光</value>
+  </data>
+  <data name="Enum_EasingKind_Linear" xml:space="preserve">
+    <value>一定</value>
+  </data>
+  <data name="Enum_EasingKind_EaseOut" xml:space="preserve">
+    <value>減速（easeOut）</value>
+  </data>
+  <data name="Enum_EasingKind_EaseIn" xml:space="preserve">
+    <value>加速（easeIn）</value>
+  </data>
+  <data name="Enum_EasingKind_EaseInOut" xml:space="preserve">
+    <value>加速→減速</value>
+  </data>
+  <data name="Enum_EasingKind_BackOut" xml:space="preserve">
+    <value>行き過ぎて戻る</value>
+  </data>
+  <data name="Notice_Load_Settings" xml:space="preserve">
+    <value>設定 (settings.json)</value>
+  </data>
+  <data name="Notice_Load_Title" xml:space="preserve">
+    <value>データの読み込み</value>
+  </data>
+  <data name="Notice_Load_Recovered" xml:space="preserve">
+    <value>{0} が壊れていたため、バックアップ（{1}）から復旧しました。壊れたファイルは {2} として残しています。
+{3}</value>
+  </data>
+  <data name="Notice_Load_ReplacedWithDefault" xml:space="preserve">
+    <value>{0} が壊れていて、復旧できるバックアップもありませんでした。初期状態で起動します。壊れたファイルは {1} として残しています。
+{2}</value>
+  </data>
+  <data name="Notice_Load_NewerSchema" xml:space="preserve">
+    <value>{0} は新しいバージョンの CPSystemMonitor で保存されています（データの版 {1}、この版は {2} まで）。壊さないよう、この版では変更を保存しません。</value>
+  </data>
+  <data name="Notice_UnsupportedOs_Title" xml:space="preserve">
+    <value>未対応の OS</value>
+  </data>
+  <data name="Notice_UnsupportedOs" xml:space="preserve">
+    <value>この版は Windows と macOS のみ対応です。</value>
+  </data>
+  <data name="Tray_ShowBoard" xml:space="preserve">
+    <value>盤面を表示</value>
+  </data>
+  <data name="Common_Settings" xml:space="preserve">
+    <value>設定…</value>
+  </data>
+  <data name="Tray_Permissions" xml:space="preserve">
+    <value>権限の設定…</value>
+  </data>
+  <data name="Tray_Quit_Win" xml:space="preserve">
+    <value>終了</value>
+  </data>
+  <data name="Tray_Quit_Mac" xml:space="preserve">
+    <value>CPSystemMonitor を終了</value>
+  </data>
+  <data name="Tray_TriggerDisabled_Tooltip" xml:space="preserve">
+    <value>CPSystemMonitor — トリガーが無効です</value>
+  </data>
+  <data name="Toast_TriggerNeedsPermission" xml:space="preserve">
+    <value>トリガーが無効です: アクセシビリティの許可が必要です。メニューバーのアイコン →「権限の設定…」から許可できます。</value>
+  </data>
+  <data name="Toast_TriggerHookFailed" xml:space="preserve">
+    <value>トリガーが無効です（入力フックを開始できませんでした）。{0}から盤面を開けます。
+{1}</value>
+  </data>
+  <data name="Common_TrayIcon_Win" xml:space="preserve">
+    <value>トレイアイコン</value>
+  </data>
+  <data name="Common_TrayIcon_Mac" xml:space="preserve">
+    <value>メニューバーのアイコン</value>
+  </data>
+  <data name="Toast_TriggerEnabled" xml:space="preserve">
+    <value>トリガーが有効になりました。</value>
+  </data>
+  <data name="Toast_ImportFailed" xml:space="preserve">
+    <value>インポートできませんでした。
+{0}</value>
+  </data>
+  <data name="Menu_Duplicate" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="Menu_Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>貼り付け</value>
+  </data>
+  <data name="Menu_Undo" xml:space="preserve">
+    <value>元に戻す</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>CPSystemMonitor について</value>
+  </data>
+  <data name="Toast_BackgroundDropUnsupported" xml:space="preserve">
+    <value>背景画像にできる画像ファイルがありません（png / jpg / jpeg / bmp / gif / webp）。</value>
+  </data>
+  <data name="Launch_NotFound" xml:space="preserve">
+    <value>見つかりません: {0}</value>
+  </data>
+  <data name="Launch_Cancelled" xml:space="preserve">
+    <value>キャンセルされました。</value>
+  </data>
+  <data name="Launch_LauncherUnavailable" xml:space="preserve">
+    <value>{0} を起動できませんでした。</value>
+  </data>
+  <data name="Launch_OsError" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>CPSystemMonitor について</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>バージョン {0}</value>
+  </data>
+  <data name="About_DataFolder" xml:space="preserve">
+    <value>データフォルダ</value>
+  </data>
+  <data name="Common_Open" xml:space="preserve">
+    <value>開く</value>
+  </data>
+  <data name="About_OpenDataFailed" xml:space="preserve">
+    <value>データフォルダを開けませんでした。
+{0}</value>
+  </data>
+  <data name="About_FontLicense" xml:space="preserve">
+    <value>同梱フォントのライセンス（Chakra Petch・Share Tech Mono — SIL Open Font License 1.1）</value>
+  </data>
+  <data name="About_LicenseMissing" xml:space="preserve">
+    <value>（ライセンス文書が見つかりません）</value>
+  </data>
+  <data name="About_LicenseUnreadable" xml:space="preserve">
+    <value>（ライセンス文書を読めません）</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>GNU General Public License v3（GPL-3.0-only）で配布しています。無保証です。</value>
+  </data>
+  <data name="About_Source" xml:space="preserve">
+    <value>ソースコード</value>
+  </data>
+  <data name="About_ThirdParty" xml:space="preserve">
+    <value>サードパーティのライセンス</value>
+  </data>
+  <data name="About_OpenFailed" xml:space="preserve">
+    <value>「{0}」を開けませんでした。
+{1}</value>
+  </data>
+  <data name="Common_ResetToDefault" xml:space="preserve">
+    <value>既定に戻す</value>
+  </data>
+  <data name="Common_ImageFiles" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="Chrome_Close_Tooltip" xml:space="preserve">
+    <value>閉じる (Esc)</value>
+  </data>
+  <data name="Permission_Title" xml:space="preserve">
+    <value>権限の設定</value>
+  </data>
+  <data name="Permission_Heading" xml:space="preserve">
+    <value>アクセシビリティの許可が必要です</value>
+  </data>
+  <data name="Permission_Intro" xml:space="preserve">
+    <value>ホットキーとマウス操作で盤面を呼び出すには、macOS の「アクセシビリティ」で CPSystemMonitor を許可してください。</value>
+  </data>
+  <data name="Permission_Step1" xml:space="preserve">
+    <value>1.「許可を求める」を押す（システム設定の一覧に CPSystemMonitor が加わります）</value>
+  </data>
+  <data name="Permission_Step2" xml:space="preserve">
+    <value>2. システム設定 → プライバシーとセキュリティ → アクセシビリティ で CPSystemMonitor を ON にする</value>
+  </data>
+  <data name="Permission_Step3" xml:space="preserve">
+    <value>3. 許可すると数秒で自動的に有効になります（ならなければ下の「再試行」「再起動」）</value>
+  </data>
+  <data name="Permission_TroubleshootHeading" xml:space="preserve">
+    <value>有効にならないとき</value>
+  </data>
+  <data name="Permission_TerminalNote" xml:space="preserve">
+    <value>（ターミナルから dotnet run で起動しているときは「ターミナル」を ON にする）</value>
+  </data>
+  <data name="Permission_Request" xml:space="preserve">
+    <value>許可を求める</value>
+  </data>
+  <data name="Permission_OpenSettings" xml:space="preserve">
+    <value>システム設定を開く</value>
+  </data>
+  <data name="Permission_Retry" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="Common_Restart" xml:space="preserve">
+    <value>再起動</value>
+  </data>
+  <data name="Permission_Granted" xml:space="preserve">
+    <value>許可済み</value>
+  </data>
+  <data name="Permission_NotGranted" xml:space="preserve">
+    <value>未許可</value>
+  </data>
+  <data name="Permission_HookOn" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Permission_HookOff" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="Permission_Status" xml:space="preserve">
+    <value>アクセシビリティ: {0}　／　トリガー（入力フック）: {1}</value>
+  </data>
+  <data name="Common_Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="Common_Remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Settings_Triggers_SideButtonNote" xml:space="preserve">
+    <value>サイドボタンは Mission Control などの割り当てと重なることがあります。</value>
+  </data>
+  <data name="Settings_Triggers_LeftWithoutModifier" xml:space="preserve">
+    <value>左・右ボタンには修飾キーが必要です。</value>
+  </data>
+  <data name="Settings_Hotkey_Recording" xml:space="preserve">
+    <value>キーを押してください…（Esc で中止、10 秒で自動中止）</value>
+  </data>
+  <data name="Settings_Hotkey_NeedsModifier" xml:space="preserve">
+    <value>{0} などと組み合わせてください（F キーは単独で可）</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Settings_ReadOnlyBanner" xml:space="preserve">
+    <value>設定ファイルは新しいバージョンのものです。変更はこのセッションだけ有効で、保存されません。</value>
+  </data>
+  <data name="Settings_Appearance_Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
+  <data name="Settings_Effects_Animation" xml:space="preserve">
+    <value>アニメーション</value>
+  </data>
+  <data name="Settings_Effects_Animation_Note" xml:space="preserve">
+    <value>オフにすると下の演出がすべて止まります。</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="Settings_Appearance_Background_Choose" xml:space="preserve">
+    <value>選択…</value>
+  </data>
+  <data name="Settings_Appearance_Background_Clear" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="Settings_Appearance_Background_Note" xml:space="preserve">
+    <value>サムネイルに画像ファイルをドロップしても設定できます。</value>
+  </data>
+  <data name="Settings_Appearance_Background_DropHint" xml:space="preserve">
+    <value>ここにドロップ</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundMissing" xml:space="preserve">
+    <value>画像が見つかりません: {0}</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundUnreadable" xml:space="preserve">
+    <value>画像を読み込めません: {0}</value>
+  </data>
+  <data name="Settings_Appearance_Background" xml:space="preserve">
+    <value>背景画像</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundFit" xml:space="preserve">
+    <value>表示方法</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundOverlay" xml:space="preserve">
+    <value>画像の覆い</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundOverlay_Note" xml:space="preserve">
+    <value>盤面の色を画像の上に重ねます。大きいほど画像が薄くなり、アイコンと文字が読みやすくなります。</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundOpacity" xml:space="preserve">
+    <value>画像の不透明度</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundOpacity_Note" xml:space="preserve">
+    <value>下げると画像の部分からデスクトップが透けます。</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundPicker_Title" xml:space="preserve">
+    <value>背景画像を選択</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundCopyFailed" xml:space="preserve">
+    <value>背景画像をコピーできませんでした。
+{0}</value>
+  </data>
+  <data name="Settings_Triggers_KeyboardPlacement" xml:space="preserve">
+    <value>キーボード（ホットキー）で開いたとき</value>
+  </data>
+  <data name="Settings_Triggers_MousePlacement" xml:space="preserve">
+    <value>マウス操作で開いたとき</value>
+  </data>
+  <data name="Settings_Triggers_PositionNote" xml:space="preserve">
+    <value>「カーソル位置」はどちらもマウスカーソルの位置です。{0}やメニューから開いたときはマウス操作の設定を使います。</value>
+  </data>
+  <data name="Settings_Triggers_CloseOnOutside" xml:space="preserve">
+    <value>盤面の外をクリックしたら閉じる</value>
+  </data>
+  <data name="Settings_Triggers_CloseOnRetrigger" xml:space="preserve">
+    <value>もう一度トリガーしたら閉じる</value>
+  </data>
+  <data name="Settings_Triggers_CloseOnLeave" xml:space="preserve">
+    <value>マウスが離れたら閉じる</value>
+  </data>
+  <data name="Settings_Triggers_CloseOnLeave_Note" xml:space="preserve">
+    <value>一度盤面にカーソルを入れてから、下の距離より離れると閉じます。次に表示したときから有効です。</value>
+  </data>
+  <data name="Settings_Triggers_LeaveDistance" xml:space="preserve">
+    <value>離れたとみなす距離</value>
+  </data>
+  <data name="Settings_Triggers_UseCurrent" xml:space="preserve">
+    <value>今の盤面の位置を使う</value>
+  </data>
+  <data name="Settings_Triggers_Fixed" xml:space="preserve">
+    <value>固定座標</value>
+  </data>
+  <data name="Settings_Triggers_Fixed_Note" xml:space="preserve">
+    <value>表示位置が「固定座標」のときに使います。</value>
+  </data>
+  <data name="Settings_Triggers_UseCurrent_Note" xml:space="preserve">
+    <value>盤面を表示しているときに押せます。</value>
+  </data>
+  <data name="Common_On" xml:space="preserve">
+    <value>オン</value>
+  </data>
+  <data name="Common_Off" xml:space="preserve">
+    <value>オフ</value>
+  </data>
+  <data name="Settings_General_AutoStartFailed" xml:space="preserve">
+    <value>自動起動を設定できませんでした。
+{0}</value>
+  </data>
+  <data name="Settings_General_AutoStart" xml:space="preserve">
+    <value>ログイン時に自動起動</value>
+  </data>
+  <data name="Settings_General_Permissions" xml:space="preserve">
+    <value>権限の設定…</value>
+  </data>
+  <data name="Settings_General_Accessibility" xml:space="preserve">
+    <value>アクセシビリティ</value>
+  </data>
+  <data name="Settings_General_Accessibility_Note" xml:space="preserve">
+    <value>ホットキーとマウス操作に必要です。</value>
+  </data>
+  <data name="Settings_Triggers_UseHotkey" xml:space="preserve">
+    <value>ホットキーを使う</value>
+  </data>
+  <data name="Settings_Triggers_Hotkey" xml:space="preserve">
+    <value>ホットキー</value>
+  </data>
+  <data name="Settings_Triggers_Hotkey_Note" xml:space="preserve">
+    <value>クリックしてから組み合わせを押します。他のアプリと重なっても検知できません。フルスクリーンのアプリ上では動かないことがあります。</value>
+  </data>
+  <data name="Settings_Triggers_Mouse" xml:space="preserve">
+    <value>マウス操作</value>
+  </data>
+  <data name="Settings_Data_Backups" xml:space="preserve">
+    <value>盤面のバックアップ世代数</value>
+  </data>
+  <data name="Settings_Data_Backups_Note" xml:space="preserve">
+    <value>設定ファイルの世代バックアップ数です。</value>
+  </data>
+  <data name="Settings_Data_OpenFolder" xml:space="preserve">
+    <value>設定フォルダを開く</value>
+  </data>
+  <data name="Settings_Data_Export" xml:space="preserve">
+    <value>エクスポート…</value>
+  </data>
+  <data name="Settings_Data_Import" xml:space="preserve">
+    <value>インポート…</value>
+  </data>
+  <data name="Settings_Data_Backup" xml:space="preserve">
+    <value>設定と盤面のバックアップ</value>
+  </data>
+  <data name="Settings_Data_Backup_Note" xml:space="preserve">
+    <value>設定と管理された背景画像をエクスポート／インポートします。</value>
+  </data>
+  <data name="Settings_Data_Export_Title" xml:space="preserve">
+    <value>設定と盤面をエクスポート</value>
+  </data>
+  <data name="Settings_Data_Exported" xml:space="preserve">
+    <value>「{0}」にエクスポートしました。</value>
+  </data>
+  <data name="Settings_Data_ExportFailed" xml:space="preserve">
+    <value>エクスポートできませんでした。
+{0}</value>
+  </data>
+  <data name="Settings_Data_ImportWhat_Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Settings_Data_ImportConfirm_Title" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="Settings_Data_ImportConfirm" xml:space="preserve">
+    <value>今の{0}を「{1}」の内容に置き換えて、CPSystemMonitor を再起動します。
+今のファイルは backup/ に残します。
+信頼できるZIPだけを取り込んでください。取り込んだ項目はコマンドの実行やネットワーク上の場所へのアクセスができます。</value>
+  </data>
+  <data name="Settings_Data_ImportConfirm_Ok" xml:space="preserve">
+    <value>インポートして再起動</value>
+  </data>
+  <data name="Archive_NotZip" xml:space="preserve">
+    <value>zip ファイルとして読めません。</value>
+  </data>
+  <data name="Archive_NoKnownEntries" xml:space="preserve">
+    <value>設定ファイル settings.json が含まれていません。</value>
+  </data>
+  <data name="Archive_EntryNotObject" xml:space="preserve">
+    <value>{0} の形式が違います。</value>
+  </data>
+  <data name="Archive_EntryCorrupt" xml:space="preserve">
+    <value>{0} が壊れています: {1}</value>
+  </data>
+  <data name="Settings_Effects_Advanced" xml:space="preserve">
+    <value>詳細設定</value>
+  </data>
+  <data name="Settings_Effects_ResetAll" xml:space="preserve">
+    <value>すべて既定に戻す</value>
+  </data>
+  <data name="Settings_Effects_Row" xml:space="preserve">
+    <value>{0}（{1}）</value>
+  </data>
+  <data name="Settings_Advanced_Logging" xml:space="preserve">
+    <value>ログを出力する</value>
+  </data>
+  <data name="Settings_Advanced_Logging_Note" xml:space="preserve">
+    <value>開発版（Debug ビルド）は設定にかかわらず常に出力します。</value>
+  </data>
+  <data name="Settings_Advanced_OpenLogFolder" xml:space="preserve">
+    <value>ログフォルダを開く</value>
+  </data>
+  <data name="Settings_Advanced_Reset" xml:space="preserve">
+    <value>設定をリセット…</value>
+  </data>
+  <data name="Settings_Advanced_ResetConfirm_Title" xml:space="preserve">
+    <value>設定のリセット</value>
+  </data>
+  <data name="Settings_Advanced_ResetConfirm_Ok" xml:space="preserve">
+    <value>既定に戻す</value>
+  </data>
+  <data name="Settings_General_Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="Settings_General_Language_System" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="Settings_General_Language_Note" xml:space="preserve">
+    <value>CPSystemMonitor の再起動後に反映されます。</value>
+  </data>
+  <data name="Common_RestartNow" xml:space="preserve">
+    <value>今すぐ再起動</value>
+  </data>
+  <data name="Effect_frameOrb" xml:space="preserve">
+    <value>光の玉</value>
+  </data>
+  <data name="Effect_glowPulse" xml:space="preserve">
+    <value>発光の明滅</value>
+  </data>
+  <data name="Enum_EffectKind_Orb" xml:space="preserve">
+    <value>1 個</value>
+  </data>
+  <data name="Enum_EffectKind_OrbTwin" xml:space="preserve">
+    <value>2 個（主色と副色）</value>
+  </data>
+  <data name="Enum_EffectKind_Pulse" xml:space="preserve">
+    <value>弱</value>
+  </data>
+  <data name="Enum_EffectKind_PulseStrong" xml:space="preserve">
+    <value>強</value>
+  </data>
+  <data name="Settings_Effects_AmbientNote" xml:space="preserve">
+    <value>光の玉・発光の明滅・走査線の帯は、盤面が見えている間ずっと動き、CPU を多く使います。</value>
+  </data>
+  <data name="Settings_Effects_ReducedMotionNote" xml:space="preserve">
+    <value>OS の「視差効果を減らす」設定がオンのため停止しています。</value>
+  </data>
+  <data name="Settings_Appearance_Colors" xml:space="preserve">
+    <value>配色</value>
+  </data>
+  <data name="Settings_Appearance_Primary" xml:space="preserve">
+    <value>主色</value>
+  </data>
+  <data name="Settings_Appearance_Secondary" xml:space="preserve">
+    <value>副色</value>
+  </data>
+  <data name="Settings_Appearance_Swap_Tooltip" xml:space="preserve">
+    <value>主色と副色を入れ替える</value>
+  </data>
+  <data name="Enum_AccentPreset_Custom" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="Enum_ClockMode_Off" xml:space="preserve">
+    <value>表示しない</value>
+  </data>
+  <data name="Enum_ClockMode_Minutes" xml:space="preserve">
+    <value>時:分</value>
+  </data>
+  <data name="Enum_ClockMode_Seconds" xml:space="preserve">
+    <value>時:分:秒</value>
+  </data>
+  <data name="Settings_Appearance_Hud_StatusBar" xml:space="preserve">
+    <value>ステータス行</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Clock" xml:space="preserve">
+    <value>時刻</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Clock_Note" xml:space="preserve">
+    <value>「時:分:秒」は毎秒書き換えるので、盤面が見えている間 CPU を少し使います。</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Date" xml:space="preserve">
+    <value>日付（年/月/日）</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Grid" xml:space="preserve">
+    <value>背景グリッド</value>
+  </data>
+  <data name="Settings_Appearance_Hud_GridOpacity" xml:space="preserve">
+    <value>グリッドの濃さ</value>
+  </data>
+  <data name="Settings_Effects_Scanlines" xml:space="preserve">
+    <value>走査線</value>
+  </data>
+  <data name="Settings_Effects_ScanlineOpacity" xml:space="preserve">
+    <value>走査線の濃さ</value>
+  </data>
+  <data name="Settings_Effects_ScanlinePitch" xml:space="preserve">
+    <value>走査線の間隔</value>
+  </data>
+  <data name="Common_PixelValue" xml:space="preserve">
+    <value>{0} px</value>
+  </data>
+  <data name="Effect_scanBeam" xml:space="preserve">
+    <value>走査線の帯</value>
+  </data>
+  <data name="Enum_EffectKind_Beam" xml:space="preserve">
+    <value>帯</value>
+  </data>
+  <data name="Settings_Tab_Effects" xml:space="preserve">
+    <value>演出</value>
+  </data>
+  <data name="Settings_Effects_AmbientHeading" xml:space="preserve">
+    <value>常時の演出</value>
+  </data>
+  <data name="Settings_Effects_Vsync" xml:space="preserve">
+    <value>VSync</value>
+  </data>
+  <data name="Settings_Effects_Vsync_Item" xml:space="preserve">
+    <value>{0}（{1} fps）</value>
+  </data>
+  <data name="Settings_Effects_Vsync_Note" xml:space="preserve">
+    <value>光の玉・発光の明滅・走査線の帯を描き直す間隔です。数字が大きいほど CPU を使いませんが、動きが粗くなります。</value>
+  </data>
+  <data name="Settings_Effects_ScanlinesHeading" xml:space="preserve">
+    <value>静止した走査線</value>
+  </data>
+  <data name="Permission_OpenSettings_Note" xml:space="preserve">
+    <value>ON にしても有効にならないときは、一覧から「−」で消して許可し直してください（アップデート後に起きることがあります）。</value>
+  </data>
+  <data name="Permission_Retry_Note" xml:space="preserve">
+    <value>トリガー（入力フック）の開始をもう一度試します。</value>
+  </data>
+  <data name="Permission_Restart_Note" xml:space="preserve">
+    <value>アプリを再起動します。「再試行」でも有効にならないときに。</value>
+  </data>
+  <data name="Settings_Effects_GlitchIntensity" xml:space="preserve">
+    <value>グリッチの強さ</value>
+  </data>
+  <data name="Settings_Effects_GlitchIntensity_Note" xml:space="preserve">
+    <value>表示・非表示のグリッチの横ずれと色にじみの大きさです。0% にするとずれずにフェードだけになります。</value>
+  </data>
+  <data name="Settings_Triggers_CursorAnchor" xml:space="preserve">
+    <value>盤面上のカーソルの位置</value>
+  </data>
+  <data name="Settings_Triggers_CursorAnchor_Note" xml:space="preserve">
+    <value>上の表示位置で「カーソル位置」を選んだときに使います（キーボード・マウス共通）。盤面のどこにカーソルが来るように出すかを選びます。</value>
+  </data>
+  <data name="Enum_CursorAnchor_TopLeft" xml:space="preserve">
+    <value>左上</value>
+  </data>
+  <data name="Enum_CursorAnchor_Top" xml:space="preserve">
+    <value>上中央</value>
+  </data>
+  <data name="Enum_CursorAnchor_TopRight" xml:space="preserve">
+    <value>右上</value>
+  </data>
+  <data name="Enum_CursorAnchor_Left" xml:space="preserve">
+    <value>左中央</value>
+  </data>
+  <data name="Enum_CursorAnchor_Center" xml:space="preserve">
+    <value>中央</value>
+  </data>
+  <data name="Enum_CursorAnchor_Right" xml:space="preserve">
+    <value>右中央</value>
+  </data>
+  <data name="Enum_CursorAnchor_BottomLeft" xml:space="preserve">
+    <value>左下</value>
+  </data>
+  <data name="Enum_CursorAnchor_Bottom" xml:space="preserve">
+    <value>下中央</value>
+  </data>
+  <data name="Enum_CursorAnchor_BottomRight" xml:space="preserve">
+    <value>右下</value>
+  </data>
+  <data name="StartupGuide_DoNotShowAgain" xml:space="preserve"><value>次回以降表示しない</value></data>
+  <data name="StartupGuide_MouseButton" xml:space="preserve"><value>{0}クリック</value></data>
+  <data name="StartupGuide_Shortcut" xml:space="preserve"><value>「{0}」</value></data>
+  <data name="Update_Check" xml:space="preserve"><value>更新を確認</value></data>
+  <data name="Update_Latest" xml:space="preserve"><value>最新バージョン（{0}）を使用しています。</value></data>
+  <data name="Update_Failed" xml:space="preserve"><value>更新を確認できませんでした。時間をおいて再度お試しください。</value></data>
+  <data name="Update_Available" xml:space="preserve"><value>新しいバージョンがあります。
+現在: {0}
+最新: {1}
+
+配布サイトから新しいバージョンをダウンロードできます。</value></data>
+  <data name="Update_OpenWebsite" xml:space="preserve"><value>配布サイトを開く</value></data>
+  <data name="Archive_TooLarge" xml:space="preserve"><value>ZIP が取り込み上限を超えています（128項目、JSONは各4 MiB、各ファイル32 MiB、合計64 MiB）。</value></data>
+  <data name="Tray_Groups" xml:space="preserve">
+    <value>グループ</value>
+  </data>
+  <data name="Notice_Load_Templates" xml:space="preserve">
+    <value>定型文（templates.json）</value>
+  </data>
+  <data name="Board_EmptyGroup" xml:space="preserve">
+    <value>このグループには定型文がありません</value>
+  </data>
+  <data name="Board_EmptyGroup_Add" xml:space="preserve">
+    <value>編集で追加…</value>
+  </data>
+  <data name="Toast_Copied" xml:space="preserve">
+    <value>クリップボードにコピーしました。</value>
+  </data>
+  <data name="Toast_ClipboardBusy" xml:space="preserve">
+    <value>クリップボードを使えませんでした。もう一度お試しください。</value>
+  </data>
+  <data name="Templates_Sample_1" xml:space="preserve">
+    <value>こんにちは、</value>
+  </data>
+  <data name="StartupGuide_Description" xml:space="preserve">
+    <value>CPSystemMonitorはCPU・メモリ・ストレージ・通信量を常時表示します。右クリックで項目の表示や標準／コンパクトを切り替えられます。閉じるとトレイに格納します。</value>
+  </data>
+  <data name="StartupGuide_OpenBoard" xml:space="preserve">
+    <value>現在設定されている操作{0}で、盤面を呼び出せます。</value>
+  </data>
+  <data name="StartupGuide_DoubleTap" xml:space="preserve">
+    <value>{0} を 2 回押す</value>
+  </data>
+  <data name="Settings_Tab_Paste" xml:space="preserve">
+    <value>貼り付け</value>
+  </data>
+  <data name="Settings_Tab_Triggers" xml:space="preserve">
+    <value>トリガー</value>
+  </data>
+  <data name="Settings_Appearance_BoardWidth" xml:space="preserve">
+    <value>盤面の幅</value>
+  </data>
+  <data name="Settings_Appearance_MaxRows" xml:space="preserve">
+    <value>最大行数</value>
+  </data>
+  <data name="Settings_Appearance_FontSize" xml:space="preserve">
+    <value>文字の大きさ</value>
+  </data>
+  <data name="Settings_Appearance_Preview" xml:space="preserve">
+    <value>全文のプレビュー</value>
+  </data>
+  <data name="Settings_Appearance_Preview_Note" xml:space="preserve">
+    <value>行に 0.4 秒とどまると全文を横に出します。</value>
+  </data>
+  <data name="Settings_Appearance_WheelGroups" xml:space="preserve">
+    <value>ホイールでグループを切り替える</value>
+  </data>
+  <data name="Settings_Appearance_WheelGroups_Note" xml:space="preserve">
+    <value>一覧があふれているときは、一覧の上ではスクロールが優先です。</value>
+  </data>
+  <data name="Settings_General_HideStartupGuide" xml:space="preserve">
+    <value>起動時のガイドを表示しない</value>
+  </data>
+  <data name="Settings_General_HideStartupGuide_Note" xml:space="preserve">
+    <value>起動時に呼び出し方の案内を出しません。</value>
+  </data>
+  <data name="Settings_Triggers_DoubleTap" xml:space="preserve">
+    <value>修飾キーの 2 回押し</value>
+  </data>
+  <data name="Settings_Triggers_DoubleTap_Note" xml:space="preserve">
+    <value>他のアプリが同じ操作を使っていると両方が反応することがあります。</value>
+  </data>
+  <data name="Settings_Triggers_DoubleTapKey" xml:space="preserve">
+    <value>キー</value>
+  </data>
+  <data name="Settings_Triggers_DoubleTapInterval" xml:space="preserve">
+    <value>判定の間隔</value>
+  </data>
+  <data name="Settings_Triggers_Mouse_Note" xml:space="preserve">
+    <value>CPFileLauncher の既定（Ctrl + 中クリック）と同じ操作にすると両方が反応します。</value>
+  </data>
+  <data name="Settings_Triggers_PositionHeading" xml:space="preserve">
+    <value>表示位置</value>
+  </data>
+  <data name="Settings_Triggers_CloseHeading" xml:space="preserve">
+    <value>閉じる条件</value>
+  </data>
+  <data name="Settings_Paste_AutoPaste" xml:space="preserve">
+    <value>自動で貼り付ける</value>
+  </data>
+  <data name="Settings_Paste_AutoPaste_Note" xml:space="preserve">
+    <value>Shift を押しながら選ぶと、この設定に関係なくコピーだけになります。</value>
+  </data>
+  <data name="Settings_Paste_Restore" xml:space="preserve">
+    <value>貼り付け後にクリップボードを元に戻す</value>
+  </data>
+  <data name="Settings_Paste_Restore_Note" xml:space="preserve">
+    <value>OFF（既定）のままなら、貼り付け後も定型文がクリップボードに残ります。</value>
+  </data>
+  <data name="Settings_Paste_RestoreDelay" xml:space="preserve">
+    <value>元に戻すまでの時間</value>
+  </data>
+  <data name="Settings_Paste_Limit_Note_Win" xml:space="preserve">
+    <value>管理者として動いているアプリには貼り付けられません（コピーだけになります）。</value>
+  </data>
+  <data name="Settings_Paste_Limit_Note_Mac" xml:space="preserve">
+    <value>パスワードの入力欄には貼り付けられません（コピーだけになります）。</value>
+  </data>
+  <data name="Settings_Data_ImportWhat_Both" xml:space="preserve">
+    <value>設定と定型文</value>
+  </data>
+  <data name="Settings_Data_ImportWhat_Templates" xml:space="preserve">
+    <value>定型文</value>
+  </data>
+  <data name="Settings_Data_Import_Title" xml:space="preserve">
+    <value>設定と定型文をインポート</value>
+  </data>
+  <data name="Effect_groupSwitch" xml:space="preserve">
+    <value>グループ切替</value>
+  </data>
+  <data name="Effect_tabHighlight" xml:space="preserve">
+    <value>グループタブの強調</value>
+  </data>
+  <data name="Effect_rowHover" xml:space="preserve">
+    <value>行のホバー</value>
+  </data>
+  <data name="Effect_rowPress" xml:space="preserve">
+    <value>行の押下</value>
+  </data>
+  <data name="Effect_pasteFlash" xml:space="preserve">
+    <value>貼り付けのフィードバック</value>
+  </data>
+  <data name="Effect_previewShow" xml:space="preserve">
+    <value>全文のプレビュー</value>
+  </data>
+  <data name="Settings_Advanced_Reset_Note" xml:space="preserve">
+    <value>設定をすべて既定に戻します。登録した定型文はそのままです。</value>
+  </data>
+  <data name="Settings_Appearance_Hud_StatusBar_Note" xml:space="preserve">
+    <value>下部に日付・時刻と履歴期間を表示します。</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Grid_Note" xml:space="preserve">
+    <value>行の下に主色の細い線を敷きます。</value>
+  </data>
+  <data name="Settings_Effects_Scanlines_Note" xml:space="preserve">
+    <value>行の下に主色の横線を敷きます。動かないので CPU を使わず、「アニメーション」がオフでも消えません。</value>
+  </data>
+  <data name="StartupGuide_Title" xml:space="preserve">
+    <value>使い方</value>
+  </data>
+  <data name="StartupGuide_ShortcutDisabled" xml:space="preserve">
+    <value>現在、キーボードとマウスの呼び出しは無効です。トレイまたはメニューバーのアイコンから盤面を呼び出せます。</value>
+  </data>
+  <data name="Menu_CopyOnly" xml:space="preserve"><value>コピーだけ</value></data>
+  <data name="Menu_Edit" xml:space="preserve"><value>編集…</value></data>
+  <data name="Toast_CopiedOnly_Elevated" xml:space="preserve"><value>管理者として動いているアプリには貼り付けられないため、コピーだけしました。</value></data>
+  <data name="Toast_CopiedOnly_SecureInput" xml:space="preserve"><value>パスワードの入力中は貼り付けられないため、コピーだけしました。</value></data>
+  <data name="Toast_CopiedOnly_NoPermission" xml:space="preserve"><value>アクセシビリティの許可が無いため、コピーだけしました。</value></data>
+  <data name="Toast_CopiedOnly_ModifierHeld" xml:space="preserve"><value>修飾キーが押されたままのため、コピーだけしました。</value></data>
+  <data name="Toast_CopiedOnly_Focus" xml:space="preserve"><value>元のアプリに戻れなかったため、コピーだけしました。</value></data>
+  <data name="Toast_CopiedOnly_SendFailed" xml:space="preserve"><value>貼り付けのキーを送れなかったため、コピーだけしました。</value></data>
+  <data name="Toast_CopiedOnly_CheckFailed" xml:space="preserve"><value>貼り付け可能か確認できなかったため、コピーだけしました。</value></data>
+  <data name="Toast_ClipboardChanged" xml:space="preserve"><value>クリップボードが変更されたため、貼り付けを中止しました。</value></data>
+  <data name="Settings_Snippets_GroupName" xml:space="preserve"><value>グループの名前</value></data>
+  <data name="Settings_Snippets_ClearGroup" xml:space="preserve"><value>グループを空にする…</value></data>
+  <data name="Settings_Snippets_ClearConfirm" xml:space="preserve"><value>グループ {0} の定型文 {1} 件を削除します。よろしいですか？</value></data>
+  <data name="Settings_Snippets_AddClipboard" xml:space="preserve"><value>クリップボードから追加</value></data>
+  <data name="Settings_Snippets_Move" xml:space="preserve"><value>移動 ▸</value></data>
+  <data name="Settings_Snippets_CharacterCount" xml:space="preserve"><value>{0} 文字</value></data>
+  <data name="Settings_Snippets_GroupFull" xml:space="preserve"><value>このグループには定型文を500件まで登録できます。</value></data>
+  <data name="Settings_Snippets_TooLong" xml:space="preserve"><value>定型文は10,000文字以内にしてください。</value></data>
+  <data name="Settings_Snippets_ClipboardEmpty" xml:space="preserve"><value>クリップボードに追加できる文字がありません。</value></data>
+  <data name="Settings_Snippets_ReadOnlyBanner" xml:space="preserve"><value>新しい版の定型文データのため、変更はこのセッションだけに反映され、保存されません。</value></data>
+  <data name="Editor_Title" xml:space="preserve"><value>編集</value></data>
+  <data name="Settings_Tab_Popup" xml:space="preserve">
+    <value>ポップアップ</value>
+  </data>
+  <data name="Menu_History" xml:space="preserve">
+    <value>履歴…</value>
+  </data>
+  <data name="History_Title" xml:space="preserve">
+    <value>履歴</value>
+  </data>
+  <data name="Settings_Tab_History" xml:space="preserve">
+    <value>履歴</value>
+  </data>
+  <data name="History_Clear" xml:space="preserve">
+    <value>履歴を消去</value>
+  </data>
+  <data name="History_ClearConfirm" xml:space="preserve">
+    <value>保存された履歴をすべて消去します。この操作は元に戻せません。</value>
+  </data>
+  <data name="History_AutoClear" xml:space="preserve">
+    <value>履歴の自動消去</value>
+  </data>
+  <data name="History_AutoClear_Note" xml:space="preserve">
+    <value>コピーしてから指定した分数が経過した項目を消去します。</value>
+  </data>
+  <data name="History_Minutes" xml:space="preserve">
+    <value>保持時間（分）</value>
+  </data>
+  <data name="History_MaxItems" xml:space="preserve">
+    <value>最大保存件数</value>
+  </data>
+  <data name="History_MaxItems_Note" xml:space="preserve">
+    <value>1000件まで保存できます。</value>
+  </data>
+  <data name="History_Filter" xml:space="preserve">
+    <value>履歴を検索…（Ctrl/⌘+F）</value>
+  </data>
+  <data name="History_Search" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="History_Empty" xml:space="preserve">
+    <value>該当する履歴はありません。</value>
+  </data>
+  <data name="Settings_Triggers_EditorHeading" xml:space="preserve">
+    <value>編集用</value>
+  </data>
+  <data name="Settings_Triggers_HistoryHeading" xml:space="preserve">
+    <value>履歴用</value>
+  </data>
+  <data name="History_TriggerNote" xml:space="preserve">
+    <value>履歴用トリガーは初期状態では無効です。同じ操作を設定した場合は編集用が優先されます。</value>
+  </data>
+</root>

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "Microsoft.NET.ILLink.Tasks": {
+        "type": "Direct",
+        "requested": "[10.0.13, )",
+        "resolved": "10.0.13",
+        "contentHash": "40yrBMsLEcjixBR4G+FiUaBPvxXIPSKJ2OgSrbOZcmSDBda4Sb0k7BWrfDpIvn3IvvDzwOL/tEPa6gDQfh6aRw=="
+      },
+      "SharpHook": {
+        "type": "Direct",
+        "requested": "[8.0.0, )",
+        "resolved": "8.0.0",
+        "contentHash": "HjDdR7NnXBM8yk3K2Tzv0zXWoZgspBxBNSU/4oa0FnIjQXEBENtvHOCS5S+Xorz8lwrdbqfMRcJ3t5do48Ml3A=="
+      },
+      "cpsystemmonitor.core": {
+        "type": "Project"
+      }
+    },
+    "net10.0/osx-arm64": {
+      "SharpHook": {
+        "type": "Direct",
+        "requested": "[8.0.0, )",
+        "resolved": "8.0.0",
+        "contentHash": "HjDdR7NnXBM8yk3K2Tzv0zXWoZgspBxBNSU/4oa0FnIjQXEBENtvHOCS5S+Xorz8lwrdbqfMRcJ3t5do48Ml3A=="
+      }
+    },
+    "net10.0/win-arm64": {
+      "SharpHook": {
+        "type": "Direct",
+        "requested": "[8.0.0, )",
+        "resolved": "8.0.0",
+        "contentHash": "HjDdR7NnXBM8yk3K2Tzv0zXWoZgspBxBNSU/4oa0FnIjQXEBENtvHOCS5S+Xorz8lwrdbqfMRcJ3t5do48Ml3A=="
+      }
+    },
+    "net10.0/win-x64": {
+      "SharpHook": {
+        "type": "Direct",
+        "requested": "[8.0.0, )",
+        "resolved": "8.0.0",
+        "contentHash": "HjDdR7NnXBM8yk3K2Tzv0zXWoZgspBxBNSU/4oa0FnIjQXEBENtvHOCS5S+Xorz8lwrdbqfMRcJ3t5do48Ml3A=="
+      }
+    }
+  }
+}

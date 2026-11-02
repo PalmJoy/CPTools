@@ -3,18 +3,23 @@
   <PropertyGroup>
     <CPToolsProduct Condition="$([System.String]::Copy('$(MSBuildProjectName)').StartsWith('CPClipboard.'))">Clipboard</CPToolsProduct>
     <CPToolsProduct Condition="$([System.String]::Copy('$(MSBuildProjectName)').StartsWith('FileLauncher.'))">Launcher</CPToolsProduct>
+    <CPToolsProduct Condition="$([System.String]::Copy('$(MSBuildProjectName)').StartsWith('CPSystemMonitor.'))">Monitor</CPToolsProduct>
+    <DefineConstants Condition="'$(CPToolsProduct)' == 'Monitor'">$(DefineConstants);CPTOOLS_MONITOR</DefineConstants>
     <DefineConstants Condition="'$(CPToolsProduct)' == 'Clipboard'">$(DefineConstants);CPTOOLS_CLIPBOARD</DefineConstants>
     <DefineConstants Condition="'$(CPToolsProduct)' == 'Launcher'">$(DefineConstants);CPTOOLS_LAUNCHER</DefineConstants>
-    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPClipboard.Core' Or '$(MSBuildProjectName)' == 'FileLauncher.Core'">Core</CPToolsLayer>
-    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPClipboard.Platform' Or '$(MSBuildProjectName)' == 'FileLauncher.Platform'">Platform</CPToolsLayer>
-    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPClipboard.Platform.Windows' Or '$(MSBuildProjectName)' == 'FileLauncher.Platform.Windows'">Platform.Windows</CPToolsLayer>
-    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPClipboard.Platform.MacOS' Or '$(MSBuildProjectName)' == 'FileLauncher.Platform.MacOS'">Platform.MacOS</CPToolsLayer>
-    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPClipboard.Desktop' Or '$(MSBuildProjectName)' == 'FileLauncher.Desktop'">Desktop</CPToolsLayer>
+    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPSystemMonitor.Core' Or '$(MSBuildProjectName)' == 'CPClipboard.Core' Or '$(MSBuildProjectName)' == 'FileLauncher.Core'">Core</CPToolsLayer>
+    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPSystemMonitor.Platform' Or '$(MSBuildProjectName)' == 'CPClipboard.Platform' Or '$(MSBuildProjectName)' == 'FileLauncher.Platform'">Platform</CPToolsLayer>
+    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPSystemMonitor.Platform.Windows' Or '$(MSBuildProjectName)' == 'CPClipboard.Platform.Windows' Or '$(MSBuildProjectName)' == 'FileLauncher.Platform.Windows'">Platform.Windows</CPToolsLayer>
+    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPSystemMonitor.Platform.MacOS' Or '$(MSBuildProjectName)' == 'CPClipboard.Platform.MacOS' Or '$(MSBuildProjectName)' == 'FileLauncher.Platform.MacOS'">Platform.MacOS</CPToolsLayer>
+    <CPToolsLayer Condition="'$(MSBuildProjectName)' == 'CPSystemMonitor.Desktop' Or '$(MSBuildProjectName)' == 'CPClipboard.Desktop' Or '$(MSBuildProjectName)' == 'FileLauncher.Desktop'">Desktop</CPToolsLayer>
   </PropertyGroup>
   <ItemGroup Condition="'$(CPToolsLayer)' != ''">
     <Compile Include="$(MSBuildThisFileDirectory)$(CPToolsLayer)/**/*.cs" Link="Common/$(CPToolsLayer)/%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup Condition="'$(MSBuildProjectName)' == 'CPClipboard.Desktop.Tests' Or '$(MSBuildProjectName)' == 'FileLauncher.Desktop.Tests'">
     <Compile Include="$(MSBuildThisFileDirectory)Tests/Desktop/**/*.cs" Link="Common/Tests/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(CPToolsProduct)' == 'Monitor' And '$(CPToolsLayer)' == 'Desktop'">
+    <Compile Remove="$(MSBuildThisFileDirectory)Desktop/Effects/DataSweep.cs" />
   </ItemGroup>
 </Project>

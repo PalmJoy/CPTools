@@ -3,6 +3,11 @@ using CPClipboard.Core.Input;
 using CPClipboard.Core.Model;
 
 namespace CPClipboard.Core.Popup;
+#elif CPTOOLS_MONITOR
+using CPSystemMonitor.Core.Input;
+using CPSystemMonitor.Core.Model;
+
+namespace CPSystemMonitor.Core.Popup;
 #elif CPTOOLS_LAUNCHER
 using FileLauncher.Core.Input;
 using FileLauncher.Core.Model;

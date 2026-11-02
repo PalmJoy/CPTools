@@ -8,6 +8,16 @@ using static CPClipboard.Platform.MacOS.Native.CoreAnimation;
 using static CPClipboard.Platform.MacOS.Native.ObjC;
 
 namespace CPClipboard.Platform.MacOS;
+#elif CPTOOLS_MONITOR
+using System.Diagnostics;
+using System.Runtime.Versioning;
+using CPSystemMonitor.Core.Effects;
+using CPSystemMonitor.Core.Theming;
+using CPSystemMonitor.Platform.MacOS.Native;
+using static CPSystemMonitor.Platform.MacOS.Native.CoreAnimation;
+using static CPSystemMonitor.Platform.MacOS.Native.ObjC;
+
+namespace CPSystemMonitor.Platform.MacOS;
 #elif CPTOOLS_LAUNCHER
 using System.Diagnostics;
 using System.Runtime.Versioning;

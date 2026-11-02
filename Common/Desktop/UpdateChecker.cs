@@ -3,6 +3,8 @@ using System.Reflection;
 using System.Text.Json;
 #if CPTOOLS_CLIPBOARD
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 namespace FileLauncher.App;
 #else

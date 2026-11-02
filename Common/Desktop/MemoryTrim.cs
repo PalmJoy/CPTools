@@ -3,6 +3,11 @@ using System.Runtime;
 using Avalonia.Threading;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using System.Runtime;
+using Avalonia.Threading;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using System.Runtime;
 using Avalonia.Threading;

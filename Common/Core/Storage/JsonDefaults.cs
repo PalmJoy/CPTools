@@ -4,6 +4,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace CPClipboard.Core.Storage;
+#elif CPTOOLS_MONITOR
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace CPSystemMonitor.Core.Storage;
 #elif CPTOOLS_LAUNCHER
 using System.Text.Encodings.Web;
 using System.Text.Json;

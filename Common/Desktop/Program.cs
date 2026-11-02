@@ -3,6 +3,11 @@ using Avalonia;
 using CPClipboard.Core.Storage;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia;
+using CPSystemMonitor.Core.Storage;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia;
 using FileLauncher.Core.Storage;
@@ -16,6 +21,14 @@ internal static class Program
     [STAThread]
     public static void Main(string[] args)
     {
+#if CPTOOLS_MONITOR
+        int wait = Array.IndexOf(args, "--wait-for");
+        if (wait >= 0 && wait + 1 < args.Length && int.TryParse(args[wait + 1], out int oldPid))
+        {
+            try { using var old = System.Diagnostics.Process.GetProcessById(oldPid); old.WaitForExit(15000); }
+            catch (ArgumentException) { }
+        }
+#endif
         var paths = DataPaths.Resolve(DataPaths.ExecutableDirectory(Environment.ProcessPath, AppContext.BaseDirectory));
         // 2 重起動なら既存インスタンスに「盤面を表示」を送って終了（SPEC §10.3）。Avalonia を立ち上げる前に判定する:
         // OnFrameworkInitializationCompleted の中で Shutdown() してもメインループ開始前なので効かず、2 つ目が残り続けた（2026-10-05 Windows）

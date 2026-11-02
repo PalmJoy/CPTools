@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Common_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Common_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Common_ListSeparator" xml:space="preserve">
+    <value>, </value>
+    <comment>Separator used when joining list fragments</comment>
+  </data>
+  <data name="Settings_Tab_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Settings_Tab_Appearance" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="Settings_Tab_Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Settings_Tab_Advanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="Effect_boardShow" xml:space="preserve">
+    <value>Board appears</value>
+  </data>
+  <data name="Effect_boardHide" xml:space="preserve">
+    <value>Board disappears</value>
+  </data>
+  <data name="Effect_toastShow" xml:space="preserve">
+    <value>Toast appears</value>
+  </data>
+  <data name="Effect_toastHide" xml:space="preserve">
+    <value>Toast disappears</value>
+  </data>
+  <data name="Enum_BackgroundFit_Fill" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="Enum_BackgroundFit_Fit" xml:space="preserve">
+    <value>Fit</value>
+  </data>
+  <data name="Enum_BackgroundFit_Stretch" xml:space="preserve">
+    <value>Stretch</value>
+  </data>
+  <data name="Enum_BackgroundFit_Tile" xml:space="preserve">
+    <value>Tile</value>
+  </data>
+  <data name="Enum_BackgroundFit_Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="Enum_AccentPreset_Cyan" xml:space="preserve">
+    <value>Cyan</value>
+  </data>
+  <data name="Enum_AccentPreset_Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="Enum_AccentPreset_Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="Enum_AccentPreset_Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="Enum_AccentPreset_Purple" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="Enum_PopupPosition_Cursor" xml:space="preserve">
+    <value>At pointer</value>
+  </data>
+  <data name="Enum_PopupPosition_LastPosition" xml:space="preserve">
+    <value>Last position</value>
+  </data>
+  <data name="Enum_PopupPosition_ScreenCenter" xml:space="preserve">
+    <value>Screen center</value>
+  </data>
+  <data name="Enum_PopupPosition_Fixed" xml:space="preserve">
+    <value>Fixed</value>
+  </data>
+  <data name="Enum_MouseButtonKind_Right" xml:space="preserve"><value>Right</value></data>
+  <data name="Enum_MouseButtonKind_Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="Enum_MouseButtonKind_Middle" xml:space="preserve">
+    <value>Middle</value>
+  </data>
+  <data name="Enum_MouseButtonKind_X1" xml:space="preserve">
+    <value>Side 1</value>
+  </data>
+  <data name="Enum_MouseButtonKind_X2" xml:space="preserve">
+    <value>Side 2</value>
+  </data>
+  <data name="Enum_EffectKind_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Enum_EffectKind_Fade" xml:space="preserve">
+    <value>Fade</value>
+  </data>
+  <data name="Enum_EffectKind_Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
+  <data name="Enum_EffectKind_Slide" xml:space="preserve">
+    <value>Slide</value>
+  </data>
+  <data name="Enum_EffectKind_Highlight" xml:space="preserve">
+    <value>Color change</value>
+  </data>
+  <data name="Enum_EffectKind_Glitch" xml:space="preserve">
+    <value>Glitch</value>
+  </data>
+  <data name="Enum_EffectKind_Glow" xml:space="preserve">
+    <value>Glow</value>
+  </data>
+  <data name="Enum_EasingKind_Linear" xml:space="preserve">
+    <value>Constant</value>
+  </data>
+  <data name="Enum_EasingKind_EaseOut" xml:space="preserve">
+    <value>Decelerate (ease out)</value>
+  </data>
+  <data name="Enum_EasingKind_EaseIn" xml:space="preserve">
+    <value>Accelerate (ease in)</value>
+  </data>
+  <data name="Enum_EasingKind_EaseInOut" xml:space="preserve">
+    <value>Accelerate, then decelerate</value>
+  </data>
+  <data name="Enum_EasingKind_BackOut" xml:space="preserve">
+    <value>Overshoot and settle</value>
+  </data>
+  <data name="Notice_Load_Settings" xml:space="preserve">
+    <value>Settings (settings.json)</value>
+  </data>
+  <data name="Notice_Load_Title" xml:space="preserve">
+    <value>Loading data</value>
+  </data>
+  <data name="Notice_Load_Recovered" xml:space="preserve">
+    <value>{0} was damaged and has been restored from a backup ({1}). The damaged file was kept as {2}.
+{3}</value>
+    <comment>{0} target, {1} backup file name, {2} damaged file name, {3} error</comment>
+  </data>
+  <data name="Notice_Load_ReplacedWithDefault" xml:space="preserve">
+    <value>{0} was damaged and no usable backup was found. CPSystemMonitor starts with the initial state. The damaged file was kept as {1}.
+{2}</value>
+    <comment>{0} target, {1} damaged file name, {2} error</comment>
+  </data>
+  <data name="Notice_Load_NewerSchema" xml:space="preserve">
+    <value>{0} was saved by a newer version of CPSystemMonitor (data version {1}; this version supports {2}). To avoid damaging it, changes are not saved in this version.</value>
+    <comment>{0} target, {1} file schema version, {2} supported version</comment>
+  </data>
+  <data name="Notice_UnsupportedOs_Title" xml:space="preserve">
+    <value>Unsupported OS</value>
+  </data>
+  <data name="Notice_UnsupportedOs" xml:space="preserve">
+    <value>This version supports Windows and macOS only.</value>
+  </data>
+  <data name="Tray_ShowBoard" xml:space="preserve">
+    <value>Show board</value>
+  </data>
+  <data name="Common_Settings" xml:space="preserve">
+    <value>Settings…</value>
+  </data>
+  <data name="Tray_Permissions" xml:space="preserve">
+    <value>Permissions…</value>
+  </data>
+  <data name="Tray_Quit_Win" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Tray_Quit_Mac" xml:space="preserve">
+    <value>Quit CPSystemMonitor</value>
+  </data>
+  <data name="Tray_TriggerDisabled_Tooltip" xml:space="preserve">
+    <value>CPSystemMonitor — triggers are disabled</value>
+  </data>
+  <data name="Toast_TriggerNeedsPermission" xml:space="preserve">
+    <value>Triggers are disabled: Accessibility permission is required. You can allow it from the menu bar icon → “Permissions…”.</value>
+  </data>
+  <data name="Toast_TriggerHookFailed" xml:space="preserve">
+    <value>Triggers are disabled (the input hook could not start). You can open the board from the {0}.
+{1}</value>
+    <comment>{0} tray icon / menu bar icon, {1} error</comment>
+  </data>
+  <data name="Common_TrayIcon_Win" xml:space="preserve">
+    <value>tray icon</value>
+  </data>
+  <data name="Common_TrayIcon_Mac" xml:space="preserve">
+    <value>menu bar icon</value>
+  </data>
+  <data name="Toast_TriggerEnabled" xml:space="preserve">
+    <value>Triggers are enabled.</value>
+  </data>
+  <data name="Toast_ImportFailed" xml:space="preserve">
+    <value>Could not import.
+{0}</value>
+    <comment>{0} error</comment>
+  </data>
+  <data name="Menu_Duplicate" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="Menu_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="Menu_Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>About CPSystemMonitor</value>
+  </data>
+  <data name="Toast_BackgroundDropUnsupported" xml:space="preserve">
+    <value>No usable image file was dropped (png, jpg, jpeg, bmp, gif, webp).</value>
+  </data>
+  <data name="Launch_NotFound" xml:space="preserve">
+    <value>Not found: {0}</value>
+    <comment>{0} path</comment>
+  </data>
+  <data name="Launch_Cancelled" xml:space="preserve">
+    <value>Cancelled.</value>
+  </data>
+  <data name="Launch_LauncherUnavailable" xml:space="preserve">
+    <value>Could not start {0}.</value>
+    <comment>{0} launcher program</comment>
+  </data>
+  <data name="Launch_OsError" xml:space="preserve">
+    <value>{0}</value>
+    <comment>{0} message from the OS</comment>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>About CPSystemMonitor</value>
+  </data>
+  <data name="About_Version" xml:space="preserve">
+    <value>Version {0}</value>
+    <comment>{0} version</comment>
+  </data>
+  <data name="About_DataFolder" xml:space="preserve">
+    <value>Data folder</value>
+  </data>
+  <data name="Common_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="About_OpenDataFailed" xml:space="preserve">
+    <value>Could not open the data folder.
+{0}</value>
+    <comment>{0} reason</comment>
+  </data>
+  <data name="About_FontLicense" xml:space="preserve">
+    <value>Bundled font licenses (Chakra Petch, Share Tech Mono — SIL Open Font License 1.1)</value>
+  </data>
+  <data name="About_LicenseMissing" xml:space="preserve">
+    <value>(The license file was not found.)</value>
+  </data>
+  <data name="About_LicenseUnreadable" xml:space="preserve">
+    <value>(The license file could not be read.)</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>Distributed under the GNU General Public License v3 (GPL-3.0-only). This program comes with no warranty.</value>
+  </data>
+  <data name="About_Source" xml:space="preserve">
+    <value>Source code</value>
+  </data>
+  <data name="About_ThirdParty" xml:space="preserve">
+    <value>Third-party licenses</value>
+  </data>
+  <data name="About_OpenFailed" xml:space="preserve">
+    <value>Could not open “{0}”.
+{1}</value>
+    <comment>{0} file or URL, {1} reason</comment>
+  </data>
+  <data name="Common_ResetToDefault" xml:space="preserve">
+    <value>Reset to default</value>
+  </data>
+  <data name="Common_ImageFiles" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="Chrome_Close_Tooltip" xml:space="preserve">
+    <value>Close (Esc)</value>
+  </data>
+  <data name="Permission_Title" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
+  <data name="Permission_Heading" xml:space="preserve">
+    <value>Accessibility permission is required</value>
+  </data>
+  <data name="Permission_Intro" xml:space="preserve">
+    <value>To open the board with the hotkey and mouse triggers, allow CPSystemMonitor in macOS “Accessibility”.</value>
+  </data>
+  <data name="Permission_Step1" xml:space="preserve">
+    <value>1. Press “Request permission” (this adds CPSystemMonitor to the list in System Settings).</value>
+  </data>
+  <data name="Permission_Step2" xml:space="preserve">
+    <value>2. In System Settings → Privacy &amp; Security → Accessibility, turn CPSystemMonitor on.</value>
+  </data>
+  <data name="Permission_Step3" xml:space="preserve">
+    <value>3. Triggers are enabled automatically within a few seconds (if not, use “Retry” or “Restart” below).</value>
+  </data>
+  <data name="Permission_TroubleshootHeading" xml:space="preserve">
+    <value>If triggers stay off</value>
+  </data>
+  <data name="Permission_TerminalNote" xml:space="preserve">
+    <value>(When started with dotnet run from Terminal, turn “Terminal” on instead.)</value>
+  </data>
+  <data name="Permission_Request" xml:space="preserve">
+    <value>Request permission</value>
+  </data>
+  <data name="Permission_OpenSettings" xml:space="preserve">
+    <value>Open System Settings</value>
+  </data>
+  <data name="Permission_Retry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="Common_Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="Permission_Granted" xml:space="preserve">
+    <value>allowed</value>
+  </data>
+  <data name="Permission_NotGranted" xml:space="preserve">
+    <value>not allowed</value>
+  </data>
+  <data name="Permission_HookOn" xml:space="preserve">
+    <value>on</value>
+  </data>
+  <data name="Permission_HookOff" xml:space="preserve">
+    <value>off</value>
+  </data>
+  <data name="Permission_Status" xml:space="preserve">
+    <value>Accessibility: {0}  /  Triggers (input hook): {1}</value>
+    <comment>{0} allowed / not allowed, {1} on / off</comment>
+  </data>
+  <data name="Common_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Common_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Settings_Triggers_SideButtonNote" xml:space="preserve">
+    <value>Side buttons may conflict with assignments such as Mission Control.</value>
+  </data>
+  <data name="Settings_Triggers_LeftWithoutModifier" xml:space="preserve">
+    <value>Left and right buttons require a modifier key.</value>
+  </data>
+  <data name="Settings_Hotkey_Recording" xml:space="preserve">
+    <value>Press a key… (Esc to cancel, cancels after 10 seconds)</value>
+  </data>
+  <data name="Settings_Hotkey_NeedsModifier" xml:space="preserve">
+    <value>Combine with {0} or another modifier (F keys can be used alone).</value>
+    <comment>{0} modifier examples such as Ctrl / Alt</comment>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Settings_ReadOnlyBanner" xml:space="preserve">
+    <value>The settings file is from a newer version. Changes apply to this session only and are not saved.</value>
+  </data>
+  <data name="Settings_Appearance_Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="Settings_Effects_Animation" xml:space="preserve">
+    <value>Animation</value>
+  </data>
+  <data name="Settings_Effects_Animation_Note" xml:space="preserve">
+    <value>When off, all effects below stop.</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Settings_Appearance_Background_Choose" xml:space="preserve">
+    <value>Choose…</value>
+  </data>
+  <data name="Settings_Appearance_Background_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Settings_Appearance_Background_Note" xml:space="preserve">
+    <value>You can also drop an image file onto the thumbnail.</value>
+  </data>
+  <data name="Settings_Appearance_Background_DropHint" xml:space="preserve">
+    <value>Drop here</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundMissing" xml:space="preserve">
+    <value>Image not found: {0}</value>
+    <comment>{0} path</comment>
+  </data>
+  <data name="Settings_Appearance_BackgroundUnreadable" xml:space="preserve">
+    <value>Cannot read the image: {0}</value>
+    <comment>{0} path</comment>
+  </data>
+  <data name="Settings_Appearance_Background" xml:space="preserve">
+    <value>Background image</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundFit" xml:space="preserve">
+    <value>Fit</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundOverlay" xml:space="preserve">
+    <value>Color overlay</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundOverlay_Note" xml:space="preserve">
+    <value>Puts the board color over the image. Higher values make the image fainter and icons and text easier to read.</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundOpacity" xml:space="preserve">
+    <value>Image opacity</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundOpacity_Note" xml:space="preserve">
+    <value>Lower values let the desktop show through the image.</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundPicker_Title" xml:space="preserve">
+    <value>Choose a background image</value>
+  </data>
+  <data name="Settings_Appearance_BackgroundCopyFailed" xml:space="preserve">
+    <value>Could not copy the background image.
+{0}</value>
+    <comment>{0} error</comment>
+  </data>
+  <data name="Settings_Triggers_KeyboardPlacement" xml:space="preserve">
+    <value>When opened by keyboard (hotkey)</value>
+  </data>
+  <data name="Settings_Triggers_MousePlacement" xml:space="preserve">
+    <value>When opened by mouse</value>
+  </data>
+  <data name="Settings_Triggers_PositionNote" xml:space="preserve">
+    <value>“At pointer” is the mouse pointer position in both cases. When opened from the {0} or a menu, the mouse settings are used.</value>
+    <comment>{0} tray icon / menu bar icon</comment>
+  </data>
+  <data name="Settings_Triggers_CloseOnOutside" xml:space="preserve">
+    <value>Close when clicking outside</value>
+  </data>
+  <data name="Settings_Triggers_CloseOnRetrigger" xml:space="preserve">
+    <value>Trigger again to close</value>
+  </data>
+  <data name="Settings_Triggers_CloseOnLeave" xml:space="preserve">
+    <value>Close when the pointer leaves</value>
+  </data>
+  <data name="Settings_Triggers_CloseOnLeave_Note" xml:space="preserve">
+    <value>After the pointer has entered the board, it closes when the pointer moves farther than the distance below. Takes effect the next time the board opens.</value>
+  </data>
+  <data name="Settings_Triggers_LeaveDistance" xml:space="preserve">
+    <value>Leave distance</value>
+  </data>
+  <data name="Settings_Triggers_UseCurrent" xml:space="preserve">
+    <value>Use current board position</value>
+  </data>
+  <data name="Settings_Triggers_Fixed" xml:space="preserve">
+    <value>Fixed position</value>
+  </data>
+  <data name="Settings_Triggers_Fixed_Note" xml:space="preserve">
+    <value>Used when the position is “Fixed”.</value>
+  </data>
+  <data name="Settings_Triggers_UseCurrent_Note" xml:space="preserve">
+    <value>Available while the board is shown.</value>
+  </data>
+  <data name="Common_On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="Common_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="Settings_General_AutoStartFailed" xml:space="preserve">
+    <value>Could not change the start-at-login setting.
+{0}</value>
+    <comment>{0} error</comment>
+  </data>
+  <data name="Settings_General_AutoStart" xml:space="preserve">
+    <value>Start at login</value>
+  </data>
+  <data name="Settings_General_Permissions" xml:space="preserve">
+    <value>Permissions…</value>
+  </data>
+  <data name="Settings_General_Accessibility" xml:space="preserve">
+    <value>Accessibility</value>
+  </data>
+  <data name="Settings_General_Accessibility_Note" xml:space="preserve">
+    <value>Required for the hotkey and mouse triggers.</value>
+  </data>
+  <data name="Settings_Triggers_UseHotkey" xml:space="preserve">
+    <value>Use hotkey</value>
+  </data>
+  <data name="Settings_Triggers_Hotkey" xml:space="preserve">
+    <value>Hotkey</value>
+  </data>
+  <data name="Settings_Triggers_Hotkey_Note" xml:space="preserve">
+    <value>Click, then press the combination. Conflicts with other apps cannot be detected. It may not work over full-screen apps.</value>
+  </data>
+  <data name="Settings_Triggers_Mouse" xml:space="preserve">
+    <value>Mouse triggers</value>
+  </data>
+  <data name="Settings_Data_Backups" xml:space="preserve">
+    <value>Board backups to keep</value>
+  </data>
+  <data name="Settings_Data_Backups_Note" xml:space="preserve">
+    <value>Number of settings backup generations to keep.</value>
+  </data>
+  <data name="Settings_Data_OpenFolder" xml:space="preserve">
+    <value>Open data folder</value>
+  </data>
+  <data name="Settings_Data_Export" xml:space="preserve">
+    <value>Export…</value>
+  </data>
+  <data name="Settings_Data_Import" xml:space="preserve">
+    <value>Import…</value>
+  </data>
+  <data name="Settings_Data_Backup" xml:space="preserve">
+    <value>Settings and board backup</value>
+  </data>
+  <data name="Settings_Data_Backup_Note" xml:space="preserve">
+    <value>Export or import settings and the managed background image.</value>
+  </data>
+  <data name="Settings_Data_Export_Title" xml:space="preserve">
+    <value>Export settings and board</value>
+  </data>
+  <data name="Settings_Data_Exported" xml:space="preserve">
+    <value>Exported to “{0}”.</value>
+    <comment>{0} file name</comment>
+  </data>
+  <data name="Settings_Data_ExportFailed" xml:space="preserve">
+    <value>Could not export.
+{0}</value>
+    <comment>{0} error</comment>
+  </data>
+  <data name="Settings_Data_ImportWhat_Settings" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="Settings_Data_ImportConfirm_Title" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Settings_Data_ImportConfirm" xml:space="preserve">
+    <value>Replace the current {0} with the contents of “{1}” and restart CPSystemMonitor?
+The current files are kept in backup/.
+Only import archives you trust. Imported items can run commands and open network locations.</value>
+    <comment>{0} what is replaced, {1} file name</comment>
+  </data>
+  <data name="Settings_Data_ImportConfirm_Ok" xml:space="preserve">
+    <value>Import and restart</value>
+  </data>
+  <data name="Archive_NotZip" xml:space="preserve">
+    <value>The file cannot be read as a zip file.</value>
+  </data>
+  <data name="Archive_NoKnownEntries" xml:space="preserve">
+    <value>The archive does not contain settings.json.</value>
+  </data>
+  <data name="Archive_EntryNotObject" xml:space="preserve">
+    <value>{0} has an unexpected format.</value>
+    <comment>{0} entry name, {1} detail (unused)</comment>
+  </data>
+  <data name="Archive_EntryCorrupt" xml:space="preserve">
+    <value>{0} is damaged: {1}</value>
+    <comment>{0} entry name, {1} parser message</comment>
+  </data>
+  <data name="Settings_Effects_Advanced" xml:space="preserve">
+    <value>Advanced effects</value>
+  </data>
+  <data name="Settings_Effects_ResetAll" xml:space="preserve">
+    <value>Reset all to default</value>
+  </data>
+  <data name="Settings_Effects_Row" xml:space="preserve">
+    <value>{0} ({1})</value>
+    <comment>{0} effect name, {1} effect ID</comment>
+  </data>
+  <data name="Settings_Advanced_Logging" xml:space="preserve">
+    <value>Write log files</value>
+  </data>
+  <data name="Settings_Advanced_Logging_Note" xml:space="preserve">
+    <value>Development (Debug) builds always write logs regardless of this setting.</value>
+  </data>
+  <data name="Settings_Advanced_OpenLogFolder" xml:space="preserve">
+    <value>Open log folder</value>
+  </data>
+  <data name="Settings_Advanced_Reset" xml:space="preserve">
+    <value>Reset settings…</value>
+  </data>
+  <data name="Settings_Advanced_ResetConfirm_Title" xml:space="preserve">
+    <value>Reset settings</value>
+  </data>
+  <data name="Settings_Advanced_ResetConfirm_Ok" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Settings_General_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Settings_General_Language_System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Settings_General_Language_Note" xml:space="preserve">
+    <value>Takes effect after restarting CPSystemMonitor.</value>
+  </data>
+  <data name="Common_RestartNow" xml:space="preserve">
+    <value>Restart now</value>
+  </data>
+  <data name="Effect_frameOrb" xml:space="preserve">
+    <value>Light orb</value>
+  </data>
+  <data name="Effect_glowPulse" xml:space="preserve">
+    <value>Glow pulse</value>
+  </data>
+  <data name="Enum_EffectKind_Orb" xml:space="preserve">
+    <value>One orb</value>
+  </data>
+  <data name="Enum_EffectKind_OrbTwin" xml:space="preserve">
+    <value>Two orbs</value>
+  </data>
+  <data name="Enum_EffectKind_Pulse" xml:space="preserve">
+    <value>Soft</value>
+  </data>
+  <data name="Enum_EffectKind_PulseStrong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="Settings_Effects_AmbientNote" xml:space="preserve">
+    <value>Light orb, glow pulse, and scan beam run the whole time the board is visible and use a lot of CPU.</value>
+  </data>
+  <data name="Settings_Effects_ReducedMotionNote" xml:space="preserve">
+    <value>Stopped because the system’s reduce-motion setting is on.</value>
+  </data>
+  <data name="Settings_Appearance_Colors" xml:space="preserve">
+    <value>Color scheme</value>
+  </data>
+  <data name="Settings_Appearance_Primary" xml:space="preserve">
+    <value>Primary color</value>
+  </data>
+  <data name="Settings_Appearance_Secondary" xml:space="preserve">
+    <value>Secondary color</value>
+  </data>
+  <data name="Settings_Appearance_Swap_Tooltip" xml:space="preserve">
+    <value>Swap primary and secondary</value>
+  </data>
+  <data name="Enum_AccentPreset_Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Enum_ClockMode_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="Enum_ClockMode_Minutes" xml:space="preserve">
+    <value>Hours:minutes</value>
+  </data>
+  <data name="Enum_ClockMode_Seconds" xml:space="preserve">
+    <value>Hours:minutes:seconds</value>
+  </data>
+  <data name="Settings_Appearance_Hud_StatusBar" xml:space="preserve">
+    <value>Status line</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Clock" xml:space="preserve">
+    <value>Clock</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Clock_Note" xml:space="preserve">
+    <value>Hours:minutes:seconds updates every second and uses a little CPU while the board is visible.</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Date" xml:space="preserve">
+    <value>Date (yyyy/MM/dd)</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Grid" xml:space="preserve">
+    <value>Background grid</value>
+  </data>
+  <data name="Settings_Appearance_Hud_GridOpacity" xml:space="preserve">
+    <value>Grid strength</value>
+  </data>
+  <data name="Settings_Effects_Scanlines" xml:space="preserve">
+    <value>Scanlines</value>
+  </data>
+  <data name="Settings_Effects_ScanlineOpacity" xml:space="preserve">
+    <value>Scanline strength</value>
+  </data>
+  <data name="Settings_Effects_ScanlinePitch" xml:space="preserve">
+    <value>Scanline spacing</value>
+  </data>
+  <data name="Common_PixelValue" xml:space="preserve">
+    <value>{0} px</value>
+  </data>
+  <data name="Effect_scanBeam" xml:space="preserve">
+    <value>Scan beam</value>
+  </data>
+  <data name="Enum_EffectKind_Beam" xml:space="preserve">
+    <value>Beam</value>
+  </data>
+  <data name="Settings_Tab_Effects" xml:space="preserve">
+    <value>Effects</value>
+  </data>
+  <data name="Settings_Effects_AmbientHeading" xml:space="preserve">
+    <value>Ambient effects</value>
+  </data>
+  <data name="Settings_Effects_Vsync" xml:space="preserve">
+    <value>VSync</value>
+  </data>
+  <data name="Settings_Effects_Vsync_Item" xml:space="preserve">
+    <value>{0} ({1} fps)</value>
+    <comment>{0} = 1–3, {1} = 60 / 30 / 20</comment>
+  </data>
+  <data name="Settings_Effects_Vsync_Note" xml:space="preserve">
+    <value>How often the light orb, glow pulse, and scan beam redraw. Higher numbers use less CPU but move less smoothly.</value>
+  </data>
+  <data name="Settings_Effects_ScanlinesHeading" xml:space="preserve">
+    <value>Static scanlines</value>
+  </data>
+  <data name="Permission_OpenSettings_Note" xml:space="preserve">
+    <value>If turning it on has no effect, remove CPSystemMonitor from the list with “−” and allow it again (this can happen after an update).</value>
+  </data>
+  <data name="Permission_Retry_Note" xml:space="preserve">
+    <value>Tries to start the triggers (input hook) again.</value>
+  </data>
+  <data name="Permission_Restart_Note" xml:space="preserve">
+    <value>Restarts the app. Use this if Retry does not help.</value>
+  </data>
+  <data name="Settings_Effects_GlitchIntensity" xml:space="preserve">
+    <value>Glitch intensity</value>
+  </data>
+  <data name="Settings_Effects_GlitchIntensity_Note" xml:space="preserve">
+    <value>How far the show/hide glitch shifts and splits colors. At 0%, it only fades.</value>
+  </data>
+  <data name="Settings_Triggers_CursorAnchor" xml:space="preserve">
+    <value>Pointer spot on board</value>
+  </data>
+  <data name="Settings_Triggers_CursorAnchor_Note" xml:space="preserve">
+    <value>Used when “At pointer” is selected for either the keyboard or the mouse above (shared by both). Choose where on the board the pointer ends up.</value>
+  </data>
+  <data name="Enum_CursorAnchor_TopLeft" xml:space="preserve">
+    <value>Top left</value>
+  </data>
+  <data name="Enum_CursorAnchor_Top" xml:space="preserve">
+    <value>Top center</value>
+  </data>
+  <data name="Enum_CursorAnchor_TopRight" xml:space="preserve">
+    <value>Top right</value>
+  </data>
+  <data name="Enum_CursorAnchor_Left" xml:space="preserve">
+    <value>Middle left</value>
+  </data>
+  <data name="Enum_CursorAnchor_Center" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="Enum_CursorAnchor_Right" xml:space="preserve">
+    <value>Middle right</value>
+  </data>
+  <data name="Enum_CursorAnchor_BottomLeft" xml:space="preserve">
+    <value>Bottom left</value>
+  </data>
+  <data name="Enum_CursorAnchor_Bottom" xml:space="preserve">
+    <value>Bottom center</value>
+  </data>
+  <data name="Enum_CursorAnchor_BottomRight" xml:space="preserve">
+    <value>Bottom right</value>
+  </data>
+  <data name="StartupGuide_DoNotShowAgain" xml:space="preserve"><value>Do not show again</value></data>
+  <data name="StartupGuide_MouseButton" xml:space="preserve"><value>{0} click</value></data>
+  <data name="StartupGuide_Shortcut" xml:space="preserve"><value>“{0}”</value></data>
+  <data name="Update_Check" xml:space="preserve"><value>Check for updates</value></data>
+  <data name="Update_Latest" xml:space="preserve"><value>You are using the latest version ({0}).</value></data>
+  <data name="Update_Failed" xml:space="preserve"><value>Could not check for updates. Please try again later.</value></data>
+  <data name="Update_Available" xml:space="preserve"><value>An update is available.
+Current: {0}
+Latest: {1}
+
+You can download the new version from the website.</value></data>
+  <data name="Update_OpenWebsite" xml:space="preserve"><value>Open download website</value></data>
+  <data name="Archive_TooLarge" xml:space="preserve"><value>The archive exceeds the import limits (128 entries, 4 MiB per JSON file, 32 MiB per file, 64 MiB total).</value></data>
+  <data name="Tray_Groups" xml:space="preserve">
+    <value>Groups</value>
+  </data>
+  <data name="Notice_Load_Templates" xml:space="preserve">
+    <value>Snippets (templates.json)</value>
+  </data>
+  <data name="Board_EmptyGroup" xml:space="preserve">
+    <value>This group has no snippets</value>
+  </data>
+  <data name="Board_EmptyGroup_Add" xml:space="preserve">
+    <value>Add in Edit…</value>
+  </data>
+  <data name="Toast_Copied" xml:space="preserve">
+    <value>Copied to the clipboard.</value>
+  </data>
+  <data name="Toast_ClipboardBusy" xml:space="preserve">
+    <value>The clipboard is busy. Try again.</value>
+  </data>
+  <data name="Templates_Sample_1" xml:space="preserve">
+    <value>こんにちは、</value>
+  </data>
+  <data name="StartupGuide_Description" xml:space="preserve">
+    <value>CPSystemMonitor shows CPU, memory, storage and network activity. Right-click to choose sections or switch between Standard and Compact. Closing the panel keeps the app in the tray.</value>
+  </data>
+  <data name="StartupGuide_OpenBoard" xml:space="preserve">
+    <value>You can open the board with: {0}.</value>
+  </data>
+  <data name="StartupGuide_DoubleTap" xml:space="preserve">
+    <value>Press {0} twice</value>
+  </data>
+  <data name="Settings_Tab_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="Settings_Tab_Triggers" xml:space="preserve">
+    <value>Triggers</value>
+  </data>
+  <data name="Settings_Appearance_BoardWidth" xml:space="preserve">
+    <value>Board width</value>
+  </data>
+  <data name="Settings_Appearance_MaxRows" xml:space="preserve">
+    <value>Maximum rows</value>
+  </data>
+  <data name="Settings_Appearance_FontSize" xml:space="preserve">
+    <value>Text size</value>
+  </data>
+  <data name="Settings_Appearance_Preview" xml:space="preserve">
+    <value>Show full-text preview</value>
+  </data>
+  <data name="Settings_Appearance_Preview_Note" xml:space="preserve">
+    <value>Shows the whole snippet beside the board when you rest on a row for 0.4 seconds.</value>
+  </data>
+  <data name="Settings_Appearance_WheelGroups" xml:space="preserve">
+    <value>Scroll wheel switches groups</value>
+  </data>
+  <data name="Settings_Appearance_WheelGroups_Note" xml:space="preserve">
+    <value>Over a long list, the wheel scrolls the list instead.</value>
+  </data>
+  <data name="Settings_General_HideStartupGuide" xml:space="preserve">
+    <value>Don't show the startup guide</value>
+  </data>
+  <data name="Settings_General_HideStartupGuide_Note" xml:space="preserve">
+    <value>Skips the guide on how to open the board at startup.</value>
+  </data>
+  <data name="Settings_Triggers_DoubleTap" xml:space="preserve">
+    <value>Double-tap modifier key</value>
+  </data>
+  <data name="Settings_Triggers_DoubleTap_Note" xml:space="preserve">
+    <value>If another app uses the same action, both may respond.</value>
+  </data>
+  <data name="Settings_Triggers_DoubleTapKey" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="Settings_Triggers_DoubleTapInterval" xml:space="preserve">
+    <value>Double-tap interval</value>
+  </data>
+  <data name="Settings_Triggers_Mouse_Note" xml:space="preserve">
+    <value>Using the same action as CPFileLauncher (Ctrl + middle click by default) makes both respond.</value>
+  </data>
+  <data name="Settings_Triggers_PositionHeading" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Settings_Triggers_CloseHeading" xml:space="preserve">
+    <value>Closing</value>
+  </data>
+  <data name="Settings_Paste_AutoPaste" xml:space="preserve">
+    <value>Paste automatically</value>
+  </data>
+  <data name="Settings_Paste_AutoPaste_Note" xml:space="preserve">
+    <value>Hold Shift while choosing to only copy, regardless of this setting.</value>
+  </data>
+  <data name="Settings_Paste_Restore" xml:space="preserve">
+    <value>Restore the clipboard after pasting</value>
+  </data>
+  <data name="Settings_Paste_Restore_Note" xml:space="preserve">
+    <value>Leave this off (the default) to keep the snippet on the clipboard after pasting.</value>
+  </data>
+  <data name="Settings_Paste_RestoreDelay" xml:space="preserve">
+    <value>Restore delay</value>
+  </data>
+  <data name="Settings_Paste_Limit_Note_Win" xml:space="preserve">
+    <value>Snippets can't be pasted into apps running as administrator. They are only copied.</value>
+  </data>
+  <data name="Settings_Paste_Limit_Note_Mac" xml:space="preserve">
+    <value>Snippets can't be pasted into password fields. They are only copied.</value>
+  </data>
+  <data name="Settings_Data_ImportWhat_Both" xml:space="preserve">
+    <value>settings and snippets</value>
+  </data>
+  <data name="Settings_Data_ImportWhat_Templates" xml:space="preserve">
+    <value>snippets</value>
+  </data>
+  <data name="Settings_Data_Import_Title" xml:space="preserve">
+    <value>Import settings and snippets</value>
+  </data>
+  <data name="Effect_groupSwitch" xml:space="preserve">
+    <value>Group switch</value>
+  </data>
+  <data name="Effect_tabHighlight" xml:space="preserve">
+    <value>Group tab highlight</value>
+  </data>
+  <data name="Effect_rowHover" xml:space="preserve">
+    <value>Row hover</value>
+  </data>
+  <data name="Effect_rowPress" xml:space="preserve">
+    <value>Row press</value>
+  </data>
+  <data name="Effect_pasteFlash" xml:space="preserve">
+    <value>Paste feedback</value>
+  </data>
+  <data name="Effect_previewShow" xml:space="preserve">
+    <value>Full-text preview</value>
+  </data>
+  <data name="Settings_Advanced_Reset_Note" xml:space="preserve">
+    <value>Resets all settings to their defaults. Your snippets are kept.</value>
+  </data>
+  <data name="Settings_Appearance_Hud_StatusBar_Note" xml:space="preserve">
+    <value>Shows the date, time and history duration at the bottom.</value>
+  </data>
+  <data name="Settings_Appearance_Hud_Grid_Note" xml:space="preserve">
+    <value>Thin lines in the primary color behind the rows.</value>
+  </data>
+  <data name="Settings_Effects_Scanlines_Note" xml:space="preserve">
+    <value>Thin horizontal lines in the primary color behind the rows. They do not move, so they use no CPU and stay on even when Animation is off.</value>
+  </data>
+  <data name="StartupGuide_Title" xml:space="preserve">
+    <value>How to use</value>
+  </data>
+  <data name="StartupGuide_ShortcutDisabled" xml:space="preserve">
+    <value>Keyboard and mouse triggers are currently disabled. You can open the board from the tray or menu bar icon.</value>
+  </data>
+  <data name="Menu_CopyOnly" xml:space="preserve"><value>Copy only</value></data>
+  <data name="Menu_Edit" xml:space="preserve"><value>Edit…</value></data>
+  <data name="Toast_CopiedOnly_Elevated" xml:space="preserve"><value>Can’t paste into an app running as administrator, so the snippet was only copied.</value></data>
+  <data name="Toast_CopiedOnly_SecureInput" xml:space="preserve"><value>Can’t paste while secure input is on, so the snippet was only copied.</value></data>
+  <data name="Toast_CopiedOnly_NoPermission" xml:space="preserve"><value>Accessibility permission is off, so the snippet was only copied.</value></data>
+  <data name="Toast_CopiedOnly_ModifierHeld" xml:space="preserve"><value>A modifier key was still held down, so the snippet was only copied.</value></data>
+  <data name="Toast_CopiedOnly_Focus" xml:space="preserve"><value>Couldn’t switch back to the app, so the snippet was only copied.</value></data>
+  <data name="Toast_CopiedOnly_SendFailed" xml:space="preserve"><value>Couldn’t send the paste shortcut, so the snippet was only copied.</value></data>
+  <data name="Toast_CopiedOnly_CheckFailed" xml:space="preserve"><value>Couldn’t check whether pasting is available, so the snippet was only copied.</value></data>
+  <data name="Toast_ClipboardChanged" xml:space="preserve"><value>The clipboard changed, so pasting was cancelled.</value></data>
+  <data name="Settings_Snippets_GroupName" xml:space="preserve"><value>Group name</value></data>
+  <data name="Settings_Snippets_ClearGroup" xml:space="preserve"><value>Clear group…</value></data>
+  <data name="Settings_Snippets_ClearConfirm" xml:space="preserve"><value>Delete {1} snippets from group {0}?</value></data>
+  <data name="Settings_Snippets_AddClipboard" xml:space="preserve"><value>Add from clipboard</value></data>
+  <data name="Settings_Snippets_Move" xml:space="preserve"><value>Move to ▸</value></data>
+  <data name="Settings_Snippets_CharacterCount" xml:space="preserve"><value>{0} characters</value></data>
+  <data name="Settings_Snippets_GroupFull" xml:space="preserve"><value>This group can contain up to 500 snippets.</value></data>
+  <data name="Settings_Snippets_TooLong" xml:space="preserve"><value>Snippets must be 10,000 characters or fewer.</value></data>
+  <data name="Settings_Snippets_ClipboardEmpty" xml:space="preserve"><value>The clipboard contains no text to add.</value></data>
+  <data name="Settings_Snippets_ReadOnlyBanner" xml:space="preserve"><value>This snippet data was created by a newer version. Changes apply only to this session and won’t be saved.</value></data>
+  <data name="Editor_Title" xml:space="preserve"><value>Edit</value></data>
+  <data name="Settings_Tab_Popup" xml:space="preserve">
+    <value>Popup</value>
+  </data>
+  <data name="Menu_History" xml:space="preserve">
+    <value>History…</value>
+  </data>
+  <data name="History_Title" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Settings_Tab_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="History_Clear" xml:space="preserve">
+    <value>Clear history</value>
+  </data>
+  <data name="History_ClearConfirm" xml:space="preserve">
+    <value>Delete all saved clipboard history? This cannot be undone.</value>
+  </data>
+  <data name="History_AutoClear" xml:space="preserve">
+    <value>Automatically clear history</value>
+  </data>
+  <data name="History_AutoClear_Note" xml:space="preserve">
+    <value>Delete each entry after the specified number of minutes since it was copied.</value>
+  </data>
+  <data name="History_Minutes" xml:space="preserve">
+    <value>Retention time (minutes)</value>
+  </data>
+  <data name="History_MaxItems" xml:space="preserve">
+    <value>Maximum saved entries</value>
+  </data>
+  <data name="History_MaxItems_Note" xml:space="preserve">
+    <value>Up to 1000 entries.</value>
+  </data>
+  <data name="History_Filter" xml:space="preserve">
+    <value>Filter history… (Ctrl/⌘+F)</value>
+  </data>
+  <data name="History_Search" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="History_Empty" xml:space="preserve">
+    <value>No matching history.</value>
+  </data>
+  <data name="Settings_Triggers_EditorHeading" xml:space="preserve">
+    <value>Snippets</value>
+  </data>
+  <data name="Settings_Triggers_HistoryHeading" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="History_TriggerNote" xml:space="preserve">
+    <value>History triggers are off by default. If both sections use the same action, snippets take priority.</value>
+  </data>
+</root>

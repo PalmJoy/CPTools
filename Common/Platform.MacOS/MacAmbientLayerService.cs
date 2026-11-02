@@ -5,6 +5,13 @@ using CPClipboard.Platform.MacOS.Native;
 using static CPClipboard.Platform.MacOS.Native.ObjC;
 
 namespace CPClipboard.Platform.MacOS;
+#elif CPTOOLS_MONITOR
+using System.Diagnostics;
+using System.Runtime.Versioning;
+using CPSystemMonitor.Platform.MacOS.Native;
+using static CPSystemMonitor.Platform.MacOS.Native.ObjC;
+
+namespace CPSystemMonitor.Platform.MacOS;
 #elif CPTOOLS_LAUNCHER
 using System.Diagnostics;
 using System.Runtime.Versioning;

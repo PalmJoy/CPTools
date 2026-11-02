@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- プラットフォーム抽象インターフェース（SPEC §10.3）。実装は .Platform.Windows / .Platform.MacOS -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPSystemMonitor.Core\CPSystemMonitor.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 入力フック（Win / Mac 共通実装 Input/SharpHookInputService.cs） -->
+    <PackageReference Include="SharpHook" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

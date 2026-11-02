@@ -3,6 +3,11 @@ using Avalonia.Media.Imaging;
 using SkiaSharp;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia.Media.Imaging;
+using SkiaSharp;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia.Media.Imaging;
 using SkiaSharp;

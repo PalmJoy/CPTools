@@ -3,6 +3,11 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 
 namespace CPClipboard.Core.Storage;
+#elif CPTOOLS_MONITOR
+using System.Text.Json;
+using System.Text.Json.Nodes;
+
+namespace CPSystemMonitor.Core.Storage;
 #elif CPTOOLS_LAUNCHER
 using System.Text.Json;
 using System.Text.Json.Nodes;

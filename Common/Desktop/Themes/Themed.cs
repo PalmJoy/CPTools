@@ -4,6 +4,12 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Markup.Xaml.MarkupExtensions;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Markup.Xaml.MarkupExtensions;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;

@@ -3,6 +3,11 @@ using Avalonia.Controls;
 using Avalonia.Platform;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia.Controls;
+using Avalonia.Platform;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia.Controls;
 using Avalonia.Platform;

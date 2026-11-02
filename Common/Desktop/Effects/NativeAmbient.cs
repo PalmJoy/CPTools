@@ -9,6 +9,17 @@ using CPClipboard.Core.Theming;
 using CPClipboard.Platform;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using System.Diagnostics;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Threading;
+using CPSystemMonitor.Core.Effects;
+using CPSystemMonitor.Core.Theming;
+using CPSystemMonitor.Platform;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using System.Diagnostics;
 using Avalonia;
@@ -39,8 +50,10 @@ internal sealed class NativeAmbient : IDisposable
     private AmbientGeometry? _geometry;
     private object? _sentPulseImage; // 最後に PNG にして渡した焼き込み（同じなら渡し直さない）
 
+#if !CPTOOLS_MONITOR
     public NativeAmbient(BoardWindow window, IAmbientLayerService service, PulseLayer pulse)
         : this(window, window.Chrome, service, pulse) { }
+#endif
 
     public NativeAmbient(Window window, FrameChrome chrome, IAmbientLayerService service, PulseLayer pulse)
     {

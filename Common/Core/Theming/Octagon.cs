@@ -1,5 +1,7 @@
 #if CPTOOLS_CLIPBOARD
 namespace CPClipboard.Core.Theming;
+#elif CPTOOLS_MONITOR
+namespace CPSystemMonitor.Core.Theming;
 #elif CPTOOLS_LAUNCHER
 namespace FileLauncher.Core.Theming;
 #else

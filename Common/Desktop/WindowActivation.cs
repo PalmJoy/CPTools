@@ -4,6 +4,12 @@ using Avalonia.Controls.ApplicationLifetimes;
 using CPClipboard.Platform;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using CPSystemMonitor.Platform;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;

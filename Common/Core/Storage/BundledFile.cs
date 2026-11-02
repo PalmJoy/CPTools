@@ -1,5 +1,7 @@
 #if CPTOOLS_CLIPBOARD
 namespace CPClipboard.Core.Storage;
+#elif CPTOOLS_MONITOR
+namespace CPSystemMonitor.Core.Storage;
 #elif CPTOOLS_LAUNCHER
 namespace FileLauncher.Core.Storage;
 #else

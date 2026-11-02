@@ -2,6 +2,10 @@
 using Avalonia.Media.Imaging;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia.Media.Imaging;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia.Media.Imaging;
 

@@ -1,0 +1,78 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>CPSystemMonitor</AssemblyName>
+    <Product>CPSystemMonitor</Product>
+    <AssemblyTitle>CPSystemMonitor</AssemblyTitle>
+    <!-- 製品のバージョン（「について」と macOS の Info.plist に出る。製品名・正式な版の付け方は SPEC §13.2 の TODO） -->
+    <Version>0.1.0</Version>
+    <!-- Self-contained releases carry their own security-patched runtime. -->
+    <RuntimeFrameworkVersion Condition="'$(SelfContained)' == 'true'">10.0.13</RuntimeFrameworkVersion>
+    <!-- Windows の exe のアイコン（src/build/make-icons.sh が Assets/icon.svg から作る。SPEC §3.9 H13） -->
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <!-- フォルダ・プロジェクト名は CPSystemMonitor.Desktop（.App で終わると macOS がアプリバンドルとみなすため）。名前空間は据え置き -->
+    <RootNamespace>CPSystemMonitor.App</RootNamespace>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <!-- 常駐アプリ向けのメモリ削減（ヒープは小さく、スループットより常駐時のメモリを優先）。
+         バックグラウンド GC のスレッドと管理領域を持たない / 計測用の Tier0 コードと再 JIT をしない（ReadyToRun はそのまま） -->
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    <TieredPGO>false</TieredPGO>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- GC の回数と引き換えにヒープを小さく保つ（0〜9。ドキュメントの推奨は 5〜7 から） -->
+    <RuntimeHostConfigurationOption Include="System.GC.ConserveMemory" Value="5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Override Avalonia's transitive Skia dependencies together to keep managed and native libraries on the same version. -->
+    <PackageReference Include="SkiaSharp" Version="4.153.1" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="4.153.1" />
+    <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="4.153.1" />
+    <PackageReference Include="Avalonia" Version="12.1.4" />
+    <PackageReference Include="Avalonia.Controls.ColorPicker" Version="12.1.4" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.4" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.4" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.4" />
+    <!-- resx から Strings クラスを生成する（ビルド時だけ。配布物には入らない。SPEC §10.2） -->
+    <PackageReference Include="Microsoft.CodeAnalysis.ResxSourceGenerator" Version="5.0.0-1.25277.114" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- サイバーパンクテーマの欧文フォント Chakra Petch（SIL OFL 1.1。ライセンス本文 OFL-ChakraPetch.txt を同梱） -->
+    <AvaloniaResource Include="Resources\Fonts\*.ttf" />
+    <AvaloniaResource Include="Assets\*.png" />
+    <None Include="Resources\Fonts\OFL-*.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- UI 文字列（英語が既定、日本語は衛星アセンブリ。SPEC §7「言語と UI 文字列」、訳語は spec/TERMS.md） -->
+    <EmbeddedResource Update="Resources\Strings.resx" ClassName="CPSystemMonitor.App.Strings" EmitFormatMethods="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CPSystemMonitor.Desktop.Tests" />
+  </ItemGroup>
+
+  <!-- libuiohook（LGPL-3.0）は単一 exe に収めず exe の隣に置き、利用者が差し替えられるようにする（LGPL §4(d)(1)。SPEC §10.4）。
+       既存の publish 項目にメタデータを付けるのは -p: では渡せないので、publish-win.ps1 ではなくここに置く -->
+  <Target Name="KeepUioHookOutsideSingleFile" AfterTargets="ComputeResolvedFilesToPublishList" Condition="'$(PublishSingleFile)' == 'true'">
+    <ItemGroup>
+      <ResolvedFileToPublish Update="@(ResolvedFileToPublish)" Condition="'%(Filename)%(Extension)' == 'uiohook.dll'" ExcludeFromSingleFile="true" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPSystemMonitor.Core\CPSystemMonitor.Core.csproj" />
+    <ProjectReference Include="..\CPSystemMonitor.Platform\CPSystemMonitor.Platform.csproj" />
+    <ProjectReference Include="..\CPSystemMonitor.Platform.Windows\CPSystemMonitor.Platform.Windows.csproj" />
+    <ProjectReference Include="..\CPSystemMonitor.Platform.MacOS\CPSystemMonitor.Platform.MacOS.csproj" />
+  </ItemGroup>
+
+</Project>

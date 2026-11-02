@@ -3,6 +3,11 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 
 namespace CPClipboard.Platform.MacOS.Native;
+#elif CPTOOLS_MONITOR
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+
+namespace CPSystemMonitor.Platform.MacOS.Native;
 #elif CPTOOLS_LAUNCHER
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;

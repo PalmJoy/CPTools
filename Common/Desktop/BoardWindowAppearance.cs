@@ -8,6 +8,16 @@ using CPClipboard.Core.Storage;
 using CPClipboard.Platform;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using Avalonia.Controls;
+using Avalonia.Media.Imaging;
+using Avalonia.Threading;
+using CPSystemMonitor.Core.Effects;
+using CPSystemMonitor.Core.Model;
+using CPSystemMonitor.Core.Storage;
+using CPSystemMonitor.Platform;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
@@ -32,6 +42,10 @@ internal sealed class BoardWindowAppearance
     private readonly AppearanceSettings _appearance;
     private readonly AmbientAnimator _animator;
     private NativeAmbient? _native;
+    private readonly GridLayer _grid;
+    private readonly ScanlineLayer _scanlines;
+    private bool _initialized;
+    private readonly Action _refreshRunning;
 
     public BoardWindowAppearance(ChromeWindow window, AppearanceSettings appearance, DataPaths? paths, IPlatformServices? platform)
     {
@@ -50,9 +64,9 @@ internal sealed class BoardWindowAppearance
         window.BodyWidth = window.BodyWidth;
         var layout = chrome.Body;
         chrome.Body = null;
-        var grid = new GridLayer { IsVisible = appearance.Hud.Grid, Opacity = appearance.Hud.GridOpacity / 100.0 };
+        var grid = _grid = new GridLayer { IsVisible = appearance.Hud.Grid, Opacity = appearance.Hud.GridOpacity / 100.0 };
         grid[!GridLayer.StrokeProperty] = Themed.Res("FlHudGrid");
-        var scanlines = new ScanlineLayer
+        var scanlines = _scanlines = new ScanlineLayer
         {
             IsVisible = appearance.Hud.Scanlines,
             Opacity = appearance.Hud.ScanlineOpacity / 100.0,
@@ -75,9 +89,22 @@ internal sealed class BoardWindowAppearance
         beam.Clip = chrome.FaceClip;
         chrome.FaceClipChanged += (_, _) => beam.Clip = chrome.FaceClip;
         pulse.SizeChanged += (_, _) => { if (_animator.IsRunning) pulse.Refresh(); };
+        _refreshRunning = () =>
+        {
+            bool run = window.IsVisible && window.WindowState != WindowState.Minimized && platform?.Window.PrefersReducedMotion != true;
+            if (_native?.IsAttached == true) _native.SetRunning(run);
+            else if (run && (orb.Spec.IsActive || beam.Spec.IsActive || pulseSpec.IsActive)) _animator.Start();
+            else _animator.Stop();
+        };
+        window.PropertyChanged += (_, change) =>
+        {
+            if (_initialized && (change.Property == Avalonia.Visual.IsVisibleProperty || change.Property == Window.WindowStateProperty)) _refreshRunning();
+        };
         window.Opened += (_, _) => Dispatcher.UIThread.Post(() =>
         {
             if (_cancellation.IsCancellationRequested) return;
+            if (_initialized) { _refreshRunning(); return; }
+            _initialized = true;
             if (platform?.Window.PrefersReducedMotion == true) return;
             if (platform is not null && !Program.AvaloniaAmbient)
             {
@@ -106,6 +133,18 @@ internal sealed class BoardWindowAppearance
             _loader.Dispose();
         };
         if (paths is not null) _ = LoadBackgroundAsync(paths);
+    }
+
+    public void ApplyLiveSettings(AppearanceSettings appearance)
+    {
+        _window.Opacity = appearance.Opacity / 100d;
+        _native?.SetOpacity(_window.Opacity);
+        _grid.IsVisible = appearance.Hud.Grid;
+        _grid.Opacity = appearance.Hud.GridOpacity / 100d;
+        _scanlines.IsVisible = appearance.Hud.Scanlines;
+        _scanlines.Opacity = appearance.Hud.ScanlineOpacity / 100d;
+        _scanlines.Pitch = appearance.Hud.ScanlinePitch;
+        _refreshRunning();
     }
 
     private async Task LoadBackgroundAsync(DataPaths paths)

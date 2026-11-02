@@ -17,4 +17,13 @@
     <Project Path="CPFileLauncher/src/FileLauncher.Platform.Windows/FileLauncher.Platform.Windows.csproj" />
     <Project Path="CPFileLauncher/src/FileLauncher.Tests/FileLauncher.Tests.csproj" />
   </Folder>
+  <Folder Name="/CPSystemMonitor/">
+    <Project Path="CPSystemMonitor/src/CPSystemMonitor.Core/CPSystemMonitor.Core.csproj" />
+    <Project Path="CPSystemMonitor/src/CPSystemMonitor.Desktop/CPSystemMonitor.Desktop.csproj" />
+    <Project Path="CPSystemMonitor/src/CPSystemMonitor.Platform/CPSystemMonitor.Platform.csproj" />
+    <Project Path="CPSystemMonitor/src/CPSystemMonitor.Platform.MacOS/CPSystemMonitor.Platform.MacOS.csproj" />
+    <Project Path="CPSystemMonitor/src/CPSystemMonitor.Platform.Windows/CPSystemMonitor.Platform.Windows.csproj" />
+    <Project Path="CPSystemMonitor/src/CPSystemMonitor.Tests/CPSystemMonitor.Tests.csproj" />
+    <Project Path="CPSystemMonitor/src/CPSystemMonitor.Desktop.Tests/CPSystemMonitor.Desktop.Tests.csproj" />
+  </Folder>
 </Solution>

@@ -20,5 +20,9 @@ jobs:
           dotnet-version: 10.0.x
       - run: dotnet restore CPTools.slnx --locked-mode
       - run: dotnet test CPTools.slnx -c Release --no-restore
+      - name: Verify native monitor counters
+        run: dotnet test CPSystemMonitor/src/CPSystemMonitor.Tests/CPSystemMonitor.Tests.csproj -c Release --no-build --no-restore --filter FullyQualifiedName~Native_source
+        env:
+          CPSM_NATIVE_TESTS: '1'
       - run: node Common/build/test.mjs
       - run: node Common/build/sync-launcher-site.mjs --check

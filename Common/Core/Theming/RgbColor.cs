@@ -2,6 +2,10 @@
 using System.Globalization;
 
 namespace CPClipboard.Core.Theming;
+#elif CPTOOLS_MONITOR
+using System.Globalization;
+
+namespace CPSystemMonitor.Core.Theming;
 #elif CPTOOLS_LAUNCHER
 using System.Globalization;
 

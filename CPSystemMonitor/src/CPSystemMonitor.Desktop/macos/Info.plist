@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- macOS の .app の情報（SPEC §10.4）。__VERSION__ は src/build/publish-mac.sh が csproj の Version で置き換える -->
+<plist version="1.0">
+<dict>
+  <key>CFBundleIdentifier</key>
+  <!-- 変えるとアクセシビリティの許可の付け直しが要る（SPEC §10.4） -->
+  <string>com.palmjoy.cpsystemmonitor</string>
+  <key>CFBundleName</key>
+  <string>CPSystemMonitor</string>
+  <key>CFBundleDisplayName</key>
+  <string>CPSystemMonitor</string>
+  <key>CFBundleExecutable</key>
+  <string>CPSystemMonitor</string>
+  <key>CFBundleIconFile</key>
+  <string>AppIcon</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>CFBundleShortVersionString</key>
+  <string>__VERSION__</string>
+  <key>CFBundleVersion</key>
+  <string>__VERSION__</string>
+  <key>CFBundleInfoDictionaryVersion</key>
+  <string>6.0</string>
+  <!-- Dock・⌘Tab に出さない（メニューバー常駐。SPEC §8） -->
+  <key>LSUIElement</key>
+  <true/>
+  <key>NSHighResolutionCapable</key>
+  <true/>
+  <key>LSMinimumSystemVersion</key>
+  <string>15.0</string>
+  <key>NSPrincipalClass</key>
+  <string>NSApplication</string>
+  <!-- 開発言語。InfoPlist.strings は en.lproj / ja.lproj の両方に置く（片方だけだとその言語に固定される。SPEC §10.4） -->
+  <key>CFBundleDevelopmentRegion</key>
+  <string>en</string>
+</dict>
+</plist>

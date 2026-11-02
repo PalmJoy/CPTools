@@ -3,6 +3,11 @@ using System.Collections.Concurrent;
 using System.Runtime.Versioning;
 
 namespace CPClipboard.Platform.Windows;
+#elif CPTOOLS_MONITOR
+using System.Collections.Concurrent;
+using System.Runtime.Versioning;
+
+namespace CPSystemMonitor.Platform.Windows;
 #elif CPTOOLS_LAUNCHER
 using System.Collections.Concurrent;
 using System.Runtime.Versioning;

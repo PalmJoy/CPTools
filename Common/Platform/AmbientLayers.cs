@@ -2,6 +2,10 @@
 using CPClipboard.Core.Theming;
 
 namespace CPClipboard.Platform;
+#elif CPTOOLS_MONITOR
+using CPSystemMonitor.Core.Theming;
+
+namespace CPSystemMonitor.Platform;
 #elif CPTOOLS_LAUNCHER
 using FileLauncher.Core.Theming;
 

@@ -8,6 +8,16 @@ using CPClipboard.Core.Model;
 using CPClipboard.Core.Theming;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using System.Diagnostics;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using CPSystemMonitor.Core.Model;
+using CPSystemMonitor.Core.Theming;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using System.Diagnostics;
 using Avalonia;

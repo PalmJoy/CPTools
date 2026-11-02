@@ -1,20 +1,21 @@
 # CPTools
 
-CPFileLauncherとCPClipboardをまとめたWindows・macOS向けツール集です。公開リポジトリは既存の[CPFileLauncher](https://github.com/PalmJoy/CPFileLauncher)を使用します。
+CPFileLauncher・CPClipboard・CPSystemMonitorをまとめたWindows・macOS向けツール集です。公開リポジトリは既存の[CPFileLauncher](https://github.com/PalmJoy/CPFileLauncher)を使用します。
 
 | 製品 | 用途 | 配布サイト |
 | --- | --- | --- |
 | [CPFileLauncher](CPFileLauncher/README.md) | ファイル・フォルダ・アプリの起動 | [日本語](https://palmjoy.github.io/CPFileLauncher/ja/) / [English](https://palmjoy.github.io/CPFileLauncher/) |
 | [CPClipboard](CPClipboard/README.ja.md) | 定型文のコピー・貼り付け | [日本語](https://palmjoy.github.io/CPFileLauncher/CPClipboard/ja/) / [English](https://palmjoy.github.io/CPFileLauncher/CPClipboard/) |
+| [CPSystemMonitor](CPSystemMonitor/README.md) | CPU・メモリ・ディスク・通信の常駐監視 | 開発版 |
 
-両製品は別アプリです。設定・データ保存先・bundle ID・配布ファイル名を個別に持ちます。
+各製品は別アプリです。設定・データ保存先・bundle ID・配布ファイル名を個別に持ちます。
 
 ## 構成
 
-- `CPFileLauncher/`・`CPClipboard/`: 製品ごとのソース、設定、テスト、配布スクリプト。
+- `CPFileLauncher/`・`CPClipboard/`・`CPSystemMonitor/`: 製品ごとのソース、設定、テスト、配布スクリプト。
 - `Common/`: 入力判定、保存、演出、画面枠、OS補助、署名選択、更新確認などの共通ソース。
 - `docs/CPFileLauncher/`・`docs/CPClipboard/`: 配布サイトの編集元。
-- `CPTools.slnx`: 両製品をまとめてビルド・テストする入口。
+- `CPTools.slnx`: 各製品をまとめてビルド・テストする入口。
 
 CommonのC#ソースは各製品へリンクしてコンパイルします。アプリの名前空間・リソース・型の互換を保ち、片方のアプリをもう片方から参照する構成にはしません。[共通部品の仕様](Common/SPEC.md)を参照してください。
 

@@ -5,6 +5,8 @@
   </Target>
   <Target Name="ValidateCPToolsProduct" BeforeTargets="CoreCompile" Condition="'$(CPToolsProduct)' != ''">
     <Error Condition="$([System.String]::Copy('$(DefineConstants)').Contains('CPTOOLS_CLIPBOARD')) And $([System.String]::Copy('$(DefineConstants)').Contains('CPTOOLS_LAUNCHER'))" Text="Select exactly one CPTools product." />
+    <Error Condition="$([System.String]::Copy('$(DefineConstants)').Contains('CPTOOLS_MONITOR')) And ($([System.String]::Copy('$(DefineConstants)').Contains('CPTOOLS_CLIPBOARD')) Or $([System.String]::Copy('$(DefineConstants)').Contains('CPTOOLS_LAUNCHER')))" Text="Select exactly one CPTools product." />
+    <Error Condition="'$(CPToolsProduct)' == 'Monitor' And !$([System.String]::Copy('$(DefineConstants)').Contains('CPTOOLS_MONITOR'))" Text="Monitor requires CPTOOLS_MONITOR." />
     <Error Condition="'$(CPToolsProduct)' == 'Clipboard' And !$([System.String]::Copy('$(DefineConstants)').Contains('CPTOOLS_CLIPBOARD'))" Text="Clipboard requires CPTOOLS_CLIPBOARD." />
     <Error Condition="'$(CPToolsProduct)' == 'Launcher' And !$([System.String]::Copy('$(DefineConstants)').Contains('CPTOOLS_LAUNCHER'))" Text="Launcher requires CPTOOLS_LAUNCHER." />
   </Target>

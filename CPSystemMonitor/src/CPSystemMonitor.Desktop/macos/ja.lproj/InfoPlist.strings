@@ -1,0 +1,2 @@
+/* 表示名（各言語の lproj があると Finder がその言語を使えるとみなす。SPEC §10.4） */
+"CFBundleDisplayName" = "CPSystemMonitor";

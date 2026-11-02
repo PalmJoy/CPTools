@@ -8,6 +8,16 @@ using Avalonia.Media.Imaging;
 using CPClipboard.Core.Effects;
 
 namespace CPClipboard.App;
+#elif CPTOOLS_MONITOR
+using System.Diagnostics;
+using Avalonia;
+using Avalonia.Animation;
+using Avalonia.Controls;
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using CPSystemMonitor.Core.Effects;
+
+namespace CPSystemMonitor.App;
 #elif CPTOOLS_LAUNCHER
 using System.Diagnostics;
 using Avalonia;

@@ -4,6 +4,12 @@ using System.Runtime.Versioning;
 using static CPClipboard.Platform.MacOS.Native.ObjC;
 
 namespace CPClipboard.Platform.MacOS.Native;
+#elif CPTOOLS_MONITOR
+using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
+using static CPSystemMonitor.Platform.MacOS.Native.ObjC;
+
+namespace CPSystemMonitor.Platform.MacOS.Native;
 #elif CPTOOLS_LAUNCHER
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- macOS 実装。AppKit 等は Native/ の P/Invoke 層から呼ぶ（SPEC §10.3） -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPSystemMonitor.Platform\CPSystemMonitor.Platform.csproj" />
+  </ItemGroup>
+
+</Project>
