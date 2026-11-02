@@ -54,7 +54,7 @@ node Common/build/sync-app-links.mjs
 node Common/build/sync-app-links.mjs --check
 ```
 
-GitHub Pagesの配信元はrootの `docs/` です。`docs/index.html` と `docs/ja/index.html` は3アプリを選べるCPToolsの一覧です。各配布ページは製品ディレクトリ内に置き、椰子の木の背景・共通ナビ・正方形のアプリリンクを `docs/shared/` と共通同期スクリプトで揃えます。CPSystemMonitorは専用の `cpsystemmonitor-vX.Y.Z` 公開Releaseに3種類のZIPが揃うとダウンロードを有効にし、未公開時は公開準備中と開発状況リンク、取得失敗時はその説明とRelease一覧へのリンクを表示します。
+GitHub Pagesの配信元はrootの `docs/` です。`docs/index.html` と `docs/ja/index.html` は3アプリを選べるCPToolsの一覧です。各配布ページは製品ディレクトリ内に置き、椰子の木の背景・共通ナビ・正方形のアプリリンクを `docs/shared/` と共通同期スクリプトで揃えます。CPSystemMonitorは専用の `cpsystemmonitor-vX.Y.Z` 公開Releaseを使用します。公開済み3種類のZIPリンクをHTMLに常設し、APIが取得できない場合もダウンロードできます。APIは正式版のリンク・版番号・容量の更新に使用します。
 
 ## ライセンス
 

@@ -36,6 +36,14 @@ export async function startMonitorPage({document=globalThis.document,navigator=g
   const ja=document.documentElement.lang==='ja';
   const cards=[...document.querySelectorAll('.dl-item[data-asset]')];
   const urls={};
+  const pinnedVersion=document.querySelector('[data-downloads]')?.getAttribute('data-release-version');
+  if(/^\d+\.\d+\.\d+$/.test(pinnedVersion||'')){
+    for(const card of cards){
+      const platform=card.getAttribute('data-asset');
+      const link=card.querySelector('[data-download-link]');
+      if(trustedAsset({name:assetNames[platform],browser_download_url:link.href},prefix+pinnedVersion,assetNames[platform]))urls[platform]=link.href;
+    }
+  }
   const platformReady=detectPlatform(navigator);
   function updatePlatform(platform){
     if(!platform)return;
@@ -55,8 +63,11 @@ export async function startMonitorPage({document=globalThis.document,navigator=g
   }
   function showReleaseLookupFailure(){
     const status=document.querySelector('[data-release-status]');
-    if(status)status.textContent=ja?'配布状況を取得できませんでした。GitHubのRelease一覧をご確認ください。':'Release availability could not be loaded. Please check the GitHub releases.';
+    if(status)status.textContent=Object.keys(urls).length
+      ?(ja?'最新版の確認ができませんでした。公開済み v'+pinnedVersion+' をダウンロードできます。':'Could not check for updates. Published v'+pinnedVersion+' remains available below.')
+      :(ja?'配布状況を取得できませんでした。GitHubのRelease一覧をご確認ください。':'Release availability could not be loaded. Please check the GitHub releases.');
     for(const card of cards){
+      if(urls[card.getAttribute('data-asset')])continue;
       const link=card.querySelector('[data-download-link]');
       link.href=repository+'/releases';
       link.querySelector('.cut').textContent=ja?'Releaseを確認 ↗':'Browse releases ↗';
