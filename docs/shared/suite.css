@@ -1,5 +1,5 @@
 /* CPTools catalog and shared navigation. The scenery is decorative; all content is HTML. */
-:root { --suite-hero: url("palm-night.png"); }
+:root { --suite-hero: url("palm-night-glasses.png"); }
 .suite-brand { gap: 9px; font-size: 22px; color: var(--c1); font-weight: 600; }
 .suite-brand img { width: 32px; height: 32px; }
 .suite-topbar .wrap { height: 64px; }

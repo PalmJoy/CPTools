@@ -1,5 +1,11 @@
 # CPTools shared visual assets
 
+- `palm-night-glasses.png`: current shared hero, edited with the built-in image_gen tool. The right palm wears glasses matching the owner's Palm Joy identity; `palm-night.png` is retained as the original.
+
+## Glasses identity edit prompt
+
+Use case: precise-object-edit. Edit target: first image, the existing CPTools neon tropical ocean website banner. Supporting identity reference: second image, owner's Palm Joy Game Park artwork, particularly the palm trunk on the right wearing chunky rounded rectangular spectacles. Modify ONLY the large foreground right-hand palm trunk in the first image to give it those recognizable eyeglasses and a subtle friendly character personality. Put a clearly readable pair of thick dark rounded rectangular eyeglasses on the trunk around mid-height, two lenses side by side connected with a bridge, following the trunk angle; cyan edge lighting with restrained magenta reflections, transparent lenses showing trunk texture. The glasses must be prominent and identifiable even at website banner scale. Keep it a palm tree, no human body, no arms, no cartoon eyes or mouth needed. Retain the first image's exact wide 2:1 landscape composition, left palms, ocean, pink setting sun, navy sky, cyan and magenta palette, empty center for HTML headings, and bottom dark fade. No text, logos, watermark, or UI. Integrate glasses naturally into the existing polished illustrative style.
+
 - `palm-night.png`: original tropical-night hero illustration generated with the built-in image_gen tool for CPTools. Inspired by the user-approved CPTools concept and the user's Palm Joy Game Park reference. It contains no text or UI.
 - `palm.svg`: code-native palm mark used in the shared navigation and footer.
 - Product icons remain owned by their respective CPTools products.
