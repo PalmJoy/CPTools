@@ -64,6 +64,11 @@ public sealed class MonitorTests
         Assert.NotEmpty(next.Cores); Assert.InRange(next.CpuPercent!.Value, 0, 100);
         Assert.NotNull(next.ReadBytesPerSecond); Assert.NotNull(next.ReceiveBytesPerSecond); Assert.NotNull(next.TopMemory);
         if (OperatingSystem.IsMacOS()) Assert.True(source.NetworkAttributionAvailable, source.AttributionStatus);
+        if (OperatingSystem.IsWindows() && Microsoft.Diagnostics.Tracing.Session.TraceEventSession.IsElevated() == true)
+        {
+            Assert.True(source.DiskAttributionAvailable, source.AttributionStatus);
+            Assert.True(source.NetworkAttributionAvailable, source.AttributionStatus);
+        }
         Console.WriteLine($"Native: CPU={next.CpuPercent:F1}% cores={next.Cores.Length}, available={next.AvailableMemory}/{next.TotalMemory}, disk={next.DiskFree}/{next.DiskTotal}, R/W={next.ReadBytesPerSecond}/{next.WriteBytesPerSecond}, attribution={source.AttributionStatus}");
     }
     internal static MonitorSample Sample(DateTimeOffset t) => new(t, 24, [25,23], 32L<<30,20L<<30,"/",1L<<40,400L<<30,1000,100,2000,200,null,null,null,null);

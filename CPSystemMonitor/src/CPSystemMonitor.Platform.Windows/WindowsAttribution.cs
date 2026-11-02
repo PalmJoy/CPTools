@@ -45,6 +45,9 @@ internal sealed class WindowsAttribution : IDisposable
         {
             var session = new TraceEventSession("CPSystemMonitor-" + Environment.ProcessId) { StopOnDispose = true };
             _session = session;
+            // Accessing Source starts the session, so the kernel provider must be enabled first.
+            session.EnableKernelProvider(KernelTraceEventParser.Keywords.DiskIO | KernelTraceEventParser.Keywords.DiskIOInit
+                | KernelTraceEventParser.Keywords.NetworkTCPIP | KernelTraceEventParser.Keywords.Process | KernelTraceEventParser.Keywords.Thread);
             void Disk(int pid, int bytes, bool write)
             {
                 if (pid <= 0 || bytes < 0) return;
@@ -67,8 +70,6 @@ internal sealed class WindowsAttribution : IDisposable
             kernel.UdpIpRecvIPV6 += e => Net(e.ProcessID, e.size, false);
             kernel.UdpIpSendIPV6 += e => Net(e.ProcessID, e.size, true);
             kernel.ProcessStop += e => { lock (_gate) { _disk.Remove(e.ProcessID); _network.Remove(e.ProcessID); _previous.Remove(e.ProcessID); } };
-            session.EnableKernelProvider(KernelTraceEventParser.Keywords.DiskIO | KernelTraceEventParser.Keywords.DiskIOInit
-                | KernelTraceEventParser.Keywords.NetworkTCPIP | KernelTraceEventParser.Keywords.Process | KernelTraceEventParser.Keywords.Thread);
             Available = true; Status = "active";
             _worker = Task.Run(() =>
             {
