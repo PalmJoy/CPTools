@@ -78,6 +78,27 @@ public sealed class MonitorUiTests
         }
         finally { w.Close(); hub.Flush(); if (Directory.Exists(root)) Directory.Delete(root, true); }
     }
+    [AvaloniaFact] public void Compact_fits_twelve_cores_and_wraps_additional_cores_without_clipping()
+    {
+        var (hub, root) = Hub();
+        hub.Update(s => s.Monitor.Mode = MonitorMode.Compact, SettingsChange.BoardLayout);
+        var w = new MonitorWindow(hub, new SampleHistory()) { AllowClose = true }; w.Show();
+        try
+        {
+            Assert.Equal(340d, w.BodyWidth);
+            foreach (int count in new[] { 12, 13, 24, 32 })
+            {
+                w.Update(Sample(DateTimeOffset.Now) with { Cores = Enumerable.Repeat(25d, count).ToArray() });
+                Dispatcher.UIThread.RunJobs();
+                var cores = w.GetVisualDescendants().OfType<Avalonia.Controls.Primitives.UniformGrid>().Single(g => g.IsVisible);
+                Assert.Equal(count, cores.Children.Count);
+                Assert.Equal(cores.Children[0].Bounds.Y, cores.Children[11].Bounds.Y);
+                if (count > 12) Assert.True(cores.Children[12].Bounds.Y > cores.Children[11].Bounds.Y);
+                Assert.All(cores.Children, core => Assert.True(core.Bounds.Right <= cores.Bounds.Width + .1));
+            }
+        }
+        finally { w.Close(); hub.Flush(); if (Directory.Exists(root)) Directory.Delete(root, true); }
+    }
     [AvaloniaFact] public void Capture_standard_compact_and_settings()
     {
         var output=Environment.GetEnvironmentVariable("CPSM_CAPTURE_DIR"); if(string.IsNullOrEmpty(output))return;

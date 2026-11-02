@@ -5,7 +5,7 @@
 CPToolsシリーズのWindows・macOS向け常駐システムモニターです。CPU・メモリ・ストレージ・ネットワークを、シリーズ共通の配色とHUD枠で表示します。
 
 - 標準／コンパクト表示。右クリックで切り替え。
-- CPU全体と論理CPU別の負荷。標準は横4列で、CPU数に合わせて段数を変更。
+- CPU全体と論理CPU別の負荷。標準は横4列、コンパクトは幅340 DIP・横12列で、CPU数に合わせて段数を変更。
 - 利用可能メモリの割合と容量、選択したボリュームの空き割合と容量。
 - ディスク読み書き速度、稼働中インターフェースの送受信速度。
 - 取得可能なプロセスをアプリ単位にまとめた最大負荷対象。CPUは全体を100%として計算。
@@ -50,3 +50,7 @@ CPSM_CAPTURE_DIR=/absolute/path/to/captures dotnet test CPSystemMonitor/src/CPSy
 ```
 
 詳細は [仕様](spec/SPEC.md)。GPL-3.0-only、第三者ライセンスは [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt)。
+
+## リリース
+
+`cpsystemmonitor-v<Version>` の注釈付きタグで `.github/workflows/release-systemmonitor.yml` を実行します。Windows・macOSのテスト、実データ取得、ZIP作成がすべて成功してからReleaseを作成します。タグ注釈に `Release-Publish: true` がある場合は正式公開し、それ以外は下書きにします。手動実行はArtifact作成のみです。macOSは既存シリーズと同じad-hoc署名です。

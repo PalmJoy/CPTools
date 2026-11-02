@@ -46,7 +46,7 @@ internal sealed class MetricCard : Border
         _rates = Text("", compact ? 11 : 13);
         _rates.IsVisible = section == MonitorSection.Storage;
         _content.Children.Add(_rates);
-        _cores = new UniformGrid { Columns = compact ? 16 : 4, IsVisible = section == MonitorSection.Cpu && perCore };
+        _cores = new UniformGrid { Columns = compact ? 12 : 4, IsVisible = section == MonitorSection.Cpu && perCore };
         _content.Children.Add(_cores);
         _top = Text("", compact ? 11 : 12, "FlTextMuted");
         _top.TextTrimming = TextTrimming.CharacterEllipsis;

@@ -74,7 +74,7 @@ internal sealed class MonitorWindow : ChromeWindow
     {
         var settings = _hub.Current; var monitor = settings.Monitor;
         bool compact = monitor.Mode == MonitorMode.Compact;
-        BodyWidth = compact ? 440 : 820;
+        BodyWidth = compact ? 340 : 820;
         _pin.IsChecked = monitor.AlwaysOnTop;
         Topmost = monitor.AlwaysOnTop; Opacity = settings.Appearance.Opacity / 100d;
         var screen = Screens.ScreenFromPoint(Position) ?? Screens.Primary;
