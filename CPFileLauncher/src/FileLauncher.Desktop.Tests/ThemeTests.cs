@@ -84,7 +84,7 @@ public sealed class ThemedWindowTests
             var (p, s) = ColorPresets.For(AccentPreset.Cyan);
             var derived = CyberDerivation.Derive(p, s);
             static Color C(RgbColor c) => Color.FromRgb(c.R, c.G, c.B);
-            Assert.Equal(C(derived.WindowBackground), ((ISolidColorBrush)w.Chrome.SurfaceBrush!).Color); // 窓は透明、面は枠（SPEC §3.8）
+            Assert.Equal(C(derived.BoardBackground), ((ISolidColorBrush)w.Chrome.SurfaceBrush!).Color); // 窓は透明、面は枠（SPEC §3.8）
             Assert.Equal(C(derived.Text), ((ISolidColorBrush)w.Foreground!).Color);
             Assert.True(app.TryGetResource("ToggleSwitchFillOn", AppTheme.Cyberpunk, out var on));
             Assert.Equal(Color.Parse("#00E5FF"), ((ISolidColorBrush)on!).Color);

@@ -52,7 +52,7 @@ public sealed class ChromeWindowTests
     }
 
     [AvaloniaFact]
-    public void 設定画面に閉じるボタンは無く_Escで閉じると保存待ちが書かれる()
+    public async Task 設定画面に閉じるボタンは無く_Escで閉じると保存待ちが書かれる()
     {
         string dir = Path.Combine(Path.GetTempPath(), "CPClipboardUiTests", Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(dir);
@@ -67,9 +67,12 @@ public sealed class ChromeWindowTests
             Assert.DoesNotContain(w.GetVisualDescendants().OfType<Button>(), b => (b.Content as string) == Strings.Common_Close);
 
             hub.Update(s => s.Appearance.Opacity = 65, SettingsChange.None);
+            var closed = new TaskCompletionSource();
+            w.Closed += (_, _) => closed.SetResult();
             w.KeyPressQwerty(PhysicalKey.Escape, RawInputModifiers.None);
             Dispatcher.UIThread.RunJobs();
 
+            await closed.Task.WaitAsync(TimeSpan.FromSeconds(5));
             Assert.Equal(65, new AppDataStore(paths).LoadAll().Settings.Value.Appearance.Opacity);
         }
         finally { try { Directory.Delete(dir, recursive: true); } catch (IOException) { } }

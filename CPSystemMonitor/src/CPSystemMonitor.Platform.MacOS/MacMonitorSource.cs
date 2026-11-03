@@ -39,7 +39,7 @@ public sealed class MacMonitorSource : IMonitorSource
         }
         finally { mach_port_deallocate(mach_task_self(), host); }
     }
-    public (long Total, long Available) ReadMemory()
+    public MemoryReading ReadMemory()
     {
         ulong size = 8; long total = 0;
         if (sysctlbyname("hw.memsize", out total, ref size, 0, 0) != 0) throw new IOException("hw.memsize");
@@ -51,7 +51,12 @@ public sealed class MacMonitorSource : IMonitorSource
             // free_count already includes speculative_count. Inactive pages are reclaimable;
             // cached/compressed memory is not classified as permanently free.
             long available = ((long)BitConverter.ToUInt32(data, 0) + BitConverter.ToUInt32(data, 8)) * page;
-            return (total, Math.Clamp(available, 0, total));
+            // vm_statistics64.compressor_page_count is at byte 128 (SDK mach/vm_statistics.h).
+            long? compressed = count * 4 >= 132 ? (long)BitConverter.ToUInt32(data, 128) * page : null;
+            ulong swapSize = (ulong)Marshal.SizeOf<SwapUsage>();
+            long? swapUsed = sysctlbyname("vm.swapusage", out SwapUsage swap, ref swapSize, 0, 0) == 0
+                && swapSize == (ulong)Marshal.SizeOf<SwapUsage>() && swap.Used <= long.MaxValue ? (long)swap.Used : null;
+            return new(total, Math.Clamp(available, 0, total), compressed, swapUsed);
         }
         finally { mach_port_deallocate(mach_task_self(), host); }
     }
@@ -120,6 +125,14 @@ public sealed class MacMonitorSource : IMonitorSource
         _detailed = enabled; _network.SetEnabled(enabled);
     }
     public void Dispose() => _network.Dispose();
+    [StructLayout(LayoutKind.Sequential)]
+    private struct SwapUsage
+    {
+        public ulong Total, Available, Used;
+        public uint PageSize;
+        public int Encrypted;
+    }
+    [DllImport(Lib)] private static extern int sysctlbyname(string name, out SwapUsage value, ref ulong length, nint newValue, ulong newLength);
     [DllImport(Lib)] private static extern uint mach_host_self();
     [DllImport(Lib)] private static extern uint mach_task_self();
     [DllImport(Lib)] private static extern int mach_port_deallocate(uint task, uint port);

@@ -21,11 +21,11 @@ public sealed class WindowsMonitorSource : IMonitorSource
             return new CpuTicks(idle, kernel + user);
         }).ToArray();
     }
-    public (long Total, long Available) ReadMemory()
+    public MemoryReading ReadMemory()
     {
         var memory = new MemoryStatus { Length = (uint)Marshal.SizeOf<MemoryStatus>() };
         if (!GlobalMemoryStatusEx(ref memory)) throw new System.ComponentModel.Win32Exception();
-        return ((long)memory.TotalPhysical, (long)memory.AvailablePhysical);
+        return new((long)memory.TotalPhysical, (long)memory.AvailablePhysical);
     }
     public (long Read, long Write)? ReadDisk(string volume)
     {

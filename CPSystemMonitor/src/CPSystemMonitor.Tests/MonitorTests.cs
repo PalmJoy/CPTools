@@ -50,6 +50,19 @@ public sealed class MonitorTests
         }
         finally { Directory.Delete(root, true); }
     }
+    [Fact] public void Mac_memory_reports_compressed_RAM_and_current_swap_usage()
+    {
+        if (!OperatingSystem.IsMacOS()) return;
+        using var source = new MacMonitorSource();
+        var memory = source.ReadMemory();
+        Assert.True(memory.Total > 0);
+        Assert.InRange(memory.Available, 0, memory.Total);
+        Assert.NotNull(memory.Compressed);
+        Assert.InRange(memory.Compressed.Value, 0, memory.Total);
+        // A denied sysctl must leave swap unavailable rather than reporting a false zero.
+        if (memory.SwapUsed is { } swap) Assert.True(swap >= 0);
+        Console.WriteLine($"Memory: compressed={memory.Compressed}, swap={memory.SwapUsed}");
+    }
     [Fact] public async Task Native_source_reports_real_metrics_when_requested()
     {
         if (Environment.GetEnvironmentVariable("CPSM_NATIVE_TESTS") != "1") return;

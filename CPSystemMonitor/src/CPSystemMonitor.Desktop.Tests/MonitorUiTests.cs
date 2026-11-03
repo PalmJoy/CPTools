@@ -16,7 +16,7 @@ public sealed class MonitorUiTests
     private static MonitorSample Sample(DateTimeOffset time) => new(time, 24, Enumerable.Range(0,16).Select(i => i == 0 ? 72d : 20d+i).ToArray(),
         32L<<30,20L<<30,"/",1L<<40,410L<<30,128L<<20,42L<<20,24800000,3200000,
         new("Blender",12.4,2L<<30,0,0,0,0), new("Chrome",5,3L<<30,0,0,0,0),
-        new("Code",1,1L<<30,18L<<20,32L<<20,0,0), new("Chrome",5,3L<<30,0,0,21L<<20,2L<<20));
+        new("Code",1,1L<<30,18L<<20,32L<<20,0,0), new("Chrome",5,3L<<30,0,0,21L<<20,2L<<20), CompressedMemory: 7L<<30, SwapUsed: 2L<<30);
     private static (SettingsHub Hub, string Root) Hub()
     {
         string root = Path.Combine(Path.GetTempPath(),"cpsm-ui-"+Guid.NewGuid());
@@ -95,6 +95,33 @@ public sealed class MonitorUiTests
                 Assert.Equal(cores.Children[0].Bounds.Y, cores.Children[11].Bounds.Y);
                 if (count > 12) Assert.True(cores.Children[12].Bounds.Y > cores.Children[11].Bounds.Y);
                 Assert.All(cores.Children, core => Assert.True(core.Bounds.Right <= cores.Bounds.Width + .1));
+            }
+        }
+        finally { w.Close(); hub.Flush(); if (Directory.Exists(root)) Directory.Delete(root, true); }
+    }
+    [AvaloniaFact] public void Memory_details_fit_both_modes_and_distinguish_zero_from_unavailable()
+    {
+        var (hub, root) = Hub();
+        var w = new MonitorWindow(hub, new SampleHistory()) { AllowClose = true }; w.Show();
+        try
+        {
+            foreach (var mode in Enum.GetValues<MonitorMode>())
+            {
+                hub.Update(s => s.Monitor.Mode = mode, SettingsChange.BoardLayout);
+                foreach (long? swap in new long?[] { 0, 2L << 30, null })
+                {
+                    w.Update(Sample(DateTimeOffset.Now) with { CompressedMemory = 7L << 30, SwapUsed = swap });
+                    Dispatcher.UIThread.RunJobs();
+                    var texts = w.GetVisualDescendants().OfType<TextBlock>().ToArray();
+                    var compressed = Assert.Single(texts, t => t.Text == "COMPRESSED  7 GB");
+                    var used = Assert.Single(texts, t => t.Text == "SWAP USED  " + (swap is null ? "—" : swap == 0 ? "0 B" : "2 GB"));
+                    var row = Assert.IsType<Grid>(compressed.Parent);
+                    Assert.True(row.IsVisible);
+                    Assert.Equal(compressed.Bounds.Y, used.Bounds.Y);
+                    Assert.True(compressed.DesiredSize.Width <= row.ColumnDefinitions[0].ActualWidth);
+                    Assert.True(used.DesiredSize.Width <= row.ColumnDefinitions[1].ActualWidth);
+                    Assert.True(used.Bounds.Right <= row.Bounds.Width + .1);
+                }
             }
         }
         finally { w.Close(); hub.Flush(); if (Directory.Exists(root)) Directory.Delete(root, true); }

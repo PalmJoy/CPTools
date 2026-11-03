@@ -24,6 +24,7 @@ internal sealed class SettingsWindow : ChromeWindow
     private const double LabelColumnWidth = 200;
 
     private readonly SettingsHub _hub;
+    private readonly BoardWindowAppearance _boardAppearance;
     private readonly SettingsContext _ctx;
     private readonly Func<PixelPoint?> _boardPosition;
     private readonly Action<string> _openFolder;
@@ -87,6 +88,7 @@ internal sealed class SettingsWindow : ChromeWindow
         Deactivated += (_, _) => _hotkeyRecorder?.Cancel();
         root.Children.Add(tabs);
         Body = root;
+        _boardAppearance = new BoardWindowAppearance(this, hub.Current.Appearance, ctx.Paths, ctx.Platform, fixedOpacity: 1);
 
         _hub.Changed += OnHubChanged;
         Closed += (_, _) =>
@@ -100,6 +102,7 @@ internal sealed class SettingsWindow : ChromeWindow
 
     private void OnHubChanged(SettingsChange change)
     {
+        _boardAppearance.ApplyLiveSettings(_hub.Current.Appearance);
         // リセット・インポート後、テーマ変更後（演出の既定値が変わるので「演出の調整…」を読み直す）
         if (change == SettingsChange.All || change.HasFlag(SettingsChange.Colors) || change.HasFlag(SettingsChange.DisplayMode)) RefreshAll();
     }

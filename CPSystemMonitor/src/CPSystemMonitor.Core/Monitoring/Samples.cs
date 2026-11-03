@@ -5,7 +5,8 @@ public sealed record AppLoad(string Name, double CpuPercent, long MemoryBytes, d
 public sealed record MonitorSample(DateTimeOffset Time, double? CpuPercent, double[] Cores,
     long TotalMemory, long AvailableMemory, string Drive, long DiskTotal, long DiskFree,
     double? ReadBytesPerSecond, double? WriteBytesPerSecond, double? ReceiveBytesPerSecond, double? SendBytesPerSecond,
-    AppLoad? TopCpu, AppLoad? TopMemory, AppLoad? TopStorage, AppLoad? TopNetwork, string? Status = null)
+    AppLoad? TopCpu, AppLoad? TopMemory, AppLoad? TopStorage, AppLoad? TopNetwork, string? Status = null,
+    long? CompressedMemory = null, long? SwapUsed = null)
 {
     public double? AvailablePercent => TotalMemory > 0 ? Math.Clamp(100d * AvailableMemory / TotalMemory, 0, 100) : null;
     public double? DiskFreePercent => DiskTotal > 0 ? Math.Clamp(100d * DiskFree / DiskTotal, 0, 100) : null;
@@ -84,3 +85,5 @@ public static class AppAggregation
         }).ToArray();
     }
 }
+
+public readonly record struct MemoryReading(long Total, long Available, long? Compressed = null, long? SwapUsed = null);

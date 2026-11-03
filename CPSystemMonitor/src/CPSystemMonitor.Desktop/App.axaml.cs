@@ -248,7 +248,7 @@ public partial class App : Application
                     catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException) { Toast.Show(Strings.FormatToast_ImportFailed(ex.Message)); }
                 },
                 Restart: Restart, RequestMonitorPermissions: RequestMonitorPermissions, MonitorStatus: () => _monitorStatus));
-            _ = new BoardWindowAppearance(_settings, _hub.Current.Appearance, _store.Paths, _platform);
+            _ = new BoardWindowAppearance(_settings, _hub.Current.Appearance, _store.Paths, _platform, fixedOpacity: 1);
             _settings.Closed += (_, _) => _settings = null;
         }
         WindowActivation.ShowAndActivate(_settings, _platform);

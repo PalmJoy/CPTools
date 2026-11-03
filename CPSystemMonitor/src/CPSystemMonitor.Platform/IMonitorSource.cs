@@ -4,7 +4,7 @@ namespace CPSystemMonitor.Platform;
 public interface IMonitorSource : IDisposable
 {
     CpuTicks[] ReadCpu();
-    (long Total, long Available) ReadMemory();
+    MemoryReading ReadMemory();
     (long Read, long Write)? ReadDisk(string volume);
     IReadOnlyList<ProcessReading> ReadProcesses();
     IReadOnlyDictionary<int, (double Receive, double Send)> NetworkByProcess { get; }

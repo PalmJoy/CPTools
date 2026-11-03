@@ -10,6 +10,8 @@ internal sealed class MetricCard : Border
     private readonly MonitorSection _section;
     private readonly bool _compact;
     private readonly TextBlock _capacity, _label, _value, _rates, _top, _graphLabel, _networkSend;
+    private readonly TextBlock _compressed, _swap;
+    private readonly Grid _memoryDetails;
     private readonly TelemetryGraph _graph;
     private readonly MeterBar _capacityBar;
     private readonly UniformGrid _cores;
@@ -43,6 +45,14 @@ internal sealed class MetricCard : Border
         _content = new StackPanel { Spacing = compact ? 5 : 7, Children = { summary } };
         _capacityBar = new MeterBar { Height = compact ? 4 : 6, IsVisible = section is MonitorSection.Memory or MonitorSection.Storage };
         _content.Children.Add(_capacityBar);
+        _compressed = Text("", compact ? 10 : 12);
+        _swap = Text("", compact ? 10 : 12);
+        _memoryDetails = new Grid { ColumnDefinitions = new ColumnDefinitions("*,*"), ColumnSpacing = compact ? 8 : 20, IsVisible = false };
+        Grid.SetColumn(_swap, 1);
+        _memoryDetails.Children.Add(_compressed); _memoryDetails.Children.Add(_swap);
+        ToolTip.SetTip(_compressed, MonitorText.T("Physical RAM occupied by compressed memory.", "圧縮メモリが実際に占めているRAM容量です。"));
+        ToolTip.SetTip(_swap, MonitorText.T("Current disk space used for swap. Unavailable values are shown as —.", "Swapに現在使用しているディスク容量です。取得できない場合は — を表示します。"));
+        _content.Children.Add(_memoryDetails);
         _rates = Text("", compact ? 11 : 13);
         _rates.IsVisible = section == MonitorSection.Storage;
         _content.Children.Add(_rates);
@@ -89,6 +99,9 @@ internal sealed class MetricCard : Border
                 _capacity.Text = MonitorText.Capacity(sample.AvailableMemory, sample.TotalMemory);
                 _value.Text = MonitorText.Percent(sample.AvailablePercent);
                 _capacityBar.Value = sample.AvailablePercent ?? 0;
+                _memoryDetails.IsVisible = OperatingSystem.IsMacOS() || sample.CompressedMemory.HasValue || sample.SwapUsed.HasValue;
+                _compressed.Text = "COMPRESSED  " + (sample.CompressedMemory is { } compressed ? MonitorText.Bytes(compressed) : "—");
+                _swap.Text = "SWAP USED  " + (sample.SwapUsed is { } swap ? MonitorText.Bytes(swap) : "—");
                 top = sample.TopMemory; topText = top is null ? "" : MonitorText.Bytes(top.MemoryBytes);
                 break;
             case MonitorSection.Storage:

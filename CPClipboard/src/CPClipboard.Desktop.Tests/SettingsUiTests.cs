@@ -213,11 +213,14 @@ public sealed class SettingsUiTests : IDisposable
     }
 
     [AvaloniaFact]
-    public void 設定画面を閉じると予約中の保存が書かれる()
+    public async Task 設定画面を閉じると予約中の保存が書かれる()
     {
         var w = OpenSettings();
         _hub.Update(s => s.Appearance.Opacity = 55, SettingsChange.Opacity);
+        var closed = new TaskCompletionSource();
+        w.Closed += (_, _) => closed.SetResult();
         w.Close();
+        await closed.Task.WaitAsync(TimeSpan.FromSeconds(5));
 
         var saved = new AppDataStore(_paths).LoadAll().Settings.Value;
         Assert.Equal(55, saved.Appearance.Opacity);

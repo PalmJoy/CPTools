@@ -39,6 +39,7 @@ internal sealed class BoardWindowAppearance
     private readonly BackdropLayer _backdrop = new();
     private readonly Border _overlay = new() { IsHitTestVisible = false };
     private readonly ChromeWindow _window;
+    private readonly double? _fixedOpacity;
     private readonly AppearanceSettings _appearance;
     private readonly AmbientAnimator _animator;
     private NativeAmbient? _native;
@@ -47,11 +48,12 @@ internal sealed class BoardWindowAppearance
     private bool _initialized;
     private readonly Action _refreshRunning;
 
-    public BoardWindowAppearance(ChromeWindow window, AppearanceSettings appearance, DataPaths? paths, IPlatformServices? platform)
+    public BoardWindowAppearance(ChromeWindow window, AppearanceSettings appearance, DataPaths? paths, IPlatformServices? platform, double? fixedOpacity = null)
     {
         _window = window;
+        _fixedOpacity = fixedOpacity;
         _appearance = appearance;
-        window.Opacity = appearance.Opacity / 100.0;
+        window.Opacity = _fixedOpacity ?? appearance.Opacity / 100.0;
         var chrome = window.Chrome;
         window.WindowShowEffect = EffectCatalog.Resolve(appearance, EffectCatalog.BoardShow);
         window.WindowHideEffect = EffectCatalog.Resolve(appearance, EffectCatalog.BoardHide);
@@ -137,7 +139,7 @@ internal sealed class BoardWindowAppearance
 
     public void ApplyLiveSettings(AppearanceSettings appearance)
     {
-        _window.Opacity = appearance.Opacity / 100d;
+        _window.Opacity = _fixedOpacity ?? appearance.Opacity / 100d;
         _native?.SetOpacity(_window.Opacity);
         _grid.IsVisible = appearance.Hud.Grid;
         _grid.Opacity = appearance.Hud.GridOpacity / 100d;
