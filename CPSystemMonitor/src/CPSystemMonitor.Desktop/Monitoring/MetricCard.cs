@@ -19,9 +19,10 @@ internal sealed class MetricCard : Border
     private readonly StackPanel _content;
     private readonly Border _topRow;
     private readonly SectionSettings _settings;
-    public MetricCard(MonitorSection section, bool compact, SectionSettings settings, bool perCore)
+    private bool _topAppSeen;
+    public MetricCard(MonitorSection section, bool compact, SectionSettings settings, bool perCore, bool topAppSeen = false)
     {
-        _section = section; _compact = compact; _settings = settings;
+        _section = section; _compact = compact; _settings = settings; _topAppSeen = topAppSeen;
         BorderThickness = new Thickness(1); Padding = new Thickness(compact ? 10 : 13, 8);
         this[!Border.BorderBrushProperty] = Themed.Res("FlHeaderSeparator");
         Background = Brushes.Transparent;
@@ -59,6 +60,7 @@ internal sealed class MetricCard : Border
         _cores = new UniformGrid { Columns = compact ? 12 : 4, IsVisible = section == MonitorSection.Cpu && perCore };
         _content.Children.Add(_cores);
         _top = Text("", compact ? 11 : 12, "FlTextMuted");
+        if (section is MonitorSection.Storage or MonitorSection.Network) _top.LineHeight = compact ? 16 : 18;
         _top.TextTrimming = TextTrimming.CharacterEllipsis;
         _topRow = new Border { BorderThickness = new Thickness(0, 1, 0, 0), Padding = new Thickness(0, 5, 0, 0), Child = _top, IsVisible = false };
         _topRow[!Border.BorderBrushProperty] = Themed.Res("FlHeaderSeparator");
@@ -117,8 +119,11 @@ internal sealed class MetricCard : Border
                 top = sample.TopNetwork; topText = top is null ? "" : $"↓ {MonitorText.Rate(top.ReceiveBytesPerSecond)}  ↑ {MonitorText.Rate(top.SendBytesPerSecond)}";
                 break;
         }
-        _topRow.IsVisible = _settings.TopApp && top is not null;
-        _top.Text = top is null ? "" : $"{(_section == MonitorSection.Storage ? "TOP / ALL DISKS" : "TOP")}  {top.Name}   {topText}";
+        if (_settings.TopApp && top is not null && _section is MonitorSection.Storage or MonitorSection.Network)
+            _topAppSeen = true;
+        _topRow.IsVisible = _settings.TopApp && (top is not null || _topAppSeen);
+        // A space retains the text line height without showing stale app data.
+        _top.Text = top is null ? " " : $"{(_section == MonitorSection.Storage ? "TOP / ALL DISKS" : "TOP")}  {top.Name}   {topText}";
         if (_section == MonitorSection.Storage) ToolTip.SetTip(_top, MonitorText.T("Top app across all disks", "全ディスクに対する最大負荷アプリ"));
         ToolTip.SetTip(_capacity, _section == MonitorSection.Storage ? sample.Drive : null);
     }

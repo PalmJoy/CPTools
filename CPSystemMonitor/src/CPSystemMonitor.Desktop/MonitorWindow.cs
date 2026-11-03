@@ -12,6 +12,7 @@ internal sealed class MonitorWindow : ChromeWindow
     private readonly SettingsHub _hub;
     private readonly StackPanel _cards = new() { Spacing = 6, Margin = new Thickness(10, 6) };
     private readonly List<MetricCard> _metrics = [];
+    private readonly HashSet<MonitorSection> _topAppSeen = [];
     private readonly TextBlock _clock = MetricCard.Text("", 11, "FlAccent");
     private readonly TextBlock _historyText = MetricCard.Text("", 10, "FlTextMuted");
     private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(1) };
@@ -84,7 +85,7 @@ internal sealed class MonitorWindow : ChromeWindow
         foreach (var section in Enum.GetValues<MonitorSection>())
         {
             if (!monitor.For(section).Visible) continue;
-            var card = new MetricCard(section, compact, monitor.For(section), monitor.PerCore);
+            var card = new MetricCard(section, compact, monitor.For(section), monitor.PerCore, _topAppSeen.Contains(section));
             card.ContextMenu = SectionMenu(section);
             _metrics.Add(card); _cards.Children.Add(card);
         }
@@ -95,6 +96,8 @@ internal sealed class MonitorWindow : ChromeWindow
     public void Update(MonitorSample sample)
     {
         _last = sample;
+        if (_hub.Current.Monitor.Storage.Visible && _hub.Current.Monitor.Storage.TopApp && sample.TopStorage is not null) _topAppSeen.Add(MonitorSection.Storage);
+        if (_hub.Current.Monitor.Network.Visible && _hub.Current.Monitor.Network.TopApp && sample.TopNetwork is not null) _topAppSeen.Add(MonitorSection.Network);
         foreach (var card in _metrics) card.Update(sample, _history.Samples, _hub.Current.Monitor.HistorySeconds);
         UpdateClock();
     }

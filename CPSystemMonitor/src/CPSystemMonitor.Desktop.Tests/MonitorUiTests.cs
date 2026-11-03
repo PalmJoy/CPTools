@@ -56,6 +56,52 @@ public sealed class MonitorUiTests
         }
         finally { w.Close();hub.Flush();if(Directory.Exists(root))Directory.Delete(root,true); }
     }
+    [AvaloniaFact] public void Storage_and_network_keep_their_height_after_the_first_top_app_in_both_modes()
+    {
+        foreach (var mode in Enum.GetValues<MonitorMode>())
+        {
+            var (hub, root) = Hub();
+            hub.Update(s => s.Monitor.Mode = mode, SettingsChange.BoardLayout);
+            var w = new MonitorWindow(hub, new SampleHistory()) { AllowClose = true };
+            w.Show();
+            try
+            {
+                var active = Sample(DateTimeOffset.Now);
+                var idle = active with { TopStorage = null, TopNetwork = null };
+                void Show(MonitorSample sample) { w.Update(sample); Dispatcher.UIThread.RunJobs(); }
+                Show(idle);
+                double initial = w.Height;
+                Show(active with { TopNetwork = null });
+                double storage = w.Height;
+                Assert.True(storage > initial);
+                Show(idle);
+                Assert.Equal(storage, w.Height);
+                Show(active);
+                double both = w.Height;
+                Assert.True(both > storage);
+                for (int i = 0; i < 6; i++)
+                {
+                    Show(i % 2 == 0 ? idle : active);
+                    Assert.Equal(both, w.Height);
+                }
+                Show(idle);
+                Assert.DoesNotContain(w.GetVisualDescendants().OfType<TextBlock>(), t => t.Text?.Contains("TOP / ALL DISKS") == true);
+                // Rebuilding cards must not discard the reserved rows.
+                hub.Update(s => s.Monitor.PerCore = false, SettingsChange.BoardLayout);
+                Dispatcher.UIThread.RunJobs();
+                double rebuilt = w.Height;
+                Show(active);
+                Assert.Equal(rebuilt, w.Height);
+                hub.Update(s => { s.Monitor.Storage.TopApp = false; s.Monitor.Network.TopApp = false; }, SettingsChange.BoardLayout);
+                Dispatcher.UIThread.RunJobs();
+                Assert.True(w.Height < rebuilt);
+                hub.Update(s => { s.Monitor.Storage.TopApp = true; s.Monitor.Network.TopApp = true; }, SettingsChange.BoardLayout);
+                Dispatcher.UIThread.RunJobs();
+                Assert.Equal(rebuilt, w.Height);
+            }
+            finally { w.Close(); hub.Flush(); if (Directory.Exists(root)) Directory.Delete(root, true); }
+        }
+    }
     [AvaloniaFact] public void Context_menu_changes_mode_and_preserves_per_section_preferences()
     {
         var (hub, root) = Hub(); var history = new SampleHistory();
