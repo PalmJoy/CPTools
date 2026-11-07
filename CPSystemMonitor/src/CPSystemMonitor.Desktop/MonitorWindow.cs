@@ -2,6 +2,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Controls.Primitives;
+using Avalonia.VisualTree;
 using Avalonia.Threading;
 using CPSystemMonitor.Core.Hud;
 using CPSystemMonitor.Core.Model;
@@ -47,7 +49,15 @@ internal sealed class MonitorWindow : ChromeWindow
         Grid.SetColumn(_historyText, 1);
         _footer = new Border { Padding = new Thickness(12, 7), BorderThickness = new Thickness(0, 1, 0, 0), Child = footerGrid };
         _footer[!Border.BorderBrushProperty] = Themed.Res("FlHeaderSeparator");
-        var root = new DockPanel(); DockPanel.SetDock(_footer, Dock.Bottom); root.Children.Add(_footer); root.Children.Add(_scroll); Body = root;
+        var root = new DockPanel { Background = Brushes.Transparent }; DockPanel.SetDock(_footer, Dock.Bottom); root.Children.Add(_footer); root.Children.Add(_scroll); Body = root;
+        root.PointerPressed += (_, e) =>
+        {
+            if (!e.GetCurrentPoint(this).Properties.IsLeftButtonPressed || e.Source is not Visual source) return;
+            // Keep controls interactive, including the scrollbar's thumb and track.
+            if (source.GetSelfAndVisualAncestors().Any(v => v is Button or ScrollBar)) return;
+            BeginMoveDrag(e);
+            e.Handled = true;
+        };
         _timer.Tick += (_, _) => UpdateClock();
         PropertyChanged += (_, e) =>
         {

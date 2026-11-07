@@ -52,7 +52,20 @@ open(out, "wb").write(head + entries + b"".join(blobs))
 PY
 
 echo "==> トレイ / メニューバー"
-render "$ASSETS/tray-template.svg" 32 "$ASSETS/tray-template.png"
-render "$ASSETS/tray-color.svg" 32 "$ASSETS/tray-color.png"
-render "$ASSETS/tray-warning.svg" 32 "$ASSETS/tray-warning.png"
+# Tray SVGs contain only simple paths. Render directly on transparency:
+# Quick Look's thumbnail background/shadow contaminates the recovered alpha,
+# making macOS template icons appear as solid squares.
+# Use the drawing API because ImageMagick's SVG delegate varies by machine.
+python3 - "$ASSETS" <<'PY'
+import pathlib, subprocess, sys, xml.etree.ElementTree as ET
+assets = pathlib.Path(sys.argv[1])
+for name in ('tray-template', 'tray-color', 'tray-warning'):
+    path, = ET.parse(assets / f'{name}.svg').getroot()
+    subprocess.run([
+        'magick', '-size', '128x128', 'xc:none', '-fill', 'none',
+        '-stroke', path.attrib['stroke'], '-strokewidth', path.attrib['stroke-width'],
+        '-draw', f"scale 4,4 stroke-linejoin round path '{path.attrib['d']}'",
+        '-resize', '32x32', '-define', 'png:color-type=6', str(assets / f'{name}.png')
+    ], check=True)
+PY
 ls -la "$ASSETS"/*.icns "$ASSETS"/*.ico "$ASSETS"/*.png
