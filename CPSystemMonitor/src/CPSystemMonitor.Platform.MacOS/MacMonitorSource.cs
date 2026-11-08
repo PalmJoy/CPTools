@@ -15,6 +15,43 @@ public sealed class MacMonitorSource : IMonitorSource
     private readonly MacNetworkAttribution _network = new();
     private readonly Dictionary<string, string[]> _physical = new();
     private bool _detailed;
+    private readonly MachTimebase _timebase = ReadTimebase();
+    public int InaccessibleProcessCount { get; private set; }
+    private MacProcessAccess? _processAccess;
+    private volatile bool _disposed;
+    public string ProcessAccessStatus { get; private set; } = "limited";
+    public async Task RequestProcessAccessAsync(string executable, string? assembly, CancellationToken cancellationToken)
+    {
+        if (_disposed) return;
+        ProcessAccessStatus = "starting";
+        try
+        {
+            var access = await MacProcessAccess.RequestAsync(executable, assembly, cancellationToken);
+            if (_disposed || cancellationToken.IsCancellationRequested) { access.Dispose(); return; }
+            Interlocked.Exchange(ref _processAccess, access)?.Dispose();
+            ProcessAccessStatus = "active";
+        }
+        catch (OperationCanceledException) { ProcessAccessStatus = "cancelled"; }
+        catch (Exception ex) when (ex is IOException or System.Net.Sockets.SocketException or System.ComponentModel.Win32Exception)
+        { ProcessAccessStatus = "failed"; }
+    }
+    public void ReleaseProcessAccess()
+    {
+        Interlocked.Exchange(ref _processAccess, null)?.Dispose();
+        ProcessAccessStatus = "limited";
+    }
+
+    private static MachTimebase ReadTimebase()
+    {
+        if (mach_timebase_info(out var timebase) != 0 || timebase.Denom == 0)
+            throw new IOException("mach_timebase_info");
+        return timebase;
+    }
+
+    // rusage CPU times use Mach absolute-time units, including on Apple silicon.
+    // A wide intermediate preserves precision without overflowing before division.
+    public static long CpuNanoseconds(ulong user, ulong system, uint numer, uint denom) =>
+        checked((long)(((UInt128)user + system) * numer / denom));
     public CpuTicks[] ReadCpu()
     {
         uint host = mach_host_self();
@@ -101,17 +138,45 @@ public sealed class MacMonitorSource : IMonitorSource
     }
     public IReadOnlyList<ProcessReading> ReadProcesses()
     {
+        var access = _processAccess;
+        if (access is not null)
+        {
+            try
+            {
+                var snapshot = access.Read();
+                InaccessibleProcessCount = snapshot.InaccessibleCount;
+                return snapshot.Processes;
+            }
+            catch (Exception ex) when (ex is IOException or System.Net.Sockets.SocketException or ObjectDisposedException or System.Text.Json.JsonException)
+            {
+                if (Interlocked.CompareExchange(ref _processAccess, null, access) == access)
+                { access.Dispose(); ProcessAccessStatus = "failed"; }
+            }
+        }
+        return ReadLocalProcesses(_detailed);
+    }
+    internal IReadOnlyList<ProcessReading> ReadLocalProcesses(bool includeDisk)
+    {
         int bytes = proc_listallpids(null, 0); int[] pids = new int[Math.Max(1024, bytes + 128)];
         int count = proc_listallpids(pids, pids.Length * 4);
         var readings = new List<ProcessReading>(); byte[] buf = new byte[160]; byte[] path = new byte[4096];
+        InaccessibleProcessCount = 0;
         for (int i = 0; i < Math.Min(count, pids.Length); i++)
         {
-            int pid = pids[i]; if (pid <= 0 || proc_pid_rusage(pid, 2, buf) != 0) continue;
+            int pid = pids[i]; if (pid <= 0) continue;
+            if (proc_pid_rusage(pid, 2, buf) != 0)
+            {
+                // Do not classify processes that exited during enumeration as denied.
+                if (Marshal.GetLastPInvokeError() is 1 or 13) InaccessibleProcessCount++;
+                continue;
+            }
             int length = proc_pidpath(pid, path, (uint)path.Length);
             string? executable = length > 0 ? Encoding.UTF8.GetString(path, 0, Math.Max(0, Array.IndexOf(path, (byte)0))) : null;
             string name = executable is not null ? Path.GetFileNameWithoutExtension(executable) : "PID " + pid;
             long U(int offset) => unchecked((long)BitConverter.ToUInt64(buf, offset));
-            readings.Add(new(pid, U(80), name, executable, 0, U(16) + U(24), U(72), _detailed ? U(144) : null, _detailed ? U(152) : null));
+            readings.Add(new(pid, U(80), name, executable, 0,
+                CpuNanoseconds(BitConverter.ToUInt64(buf, 16), BitConverter.ToUInt64(buf, 24), _timebase.Numer, _timebase.Denom),
+                U(72), includeDisk ? U(144) : null, includeDisk ? U(152) : null));
         }
         return readings;
     }
@@ -124,7 +189,10 @@ public sealed class MacMonitorSource : IMonitorSource
         if (_detailed == enabled) return;
         _detailed = enabled; _network.SetEnabled(enabled);
     }
-    public void Dispose() => _network.Dispose();
+    public void Dispose() { _disposed = true; ReleaseProcessAccess(); _network.Dispose(); }
+    [StructLayout(LayoutKind.Sequential)]
+    private struct MachTimebase { public uint Numer, Denom; }
+    [DllImport(Lib)] private static extern int mach_timebase_info(out MachTimebase info);
     [StructLayout(LayoutKind.Sequential)]
     private struct SwapUsage
     {
@@ -142,6 +210,6 @@ public sealed class MacMonitorSource : IMonitorSource
     [DllImport(Lib)] private static extern int host_page_size(uint host, out uint size);
     [DllImport(Lib)] private static extern int sysctlbyname(string name, out long value, ref ulong length, nint newValue, ulong newLength);
     [DllImport(Proc)] private static extern int proc_listallpids([Out] int[]? pids, int size);
-    [DllImport(Proc)] private static extern int proc_pid_rusage(int pid, int flavor, [Out] byte[] buffer);
+    [DllImport(Proc, SetLastError = true)] private static extern int proc_pid_rusage(int pid, int flavor, [Out] byte[] buffer);
     [DllImport(Proc)] private static extern int proc_pidpath(int pid, [Out] byte[] path, uint size);
 }

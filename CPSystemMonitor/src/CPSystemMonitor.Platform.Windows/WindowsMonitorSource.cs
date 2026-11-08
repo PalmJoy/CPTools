@@ -10,6 +10,7 @@ public sealed class WindowsMonitorSource : IMonitorSource
 {
     private readonly WindowsAttribution _attribution = new();
     private readonly WindowsDiskCounters _disk = new();
+    public int InaccessibleProcessCount { get; private set; }
     public CpuTicks[] ReadCpu()
     {
         var data = new byte[48 * 4096];
@@ -41,6 +42,7 @@ public sealed class WindowsMonitorSource : IMonitorSource
     {
         var parents = Parents(); var counters = _attribution.DiskCounters;
         var result = new List<ProcessReading>();
+        InaccessibleProcessCount = 0;
         foreach (var p in Process.GetProcesses())
         {
             using (p)
@@ -60,7 +62,10 @@ public sealed class WindowsMonitorSource : IMonitorSource
                         p.TotalProcessorTime.Ticks * 100, p.WorkingSet64,
                         _attribution.Available ? disk.Read : null, _attribution.Available ? disk.Write : null));
                 }
-                catch (Exception ex) when (ex is System.ComponentModel.Win32Exception or InvalidOperationException or NotSupportedException) { }
+                catch (Exception ex) when (ex is System.ComponentModel.Win32Exception or InvalidOperationException or NotSupportedException)
+                {
+                    if (ex is System.ComponentModel.Win32Exception { NativeErrorCode: 5 }) InaccessibleProcessCount++;
+                }
             }
         }
         return result;

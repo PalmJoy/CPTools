@@ -7,6 +7,60 @@ using CPSystemMonitor.Platform.Windows;
 namespace CPSystemMonitor.Tests;
 public sealed class MonitorTests
 {
+    [Fact] public async Task Cancelled_process_permission_request_keeps_normal_collection()
+    {
+        if (!OperatingSystem.IsMacOS()) return;
+        using var source = new MacMonitorSource();
+        await source.RequestProcessAccessAsync("/not-launched", null, new CancellationToken(true));
+        Assert.Equal("cancelled", source.ProcessAccessStatus);
+        Assert.Contains(source.ReadProcesses(), p => p.Pid == Environment.ProcessId);
+    }
+    [Fact] public async Task Mac_privileged_helper_reads_system_processes_without_elevating_the_parent_when_requested()
+    {
+        string? executable = Environment.GetEnvironmentVariable("CPSM_HELPER_EXE");
+        if (!OperatingSystem.IsMacOS() || string.IsNullOrEmpty(executable)) return;
+        bool privilegedBefore = Environment.IsPrivilegedProcess;
+        using var source = new MacMonitorSource();
+        source.ReadProcesses(); int deniedBefore = source.InaccessibleProcessCount;
+        await source.RequestProcessAccessAsync(executable, null, CancellationToken.None);
+        Assert.Equal("active", source.ProcessAccessStatus);
+        var first = source.ReadProcesses();
+        Assert.Contains(first, p => p.Pid == Environment.ProcessId);
+        Assert.True(source.InaccessibleProcessCount <= deniedBefore);
+        if (deniedBefore > 0) Assert.True(source.InaccessibleProcessCount < deniedBefore);
+        await Task.Delay(100);
+        Assert.NotEmpty(source.ReadProcesses());
+        Assert.Equal(privilegedBefore, Environment.IsPrivilegedProcess);
+        source.ReleaseProcessAccess();
+        Assert.Equal("limited", source.ProcessAccessStatus);
+        Assert.NotEmpty(source.ReadProcesses());
+    }
+    [Theory]
+    [InlineData(24_000_000UL, 12_000_000UL, 125U, 3U, 1_500_000_000L)]
+    [InlineData(1_000_000_000UL, 500_000_000UL, 1U, 1U, 1_500_000_000L)]
+    [InlineData(120_000_000_000_000_000UL, 60_000_000_000_000_000UL, 125U, 3U, 7_500_000_000_000_000_000L)]
+    public void Mach_cpu_time_is_converted_without_intermediate_overflow(ulong user, ulong system, uint numer, uint denom, long expected)
+    {
+        if (!OperatingSystem.IsMacOS()) return;
+        Assert.Equal(expected, MacMonitorSource.CpuNanoseconds(user, system, numer, denom));
+    }
+    [Fact] public void Native_mac_process_cpu_time_matches_managed_cpu_time()
+    {
+        if (!OperatingSystem.IsMacOS() || Environment.GetEnvironmentVariable("CPSM_NATIVE_TESTS") != "1") return;
+        using var source = new MacMonitorSource();
+        using var process = System.Diagnostics.Process.GetCurrentProcess();
+        long Read() => source.ReadProcesses().Single(p => p.Pid == Environment.ProcessId).CpuNanoseconds;
+        long before = Read();
+        process.Refresh();
+        var managedBefore = process.TotalProcessorTime;
+        var timer = System.Diagnostics.Stopwatch.StartNew();
+        while (timer.ElapsedMilliseconds < 300) System.Threading.Thread.SpinWait(1000);
+        long delta = Read() - before;
+        process.Refresh();
+        double managedDelta = (process.TotalProcessorTime - managedBefore).TotalNanoseconds;
+        Assert.True(managedDelta > 0);
+        Assert.InRange(delta / managedDelta, 0.5, 2);
+    }
     [Fact] public void Cpu_rates_handle_idle_reset_and_no_elapsed_ticks()
     {
         Assert.Equal(75, SamplingMath.Cpu(new(100, 1000), new(125, 1100)));

@@ -25,6 +25,8 @@ public partial class App : Application
     private PermissionGuideWindow? _permissionGuide;
     private TrayIcon? _tray;
     private MonitorSampler? _sampler;
+    private MacMonitorSource? _macMonitorSource;
+    private bool _requestingProcessAccess;
     private readonly SampleHistory _history = new();
     private readonly CancellationTokenSource _cancel = new();
     private Task? _sampling;
@@ -58,6 +60,7 @@ public partial class App : Application
         else if (loaded.Status != LoadStatus.Loaded) Notice.Show(Strings.Notice_Load_Title, MonitorText.T("Settings were recovered or reset. The original file is preserved; newer settings are read-only.", "設定を復旧または初期化しました。元ファイルは保存され、新しい版の設定は読み取り専用です。") + "\n" + loaded.Status);
         _platform = OperatingSystem.IsMacOS() ? new MacPlatformServices() : new WindowsPlatformServices();
         IMonitorSource source = OperatingSystem.IsMacOS() ? new MacMonitorSource() : new WindowsMonitorSource();
+        _macMonitorSource = source as MacMonitorSource;
         _sampler = new(source);
         Toast.Appearance = () => _hub.Current.Appearance;
         ApplyTheme(); CreateWindow(); CreateTray();
@@ -247,7 +250,11 @@ public partial class App : Application
                     try { _store.Import(contents, DateTime.Now); Restart(); }
                     catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException) { Toast.Show(Strings.FormatToast_ImportFailed(ex.Message)); }
                 },
-                Restart: Restart, RequestMonitorPermissions: RequestMonitorPermissions, MonitorStatus: () => _monitorStatus));
+                Restart: Restart, RequestMonitorPermissions: RequestMonitorPermissions, MonitorStatus: () => _monitorStatus,
+                RequestProcessPermissions: RequestProcessPermissions,
+                ReleaseProcessPermissions: () => { if (OperatingSystem.IsMacOS()) _macMonitorSource?.ReleaseProcessAccess(); },
+                ProcessPermissionStatus: () => OperatingSystem.IsMacOS() ? _macMonitorSource?.ProcessAccessStatus ?? "limited"
+                    : Environment.IsPrivilegedProcess ? "active" : "limited"));
             _ = new BoardWindowAppearance(_settings, _hub.Current.Appearance, _store.Paths, _platform, fixedOpacity: 1);
             _settings.Closed += (_, _) => _settings = null;
         }
@@ -256,6 +263,7 @@ public partial class App : Application
     private void ShowPermissions()
     {
         if (_platform is null) return;
+        if (OperatingSystem.IsWindows()) { OpenSettings(); _settings?.ShowAdvanced(); return; }
         if (_permissionGuide is null)
         {
             _permissionGuide = new(_platform, () => _platform.InputHook.Start(), Restart);
@@ -277,6 +285,34 @@ public partial class App : Application
             _hub.Update(s => s.Monitor.DetailedAttribution = true, SettingsChange.BoardLayout);
             _attributionRequested = true;
         }
+    }
+    private async void RequestProcessPermissions()
+    {
+        if (_settings is null || _requestingProcessAccess) return;
+        if (OperatingSystem.IsWindows())
+        {
+            if (await Dialogs.ConfirmAsync(_settings, MonitorText.T("Process statistics permission", "プロセス計測の権限"),
+                MonitorText.T("Restart as administrator to read more system process statistics? Windows will ask for approval. Some protected processes may remain unavailable.",
+                    "システムプロセスの取得範囲を広げるため、管理者として再起動します。Windowsの許可画面が表示されます。保護されたプロセスは取得できない場合があります。"),
+                MonitorText.T("Restart", "再起動"))) Restart(elevate: true);
+            return;
+        }
+        if (!OperatingSystem.IsMacOS() || _macMonitorSource is null) return;
+        _requestingProcessAccess = true;
+        try
+        {
+            string exe = Environment.ProcessPath ?? throw new IOException("Executable unavailable");
+            string? assembly = Path.GetFileNameWithoutExtension(exe).Equals("dotnet", StringComparison.OrdinalIgnoreCase) ? typeof(App).Assembly.Location : null;
+            // Framework-dependent development apphosts need an explicit runtime path after authentication.
+            if (assembly is null && !File.Exists(Path.Combine(AppContext.BaseDirectory, "libcoreclr.dylib")))
+            {
+                string? runtimeRoot = Directory.GetParent(System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory().TrimEnd(Path.DirectorySeparatorChar))?.Parent?.Parent?.FullName;
+                if (runtimeRoot is not null && File.Exists(Path.Combine(runtimeRoot, "dotnet")))
+                { exe = Path.Combine(runtimeRoot, "dotnet"); assembly = typeof(App).Assembly.Location; }
+            }
+            await _macMonitorSource.RequestProcessAccessAsync(exe, assembly, _cancel.Token);
+        }
+        finally { _requestingProcessAccess = false; }
     }
     private void CreateTray()
     {

@@ -6,7 +6,7 @@ public sealed record MonitorSample(DateTimeOffset Time, double? CpuPercent, doub
     long TotalMemory, long AvailableMemory, string Drive, long DiskTotal, long DiskFree,
     double? ReadBytesPerSecond, double? WriteBytesPerSecond, double? ReceiveBytesPerSecond, double? SendBytesPerSecond,
     AppLoad? TopCpu, AppLoad? TopMemory, AppLoad? TopStorage, AppLoad? TopNetwork, string? Status = null,
-    long? CompressedMemory = null, long? SwapUsed = null)
+    long? CompressedMemory = null, long? SwapUsed = null, int InaccessibleProcessCount = 0)
 {
     public double? AvailablePercent => TotalMemory > 0 ? Math.Clamp(100d * AvailableMemory / TotalMemory, 0, 100) : null;
     public double? DiskFreePercent => DiskTotal > 0 ? Math.Clamp(100d * DiskFree / DiskTotal, 0, 100) : null;

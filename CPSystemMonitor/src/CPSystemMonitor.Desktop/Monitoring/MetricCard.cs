@@ -11,6 +11,7 @@ internal sealed class MetricCard : Border
     private readonly bool _compact;
     private readonly TextBlock _capacity, _label, _value, _rates, _top, _graphLabel, _networkSend;
     private readonly TextBlock _compressed, _swap;
+    private readonly TextBlock _processCoverage;
     private readonly Grid _memoryDetails;
     private readonly TelemetryGraph _graph;
     private readonly MeterBar _capacityBar;
@@ -65,6 +66,13 @@ internal sealed class MetricCard : Border
         _topRow = new Border { BorderThickness = new Thickness(0, 1, 0, 0), Padding = new Thickness(0, 5, 0, 0), Child = _top, IsVisible = false };
         _topRow[!Border.BorderBrushProperty] = Themed.Res("FlHeaderSeparator");
         _content.Children.Add(_topRow);
+        _processCoverage = Text("", compact ? 10 : 11, "FlTextMuted");
+        _processCoverage.TextWrapping = TextWrapping.Wrap;
+        _processCoverage.IsVisible = false;
+        ToolTip.SetTip(_processCoverage, MonitorText.T(
+            "TOP is the highest CPU usage among readable processes, with the whole CPU counted as 100%. Processes blocked by permissions are excluded from TOP but included in total CPU usage.",
+            "TOPは取得できたプロセスの中での最大負荷です（CPU全体を100%として表示）。権限で取得できないプロセスはTOPから除外されますが、CPU全体の使用率には含まれます。"));
+        _content.Children.Add(_processCoverage);
         Child = _content;
         if (section == MonitorSection.Network)
         {
@@ -73,8 +81,8 @@ internal sealed class MetricCard : Border
         }
         ToolTip.SetTip(this, section switch
         {
-            MonitorSection.Memory => MonitorText.T("Available memory includes reclaimable pages; accounting differs by OS.", "利用可能メモリには再利用可能なページを含み、集計方法はOSにより異なります。"),
-            MonitorSection.Storage => MonitorText.T("Capacity: selected volume. I/O: selected volume on Windows, backing physical disks on macOS. Top app: all disks.", "容量は選択ボリューム。入出力はWindowsでは選択ボリューム、macOSでは対応する物理ディスク。最大負荷アプリは全ディスクが対象です。"),
+            MonitorSection.Memory => MonitorText.MemoryScope(OperatingSystem.IsMacOS()),
+            MonitorSection.Storage => MonitorText.StorageScope(OperatingSystem.IsMacOS()),
             _ => null,
         });
     }
@@ -124,6 +132,10 @@ internal sealed class MetricCard : Border
         _topRow.IsVisible = _settings.TopApp && (top is not null || _topAppSeen);
         // A space retains the text line height without showing stale app data.
         _top.Text = top is null ? " " : $"{(_section == MonitorSection.Storage ? "TOP / ALL DISKS" : "TOP")}  {top.Name}   {topText}";
+        _processCoverage.IsVisible = _section == MonitorSection.Cpu && _settings.TopApp && sample.InaccessibleProcessCount > 0;
+        _processCoverage.Text = MonitorText.T(
+            $"TOP: {sample.InaccessibleProcessCount} processes excluded (permissions)",
+            $"TOP: 権限により{sample.InaccessibleProcessCount}プロセスを除外");
         if (_section == MonitorSection.Storage) ToolTip.SetTip(_top, MonitorText.T("Top app across all disks", "全ディスクに対する最大負荷アプリ"));
         ToolTip.SetTip(_capacity, _section == MonitorSection.Storage ? sample.Drive : null);
     }

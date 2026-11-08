@@ -49,7 +49,7 @@ internal sealed partial class SettingsWindow : ChromeWindow
         Topmost = true;
         ShowInTaskbar = OperatingSystem.IsWindows(); // Win は通常のウィンドウとして Alt+Tab / タスクバーから戻れるように（SPEC §7）
 
-        var tabs = new TabControl
+        var tabs = _tabs = new TabControl
         {
             Items =
             {
@@ -96,6 +96,9 @@ internal sealed partial class SettingsWindow : ChromeWindow
         };
         RefreshAll();
     }
+
+    private readonly TabControl _tabs;
+    public void ShowAdvanced() => _tabs.SelectedIndex = 7;
 
     private void OnHubChanged(SettingsChange change)
     {

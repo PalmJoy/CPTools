@@ -13,6 +13,74 @@ using CPSystemMonitor.Platform.Windows;
 namespace CPSystemMonitor.Desktop.Tests;
 public sealed class MonitorUiTests
 {
+    [AvaloniaFact] public void Monitor_explanations_only_describe_the_selected_operating_system()
+    {
+        string original = Loc.StartupLanguage;
+        try
+        {
+            foreach (string language in new[] { "en", "ja" })
+            {
+                Loc.StartupLanguage = language;
+                foreach (bool mac in new[] { false, true })
+                {
+                    string[] notes = [MonitorText.StorageScope(mac), MonitorText.MemoryScope(mac),
+                        MonitorText.DetailedCollectionNote(mac), MonitorText.ProcessPermissionNote(mac)];
+                    Assert.All(notes, note => Assert.DoesNotContain(mac ? "Windows" : "Mac", note, StringComparison.OrdinalIgnoreCase));
+                    Assert.Contains(mac ? "nettop" : "ETW", MonitorText.DetailedCollectionNote(mac));
+                }
+            }
+        }
+        finally { Loc.StartupLanguage = original; }
+    }
+    [AvaloniaFact] public void Advanced_settings_permission_button_is_explicit_and_describes_the_session()
+    {
+        var (hub, root) = Hub();
+        using IPlatformServices platform = OperatingSystem.IsMacOS() ? new MacPlatformServices() : new WindowsPlatformServices();
+        int requests = 0;
+        var window = new SettingsWindow(new(hub, platform, new(root, true), () => null, _ => { }, () => { },
+            RequestProcessPermissions: () => requests++, ProcessPermissionStatus: () => "limited"));
+        window.Show();
+        try
+        {
+            var tabs = window.GetVisualDescendants().OfType<TabControl>().Single();
+            tabs.SelectedIndex = 7; Dispatcher.UIThread.RunJobs();
+            Assert.Equal(0, requests);
+            var buttons = window.GetVisualDescendants().OfType<Button>().Where(b => Equals(b.Content, "Request permissions…")).ToArray();
+            Assert.NotEmpty(buttons);
+            buttons[0].RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+            Assert.Equal(1, requests);
+            var texts = window.GetVisualDescendants().OfType<TextBlock>().Select(t => t.Text ?? "").ToArray();
+            Assert.DoesNotContain(texts, s => s.Contains(OperatingSystem.IsMacOS() ? "Windows" : "macOS"));
+            Assert.Contains(texts, s => s.Contains("No prompts at startup"));
+        }
+        finally { window.Close(); hub.Flush(); if (Directory.Exists(root)) Directory.Delete(root, true); }
+    }
+    [AvaloniaFact] public void Cpu_top_shows_permission_exclusions_even_without_a_readable_top_app()
+    {
+        foreach (bool compact in new[] { false, true })
+        {
+            var settings = new SectionSettings { TopApp = true };
+            var card = new MetricCard(MonitorSection.Cpu, compact, settings, false);
+            var window = new Window { Width = compact ? 340 : 550, SizeToContent = SizeToContent.Height, Content = card };
+            window.Show();
+            try
+            {
+                var sample = Sample(DateTimeOffset.Now) with { InaccessibleProcessCount = 188, TopCpu = null };
+                card.Update(sample, [sample], 60);
+                Dispatcher.UIThread.RunJobs();
+                var notice = Assert.Single(card.GetVisualDescendants().OfType<TextBlock>(), t => t.Text?.Contains("188") == true);
+                Assert.True(notice.IsVisible);
+                Assert.True(notice.Bounds.Width <= card.Bounds.Width);
+                Assert.NotNull(ToolTip.GetTip(notice));
+                card.Update(sample with { InaccessibleProcessCount = 0 }, [sample], 60);
+                Assert.False(notice.IsVisible);
+                settings.TopApp = false;
+                card.Update(sample, [sample], 60);
+                Assert.False(notice.IsVisible);
+            }
+            finally { window.Close(); }
+        }
+    }
     private static MonitorSample Sample(DateTimeOffset time) => new(time, 24, Enumerable.Range(0,16).Select(i => i == 0 ? 72d : 20d+i).ToArray(),
         32L<<30,20L<<30,"/",1L<<40,410L<<30,128L<<20,42L<<20,24800000,3200000,
         new("Blender",12.4,2L<<30,0,0,0,0), new("Chrome",5,3L<<30,0,0,0,0),
@@ -190,7 +258,10 @@ public sealed class MonitorUiTests
             using(platform)
             {
                 var settings=new SettingsWindow(new(hub,platform,new(root,true),()=>w.Position,_=>{},()=>{}));settings.Show();Dispatcher.UIThread.RunJobs();
-                using var frame=settings.CaptureRenderedFrame();Assert.NotNull(frame);frame.Save(Path.Combine(output,"settings.png"));settings.Close();
+                using var frame=settings.CaptureRenderedFrame();Assert.NotNull(frame);frame.Save(Path.Combine(output,"settings.png"));
+                settings.ShowAdvanced(); Dispatcher.UIThread.RunJobs();
+                using var advanced = settings.CaptureRenderedFrame(); Assert.NotNull(advanced); advanced.Save(Path.Combine(output,"advanced.png"));
+                settings.Close();
             }
         }
         finally{w.Close();hub.Flush();if(Directory.Exists(root))Directory.Delete(root,true);}

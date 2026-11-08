@@ -9,7 +9,7 @@
     <Product>CPSystemMonitor</Product>
     <AssemblyTitle>CPSystemMonitor</AssemblyTitle>
     <!-- 製品のバージョン（「について」と macOS の Info.plist に出る。製品名・正式な版の付け方は SPEC §13.2 の TODO） -->
-    <Version>0.1.3</Version>
+    <Version>0.2.0</Version>
     <!-- Self-contained releases carry their own security-patched runtime. -->
     <RuntimeFrameworkVersion Condition="'$(SelfContained)' == 'true'">10.0.13</RuntimeFrameworkVersion>
     <!-- Windows の exe のアイコン（src/build/make-icons.sh が Assets/icon.svg から作る。SPEC §3.9 H13） -->

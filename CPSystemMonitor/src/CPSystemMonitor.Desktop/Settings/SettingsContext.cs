@@ -18,4 +18,7 @@ internal sealed record SettingsContext(
     Func<Avalonia.Media.Imaging.Bitmap?>? BackgroundBitmap = null,  // 背景画像のプレビュー（読み込み済みのもの）
     Action? Restart = null,
     Action? RequestMonitorPermissions = null,
-    Func<string>? MonitorStatus = null);                                         // 「今すぐ再起動」（言語）
+    Func<string>? MonitorStatus = null,
+    Action? RequestProcessPermissions = null,
+    Action? ReleaseProcessPermissions = null,
+    Func<string>? ProcessPermissionStatus = null);

@@ -179,7 +179,8 @@ internal sealed class MonitorWindow : ChromeWindow
     private ContextMenu SectionMenu(MonitorSection section)
     {
         var menu = new ContextMenu(); foreach (var item in SectionItems(section)) menu.Items.Add(item);
-        menu.Items.Add(new Separator()); menu.Items.Add(new MenuItem { Header = MonitorText.T("All settings", "全体メニュー"), ItemsSource = GlobalItems() });
+        menu.Items.Add(new Separator());
+        foreach (var item in GlobalItems()) menu.Items.Add(item);
         return menu;
     }
     private object[] GlobalItems()

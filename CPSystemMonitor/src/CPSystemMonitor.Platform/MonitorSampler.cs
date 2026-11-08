@@ -91,7 +91,8 @@ public sealed class MonitorSampler(IMonitorSource source) : IDisposable
         return new(DateTimeOffset.Now, total, cores, mem.Total, mem.Available, drive, diskTotal, diskFree,
             read, write, receive, send, Top(a => a.CpuPercent), Top(a => a.MemoryBytes),
             source.DiskAttributionAvailable ? Top(a => a.ReadBytesPerSecond + a.WriteBytesPerSecond) : null,
-            source.NetworkAttributionAvailable ? Top(a => a.ReceiveBytesPerSecond + a.SendBytesPerSecond) : null, status, mem.Compressed, mem.SwapUsed);
+            source.NetworkAttributionAvailable ? Top(a => a.ReceiveBytesPerSecond + a.SendBytesPerSecond) : null, status, mem.Compressed, mem.SwapUsed,
+            source.InaccessibleProcessCount);
     }
     public static string SystemDrive => OperatingSystem.IsWindows() ? Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.Windows)) ?? "C:\\" : "/";
     private static bool Recoverable(Exception ex) => ex is IOException or UnauthorizedAccessException or System.ComponentModel.Win32Exception or InvalidOperationException;

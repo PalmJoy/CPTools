@@ -22,6 +22,12 @@ internal static class Program
     public static void Main(string[] args)
     {
 #if CPTOOLS_MONITOR
+        if (args.Length > 0 && args[0] == CPSystemMonitor.Platform.MacOS.MacProcessAccess.HelperArgument)
+        {
+            if (OperatingSystem.IsMacOS() && args.Length == 3)
+                CPSystemMonitor.Platform.MacOS.MacProcessAccess.RunHelper(args[1], args[2]);
+            return;
+        }
         int wait = Array.IndexOf(args, "--wait-for");
         if (wait >= 0 && wait + 1 < args.Length && int.TryParse(args[wait + 1], out int oldPid))
         {
