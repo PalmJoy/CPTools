@@ -30,7 +30,8 @@ internal sealed record MenuActions(
     PageActions? Pages = null,
     Action<LauncherItem>? OpenNewWindow = null, // フォルダを新しいウィンドウで（SPEC §6.3）
     Action<LauncherItem>? OpenTerminal = null,
-    Action? CheckForUpdates = null); // ターミナルで開く（SPEC §6.3）
+    Action? CheckForUpdates = null,
+    Action<LauncherItem>? CopyPath = null); // ターミナルで開く（SPEC §6.3）
 
 /// <summary>ページタブのメニューの処理（ページ番号を受ける）。</summary>
 internal sealed record PageActions(
@@ -61,6 +62,7 @@ internal static class BoardMenus
                         new KeyGesture(Key.Enter, OperatingSystem.IsMacOS() ? KeyModifiers.Meta : KeyModifiers.Control)));
                 if (OperatingSystem.IsWindows()) items.Add(Item(Strings.Menu_RunAsAdmin, a.LaunchAsAdmin is { } admin ? () => admin(item) : null));
                 items.Add(Item(Loc.Os(Strings.Menu_Reveal_Win, Strings.Menu_Reveal_Mac), () => a.Reveal(item)));
+                items.Add(Item(Strings.Menu_CopyPath, a.CopyPath is { } copyPath ? () => copyPath(item) : null));
                 if (a.OpenTerminal is { } terminal && TerminalLocation.For(item) is not null)
                     items.Add(Item(Strings.Menu_OpenTerminal, () => terminal(item)));
                 items.Add(new Separator());

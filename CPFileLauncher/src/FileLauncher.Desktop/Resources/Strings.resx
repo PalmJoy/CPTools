@@ -1198,6 +1198,9 @@ Only import archives you trust. Imported items can run commands and open network
   <data name="Menu_OpenNewWindow" xml:space="preserve">
     <value>Open in new window</value>
   </data>
+  <data name="Menu_CopyPath" xml:space="preserve">
+    <value>Copy path</value>
+  </data>
   <data name="Menu_OpenTerminal" xml:space="preserve">
     <value>Open in Terminal</value>
   </data>

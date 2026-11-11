@@ -236,13 +236,14 @@ public sealed class BoardEditingUiTests : IDisposable
     }
 
     [AvaloniaFact]
-    public void ターミナルで開くは格納フォルダを開くの直後にありフォルダのパスで開く()
+    public void ターミナルで開くはパスを取得の直後にありフォルダのパスで開く()
     {
         _a.Kind = ItemKind.Folder;
         OpenItemMenu(0, 0);
         var headers = _editor.LastMenu!.Items.OfType<MenuItem>().Select(m => (string?)m.Header).ToList();
         int reveal = headers.IndexOf(OperatingSystem.IsMacOS() ? Strings.Menu_Reveal_Mac : Strings.Menu_Reveal_Win);
-        Assert.Equal(reveal + 1, headers.IndexOf(Strings.Menu_OpenTerminal));
+        Assert.Equal(reveal + 1, headers.IndexOf(Strings.Menu_CopyPath));
+        Assert.Equal(reveal + 2, headers.IndexOf(Strings.Menu_OpenTerminal));
 
         MenuItemOf(Strings.Menu_OpenTerminal).RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
         Dispatcher.UIThread.RunJobs();

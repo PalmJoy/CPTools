@@ -215,6 +215,13 @@ internal sealed class BoardEditor
         to.Color = from.Color;
     }
 
+    private async Task CopyPathAsync(LauncherItem item)
+    {
+        if (TopLevel.GetTopLevel(_window)?.Clipboard is not { } clipboard) return;
+        string path = item.LinkPath ?? item.Target;
+        await clipboard.SetTextAsync(item.Kind == ItemKind.Url ? path : LaunchArgs.ExpandPath(path));
+    }
+
     /// <summary>クリップボードのファイル / テキスト（パス・URL）を登録する。</summary>
     private async Task PasteAsync((int Row, int Col)? cell)
     {
@@ -312,6 +319,7 @@ internal sealed class BoardEditor
             About: ShowAbout is { } about ? () => Avalonia.Threading.Dispatcher.UIThread.Post(about) : null,
             Quit: () => Quit?.Invoke(),
             OpenNewWindow: item => _controller().Launch(item, null, newWindow: true),
+            CopyPath: item => _ = CopyPathAsync(item),
             OpenTerminal: item =>
             {
                 if (TerminalLocation.For(item) is not { } dir) return;
